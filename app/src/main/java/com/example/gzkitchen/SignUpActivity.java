@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.net.Inet4Address;
@@ -20,6 +21,11 @@ public class SignUpActivity extends AppCompatActivity {
     Button btnSignUp;
     TextView btnLogin;
 
+    ImageView imgSignUp;
+    TextView lblHeader;
+    TextView lblDesc;
+    TextView lblAlreadyHaveAccount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,12 @@ public class SignUpActivity extends AppCompatActivity {
         txtConfirmPassword = findViewById(R.id.signUpTxtConfirmPassword);
         btnSignUp = findViewById(R.id.signUpBtnSignUp);
         btnLogin = findViewById(R.id.signUpBtnLogin);
+        imgSignUp = findViewById(R.id.signUpImg);
+        lblHeader = findViewById(R.id.signUpLblHeader);
+        lblDesc = findViewById(R.id.signUpLblDesc);
+        lblAlreadyHaveAccount = findViewById(R.id.signUpLblAlreadyHaveAccount);
+
+        LoadAnimation();
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,5 +64,20 @@ public class SignUpActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void LoadAnimation() {
+        imgSignUp.animate().setDuration(600).alpha(1);
+        lblHeader.animate().setDuration(600).setStartDelay(120).alpha(1).translationY(0);
+        lblDesc.animate().setDuration(600).setStartDelay(240).alpha(1).translationY(0);
+        lblAlreadyHaveAccount.animate().setDuration(600).setStartDelay(360).alpha(1).translationY(0);
+        btnLogin.animate().setDuration(600).setStartDelay(480).alpha(1).translationY(0);
+
+        txtName.animate().setDuration(600).setStartDelay(600).alpha(1).translationX(0);
+        txtEmail.animate().setDuration(600).setStartDelay(720).alpha(1).translationX(0);
+        txtPassword.animate().setDuration(600).setStartDelay(840).alpha(1).translationX(0);
+        txtConfirmPassword.animate().setDuration(600).setStartDelay(960).alpha(1).translationX(0);
+
+        btnSignUp.animate().setDuration(600).setStartDelay(1080).alpha(1).translationY(0);
     }
 }

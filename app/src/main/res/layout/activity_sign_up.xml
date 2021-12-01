@@ -26,6 +26,7 @@
                 android:layout_height="180dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginBottom="48dp"
+                android:alpha="0"
                 app:srcCompat="@drawable/ic_team" />
 
             <TextView
@@ -33,40 +34,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:alpha="0"
                 android:text="Sign Up"
                 android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:translationY="-10dp" />
 
             <TextView
                 android:id="@+id/signUpLblDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="48dp"
+                android:alpha="0"
                 android:text="Sign up and be part of GzKitchen"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:translationY="-10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="24dp"
+                android:alpha="1"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/signUpLblAlreadyHaveAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:alpha="0"
                     android:text="Already have an account?"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationY="-10dp" />
 
                 <TextView
                     android:id="@+id/signUpBtnLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:alpha="0"
                     android:clickable="true"
                     android:text="Login !"
                     android:textColor="@color/colorRed"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationY="-10dp" />
             </LinearLayout>
 
             <EditText
@@ -74,53 +84,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:alpha="0"
                 android:background="@drawable/txt_background"
                 android:ems="10"
                 android:hint="Name"
                 android:inputType="textPersonName"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:translationX="-15dp" />
 
             <EditText
                 android:id="@+id/signUpTxtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:alpha="0"
                 android:background="@drawable/txt_background"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:translationX="-15dp" />
 
             <EditText
                 android:id="@+id/signUpTxtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:alpha="0"
                 android:background="@drawable/txt_background"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:translationX="-15dp" />
 
             <EditText
                 android:id="@+id/signUpTxtConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="36dp"
+                android:alpha="0"
                 android:background="@drawable/txt_background"
                 android:ems="10"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:translationX="-15dp" />
 
             <Button
                 android:id="@+id/signUpBtnSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:alpha="0"
                 android:background="@drawable/primary_button_background"
                 android:text="Sign Up"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                android:translationY="-10dp" />
 
         </LinearLayout>
     </ScrollView>
