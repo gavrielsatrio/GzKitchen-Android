@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:clipToPadding="false">
+
+    <ImageView
+        android:id="@+id/employeeOfTheMonthImg"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dot_unselected" />
+
+    <TextView
+        android:id="@+id/employeeOfTheMonthLayoutLblName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorWhite"
+        android:elevation="10dp"
+        android:outlineProvider="none"
+        android:text="Nama"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/employeeOfTheMonthImg"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/employeeOfTheMonthImg"
+        app:layout_constraintTop_toBottomOf="@+id/employeeOfTheMonthImg" />
+
+    <TextView
+        android:id="@+id/employeeOfTheMonthLayoutLblMonth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorWhite"
+        android:elevation="10dp"
+        android:outlineProvider="none"
+        android:text="Bulan"
+        android:textColor="@color/colorGrey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/employeeOfTheMonthImg"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/employeeOfTheMonthImg"
+        app:layout_constraintTop_toBottomOf="@+id/employeeOfTheMonthLayoutLblName" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/employeeOfTheMonthImgBackground"
+        android:layout_width="130dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="-64dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employeeOfTheMonthImg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.GzKitchen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
+<!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/teal_200</item>-->
+<!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>-->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorRed</item>
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/ms_sans_serif</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:background">@color/colorAlmostWhite</item>
+        <item name="android:textCursorDrawable">@drawable/txt_cursor_color</item>
+    </style>
+</resources>
