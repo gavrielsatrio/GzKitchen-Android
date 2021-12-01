@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,8 +15,19 @@ import org.json.JSONObject;
 
 public class MemberMainActivity extends AppCompatActivity {
 
+    TextView lblHello;
+    TextView lblName;
+    TextView lblDesc;
+    ImageView imgMemberMain;
+    ImageView btnProfile;
+
+    TextView lblRecommended;
     RecyclerView recViewRecommended;
+
+    TextView lblPopular;
     RecyclerView recViewPopular;
+
+    TextView lblEmployee;
     RecyclerView recViewEmployee;
 
     @Override
@@ -21,9 +35,24 @@ public class MemberMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_main);
 
+        lblHello = findViewById(R.id.memberMainLblHello);
+        lblName = findViewById(R.id.memberMainLblName);
+        lblDesc = findViewById(R.id.memberMainLblDesc);
+        imgMemberMain = findViewById(R.id.memberMainImg);
+        btnProfile = findViewById(R.id.memberMainBtnProfile);
+
+        lblRecommended = findViewById(R.id.memberMainLblRecommendedItems);
         recViewRecommended = findViewById(R.id.memberMainRecViewRecommendedItems);
+
+        lblPopular = findViewById(R.id.memberMainLblPopularItems);
         recViewPopular = findViewById(R.id.memberMainRecViewMostPopularItems);
+
+        lblEmployee = findViewById(R.id.memberMainLblEmployeeOfTheMonth);
         recViewEmployee = findViewById(R.id.memberMainRecViewEmployeeOfTheMonth);
+
+        lblName.setText("GZ Ríō");
+
+        LoadAnimation();
 
         try {
             JSONArray jsonArray = new JSONArray();
@@ -48,5 +77,18 @@ public class MemberMainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void LoadAnimation() {
+        lblHello.animate().setDuration(600).alpha(1).translationY(0);
+        lblName.animate().setDuration(600).setStartDelay(120).alpha(1).translationX(0);
+        btnProfile.animate().setDuration(1200).setStartDelay(240).alpha(1).translationY(0);
+
+        lblDesc.animate().setDuration(600).setStartDelay(360).alpha(1).translationX(0);
+        imgMemberMain.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);
+
+        lblRecommended.animate().setDuration(600).setStartDelay(600).alpha(1).translationX(0);
+        lblPopular.animate().setDuration(600).setStartDelay(720).alpha(1).translationX(0);
+        lblEmployee.animate().setDuration(600).setStartDelay(840).alpha(1).translationX(0);
     }
 }
