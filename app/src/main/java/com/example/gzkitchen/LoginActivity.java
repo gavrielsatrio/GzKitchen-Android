@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText txtPassword;
     TextView btnSignUp;
     Button btnLogin;
+    ImageView imgLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.loginTxtPassword);
         btnSignUp = findViewById(R.id.loginBtnSignUp);
         btnLogin = findViewById(R.id.loginBtnLogin);
+        imgLogin = findViewById(R.id.loginImg);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

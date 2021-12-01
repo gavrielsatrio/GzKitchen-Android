@@ -34,9 +34,17 @@ public class SplashScreenRecViewAdapter extends RecyclerView.Adapter<SplashScree
         try {
             JSONObject object = jsonArray.getJSONObject(position);
 
-            ((ImageView)viewInflate.findViewById(R.id.splashScreenRecViewLayoutImg)).setImageDrawable(splashScreenActivity.getDrawable(object.getInt("Image")));
-            ((TextView)viewInflate.findViewById(R.id.splashScreenRecViewLayoutLblTitle)).setText(object.getString("Title"));
-            ((TextView)viewInflate.findViewById(R.id.splashScreenRecViewLayoutLblDesc)).setText(object.getString("Desc"));
+            ImageView img = (ImageView)viewInflate.findViewById(R.id.splashScreenRecViewLayoutImg);
+            TextView lblTitle = (TextView)viewInflate.findViewById(R.id.splashScreenRecViewLayoutLblTitle);
+            TextView lblDesc = (TextView)viewInflate.findViewById(R.id.splashScreenRecViewLayoutLblDesc);
+
+            img.setImageDrawable(splashScreenActivity.getDrawable(object.getInt("Image")));
+            lblTitle.setText(object.getString("Title"));
+            lblDesc.setText(object.getString("Desc"));
+
+            img.animate().setDuration(500).alpha(1);
+            lblTitle.animate().setDuration(500).alpha(1).setStartDelay(200);
+            lblDesc.animate().setDuration(500).alpha(1).setStartDelay(400);
         } catch (JSONException e) {
             e.printStackTrace();
         }
