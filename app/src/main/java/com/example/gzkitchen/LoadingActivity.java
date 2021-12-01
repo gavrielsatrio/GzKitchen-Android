@@ -29,9 +29,7 @@ public class LoadingActivity extends AppCompatActivity {
         lblDesc = findViewById(R.id.loadingLblDesc);
         imgRedMoon = findViewById(R.id.loadingImgRedMoon);
 
-        lblHeader.animate().translationX(0).alpha(1).setDuration(1000).setInterpolator(new AccelerateDecelerateInterpolator());
-        lblDesc.animate().translationX(0).alpha(1).setDuration(1000).setInterpolator(new AccelerateDecelerateInterpolator());
-        imgRedMoon.animate().translationY(0).setDuration(600).setStartDelay(500).setInterpolator(new AccelerateDecelerateInterpolator());
+        LoadAnimation();
 
         SharedPreferences sharedPref = getSharedPreferences("Info", Context.MODE_PRIVATE);
         new Timer().schedule(new TimerTask() {
@@ -51,5 +49,11 @@ public class LoadingActivity extends AppCompatActivity {
                 finish();
             }
         }, 1800);
+    }
+
+    private void LoadAnimation() {
+        lblHeader.animate().translationX(0).alpha(1).setDuration(1000).setInterpolator(new AccelerateDecelerateInterpolator());
+        lblDesc.animate().translationX(0).alpha(1).setDuration(1000).setInterpolator(new AccelerateDecelerateInterpolator());
+        imgRedMoon.animate().translationY(0).setDuration(600).setStartDelay(500).setInterpolator(new AccelerateDecelerateInterpolator());
     }
 }

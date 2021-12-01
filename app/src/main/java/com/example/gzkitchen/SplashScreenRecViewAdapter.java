@@ -42,9 +42,7 @@ public class SplashScreenRecViewAdapter extends RecyclerView.Adapter<SplashScree
             lblTitle.setText(object.getString("Title"));
             lblDesc.setText(object.getString("Desc"));
 
-            img.animate().setDuration(500).alpha(1);
-            lblTitle.animate().setDuration(500).alpha(1).setStartDelay(200);
-            lblDesc.animate().setDuration(500).alpha(1).setStartDelay(400);
+            LoadAnimation(img, lblTitle, lblDesc);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -59,5 +57,11 @@ public class SplashScreenRecViewAdapter extends RecyclerView.Adapter<SplashScree
         public ViewHolder(View itemView) {
             super(itemView);
         }
+    }
+
+    private void LoadAnimation(ImageView img, TextView lblTitle, TextView lblDesc) {
+        img.animate().setDuration(500).alpha(1);
+        lblTitle.animate().setDuration(500).alpha(1).setStartDelay(200);
+        lblDesc.animate().setDuration(500).alpha(1).setStartDelay(400);
     }
 }
