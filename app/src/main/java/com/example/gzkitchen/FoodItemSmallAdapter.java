@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.text.NumberFormat;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 class FoodItemSmallAdapter extends RecyclerView.Adapter<FoodItemSmallAdapter.ViewHolder> {
@@ -40,6 +41,8 @@ class FoodItemSmallAdapter extends RecyclerView.Adapter<FoodItemSmallAdapter.Vie
             ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setImageDrawable(context.getDrawable(object.getInt("Image")));
             ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setBackground(null);
             ((TextView)viewInflate.findViewById(R.id.foodItemSmallLayoutLblName)).setText(object.getString("Name"));
+
+            ((ConstraintLayout)viewInflate.findViewById(R.id.foodItemSmallLayoutConstraintLayout)).animate().setDuration(800).alpha(1).translationY(0);
 
             int price = object.getInt("Price");
             NumberFormat formatter = NumberFormat.getCurrencyInstance();

@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 class EmployeeOfTheMonthAdapter extends RecyclerView.Adapter<EmployeeOfTheMonthAdapter.ViewHolder> {
@@ -36,6 +37,8 @@ class EmployeeOfTheMonthAdapter extends RecyclerView.Adapter<EmployeeOfTheMonthA
             JSONObject object = jsonArray.getJSONObject(position);
             ((TextView)viewInflate.findViewById(R.id.employeeOfTheMonthLayoutLblName)).setText(object.getString("Name"));
             ((TextView)viewInflate.findViewById(R.id.employeeOfTheMonthLayoutLblMonth)).setText(object.getString("Month"));
+
+            ((ConstraintLayout)viewInflate.findViewById(R.id.employeeOfTheMonthConstraintLayout)).animate().setDuration(800).translationY(0).alpha(1);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -57,9 +57,13 @@ public class SplashScreenActivity extends AppCompatActivity {
             for(int i = 0; i < splashScreenJSONArray.length(); i++) {
                 View viewDot = LayoutInflater.from(SplashScreenActivity.this).inflate(R.layout.splash_screen_dot_layout, null, false);
 
+                ImageView imgSliderDot = (ImageView)viewDot.findViewById(R.id.splashScreenDotLayoutImg);
+
                 if(i == selectedPosition) {
-                    ((ImageView)viewDot.findViewById(R.id.splashScreenDotLayoutImg)).setImageDrawable(getDrawable(R.drawable.dot_selected));
+                    imgSliderDot.setImageDrawable(getDrawable(R.drawable.dot_selected));
                 }
+
+                imgSliderDot.animate().setDuration(600).setStartDelay(i * 120).alpha(1).translationY(0);
 
                 linearLayoutDot.addView(viewDot);
             }
@@ -74,8 +78,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 LoadButtonNextFinish();
             }
         });
-
-
 
         btnNextFinish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,10 +102,10 @@ public class SplashScreenActivity extends AppCompatActivity {
             btnNextFinish.setText("Next >");
         }
 
-        LoadSliderDot();
+        LoadSelectedSliderDot();
     }
 
-    private void LoadSliderDot() {
+    private void LoadSelectedSliderDot() {
         for(int i = 0; i < splashScreenJSONArray.length(); i++) {
             View viewDot = linearLayoutDot.getChildAt(i);
             ((ImageView)viewDot.findViewById(R.id.splashScreenDotLayoutImg)).setImageDrawable(getDrawable(R.drawable.dot_unselected));
