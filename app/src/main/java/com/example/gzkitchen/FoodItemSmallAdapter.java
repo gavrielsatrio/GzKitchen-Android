@@ -1,6 +1,7 @@
 package com.example.gzkitchen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,22 @@ class FoodItemSmallAdapter extends RecyclerView.Adapter<FoodItemSmallAdapter.Vie
         try {
             JSONObject object = jsonArray.getJSONObject(position);
 
-            ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setImageDrawable(context.getDrawable(object.getInt("Image")));
+            int image = object.getInt("Image");
+
+            ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setImageDrawable(context.getDrawable(image));
             ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setBackground(null);
             ((TextView)viewInflate.findViewById(R.id.foodItemSmallLayoutLblName)).setText(object.getString("Name"));
 
-            ((ConstraintLayout)viewInflate.findViewById(R.id.foodItemSmallLayoutConstraintLayout)).animate().setDuration(800).alpha(1).translationY(0);
+            ConstraintLayout layout = (ConstraintLayout)viewInflate.findViewById(R.id.foodItemSmallLayoutConstraintLayout);
+            layout.animate().setDuration(800).alpha(1).translationY(0);
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, FoodItemDetailActivity.class);
+                    intent.putExtra("Object", object.toString());
+                    context.startActivity(intent);
+                }
+            });
 
             int price = object.getInt("Price");
             NumberFormat formatter = NumberFormat.getCurrencyInstance();

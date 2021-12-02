@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GzKitchen">
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".FoodItemDetailActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".MemberMainActivity" />
         <activity android:name=".SplashScreenActivity" />
         <activity android:name=".LoginActivity" />
