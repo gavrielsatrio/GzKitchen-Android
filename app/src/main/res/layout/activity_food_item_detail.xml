@@ -180,7 +180,7 @@
         android:background="@android:color/transparent"
         android:clipChildren="false"
         android:clipToPadding="false"
-        app:cardCornerRadius="100dp"
+        app:cardCornerRadius="35dp"
         app:cardElevation="3dp"
         app:cardMaxElevation="5dp"
         app:contentPaddingBottom="10dp"
@@ -195,6 +195,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
             android:clipChildren="false"
             android:clipToPadding="false">
 
