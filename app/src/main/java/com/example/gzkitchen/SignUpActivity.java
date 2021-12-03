@@ -81,8 +81,10 @@ public class SignUpActivity extends AppCompatActivity {
                                                 .put("Role", "Member")
                                         );
                                         sharedPref.edit().putString("Users", jsonArrayUsers.toString()).apply();
+                                        sharedPref.edit().putString("LoggedInUserEmail", txtEmail.getText().toString().trim()).apply();
 
                                         Intent intent = new Intent(SignUpActivity.this, MemberMainActivity.class);
+                                        intent.putExtra("Email", txtEmail.getText().toString().trim());
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
 

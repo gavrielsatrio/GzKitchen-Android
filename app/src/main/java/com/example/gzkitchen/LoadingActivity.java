@@ -75,8 +75,39 @@ public class LoadingActivity extends AppCompatActivity {
                 } else {
                     // Already used at least once
 
-                    Intent intent = new Intent(LoadingActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    String loggedInUserEmail = sharedPref.getString("LoggedInUserEmail", "defaultValue");
+                    if(!loggedInUserEmail.equals("defaultValue")) {
+                        // Already logged in before
+
+                        JSONObject objectUser = new UserController().getUserObjectByEmail(LoadingActivity.this, loggedInUserEmail);
+                        try {
+                            String userRole = objectUser.getString("Role");
+                            if(userRole.equals("Admin")) {
+                                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
+                                intent.putExtra("Email", loggedInUserEmail);
+                                startActivity(intent);
+                            } else if (userRole.equals("Cashier")) {
+                                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
+                                intent.putExtra("Email", loggedInUserEmail);
+                                startActivity(intent);
+                            } else if(userRole.equals("Chef")) {
+                                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
+                                intent.putExtra("Email", loggedInUserEmail);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
+                                intent.putExtra("Email", loggedInUserEmail);
+                                startActivity(intent);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        // Never logged in before
+                        Intent intent = new Intent(LoadingActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+
                     finish();
                 }
             }

@@ -84,17 +84,23 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     if(isLoginValid) {
+                        sharedPref.edit().putString("LoggedInUserEmail", txtEmail.getText().toString().trim()).apply();
+
                         if(userRole.equals("Admin")) {
                             Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Cashier")) {
                             Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Chef")) {
                             Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else {
                             Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         }
 

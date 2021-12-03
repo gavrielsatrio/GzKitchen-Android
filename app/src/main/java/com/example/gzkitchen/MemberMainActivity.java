@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,7 +54,13 @@ public class MemberMainActivity extends AppCompatActivity {
         lblEmployee = findViewById(R.id.memberMainLblEmployeeOfTheMonth);
         recViewEmployee = findViewById(R.id.memberMainRecViewEmployeeOfTheMonth);
 
-        lblName.setText("GZ Ríō");
+        try {
+            String userEmail = getIntent().getStringExtra("Email");
+            JSONObject objectUser = new UserController().getUserObjectByEmail(MemberMainActivity.this, userEmail);
+            lblName.setText(objectUser.getString("Name"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         LoadAnimation();
 
