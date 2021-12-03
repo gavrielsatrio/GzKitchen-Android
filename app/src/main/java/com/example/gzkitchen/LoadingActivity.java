@@ -10,6 +10,10 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Member;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,22 +35,50 @@ public class LoadingActivity extends AppCompatActivity {
 
         LoadAnimation();
 
-        SharedPreferences sharedPref = getSharedPreferences("Info", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
+
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 if(sharedPref.getString("IsFirstUse", "true").equals("true")) {
                     // First Install or First Use
-                    sharedPref.edit()
-                            .putString("IsFirstUse", "false")
-                            .apply();
+                    try {
+                        JSONArray jsonArrayUsers = new JSONArray();
+                        jsonArrayUsers
+                        .put(new JSONObject()
+                                .put("Name","Admin")
+                                .put("Email", "admin@gmail.com")
+                                .put("Password", "admin123")
+                                .put("Role", "Admin")
+                        ).put(new JSONObject()
+                                .put("Name","Cashier")
+                                .put("Email", "cashier@gmail.com")
+                                .put("Password", "admin123")
+                                .put("Role", "Cashier")
+                        ).put(new JSONObject()
+                                .put("Name","Chef")
+                                .put("Email", "chef@gmail.com")
+                                .put("Password", "chef123")
+                                .put("Role", "Chef")
+                        );
+
+                        sharedPref.edit()
+                                .putString("Users", jsonArrayUsers.toString())
+                                .apply();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    Intent intent = new Intent(LoadingActivity.this, SplashScreenActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     // Already used at least once
-                }
 
-                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
-                startActivity(intent);
-                finish();
+                    Intent intent = new Intent(LoadingActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, 1800);
     }

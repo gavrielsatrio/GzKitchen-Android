@@ -2,13 +2,22 @@ package com.example.gzkitchen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -21,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView lblHeader;
     TextView lblDesc;
     TextView lblDoesntHaveAccount;
+
+    JSONArray jsonArrayUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +49,13 @@ public class LoginActivity extends AppCompatActivity {
 
         LoadAnimation();
 
+        SharedPreferences sharedPref = getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
+        try {
+            jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,9 +67,44 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
-                startActivity(intent);
-                finish();
+                if(!txtEmail.getText().toString().trim().equals("") && !txtPassword.getText().toString().trim().equals("")) {
+                    boolean isLoginValid = false;
+                    String userRole = "";
+                    for(int i = 0; i < jsonArrayUsers.length(); i++) {
+                        try {
+                            JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
+                            if(txtEmail.getText().toString().trim().equals(objectUser.getString("Email")) && txtPassword.getText().toString().trim().equals(objectUser.getString("Password"))) {
+                                isLoginValid = true;
+                                userRole = objectUser.getString("Role");
+                                break;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if(isLoginValid) {
+                        if(userRole.equals("Admin")) {
+                            Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            startActivity(intent);
+                        } else if(userRole.equals("Cashier")) {
+                            Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            startActivity(intent);
+                        } else if(userRole.equals("Chef")) {
+                            Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            startActivity(intent);
+                        }
+
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please fill up the login information", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

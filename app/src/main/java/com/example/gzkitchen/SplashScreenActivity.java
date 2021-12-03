@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -90,6 +91,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                     Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
+
+                    SharedPreferences sharedPref = getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
+                    sharedPref.edit()
+                            .putString("IsFirstUse", "false")
+                            .apply();
                 }
             }
         });
