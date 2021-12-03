@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,11 @@ public class FoodItemDetailActivity extends AppCompatActivity {
 
         try {
             JSONObject object = new JSONObject(getIntent().getStringExtra("Object"));
-            imgFood.setImageDrawable(getDrawable(object.getInt("Image")));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                imgFood.setImageDrawable(getDrawable(object.getInt("Image")));
+            } else {
+                imgFood.setImageDrawable(getResources().getDrawable(object.getInt("Image")));
+            }
             lblName.setText(object.getString("Name"));
             lblDesc.setText(object.getString("Description"));
             lblFoodDetailDesc.setText("1 portion of this " + object.getString("Name") + " contains :");

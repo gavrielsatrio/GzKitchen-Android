@@ -62,7 +62,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                 ImageView imgSliderDot = (ImageView)viewDot.findViewById(R.id.splashScreenDotLayoutImg);
 
                 if(i == selectedPosition) {
-                    imgSliderDot.setImageDrawable(getDrawable(R.drawable.dot_selected));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        imgSliderDot.setImageDrawable(getDrawable(R.drawable.dot_selected));
+                    } else {
+                        imgSliderDot.setImageDrawable(getResources().getDrawable(R.drawable.dot_selected));
+                    }
                 }
 
                 imgSliderDot.animate().setDuration(600).setStartDelay(i * 120).alpha(1).translationY(0);
@@ -127,10 +131,16 @@ public class SplashScreenActivity extends AppCompatActivity {
     private void LoadSelectedSliderDot() {
         for(int i = 0; i < splashScreenJSONArray.length(); i++) {
             View viewDot = linearLayoutDot.getChildAt(i);
-            ((ImageView)viewDot.findViewById(R.id.splashScreenDotLayoutImg)).setImageDrawable(getDrawable(R.drawable.dot_unselected));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                ((ImageView)viewDot.findViewById(R.id.splashScreenDotLayoutImg)).setImageDrawable(getDrawable(R.drawable.dot_unselected));
+            } else {
+                ((ImageView)viewDot.findViewById(R.id.splashScreenDotLayoutImg)).setImageDrawable(getResources().getDrawable(R.drawable.dot_unselected));
+            }
         }
 
         View viewDotSelected = linearLayoutDot.getChildAt(selectedPosition);
-        ((ImageView)viewDotSelected.findViewById(R.id.splashScreenDotLayoutImg)).setImageDrawable(getDrawable(R.drawable.dot_selected));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ((ImageView)viewDotSelected.findViewById(R.id.splashScreenDotLayoutImg)).setImageDrawable(getResources().getDrawable(R.drawable.dot_selected));
+        }
     }
 }

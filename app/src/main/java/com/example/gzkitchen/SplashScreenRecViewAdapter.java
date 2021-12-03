@@ -1,5 +1,6 @@
 package com.example.gzkitchen;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class SplashScreenRecViewAdapter extends RecyclerView.Adapter<SplashScree
     }
 
     @Override
-    public void onBindViewHolder(SplashScreenRecViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         try {
             JSONObject object = jsonArray.getJSONObject(position);
 
@@ -38,7 +39,11 @@ public class SplashScreenRecViewAdapter extends RecyclerView.Adapter<SplashScree
             TextView lblTitle = (TextView)viewInflate.findViewById(R.id.splashScreenRecViewLayoutLblTitle);
             TextView lblDesc = (TextView)viewInflate.findViewById(R.id.splashScreenRecViewLayoutLblDesc);
 
-            img.setImageDrawable(splashScreenActivity.getDrawable(object.getInt("Image")));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                img.setImageDrawable(splashScreenActivity.getDrawable(object.getInt("Image")));
+            } else {
+                img.setImageDrawable(splashScreenActivity.getResources().getDrawable(object.getInt("Image")));
+            }
             lblTitle.setText(object.getString("Title"));
             lblDesc.setText(object.getString("Desc"));
 

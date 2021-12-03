@@ -2,6 +2,7 @@ package com.example.gzkitchen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +36,17 @@ class FoodItemSmallAdapter extends RecyclerView.Adapter<FoodItemSmallAdapter.Vie
     }
 
     @Override
-    public void onBindViewHolder(FoodItemSmallAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         try {
             JSONObject object = jsonArray.getJSONObject(position);
 
             int image = object.getInt("Image");
 
-            ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setImageDrawable(context.getDrawable(image));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setImageDrawable(context.getDrawable(image));
+            } else {
+                ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setImageDrawable(context.getResources().getDrawable(image));
+            }
             ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setBackground(null);
             ((TextView)viewInflate.findViewById(R.id.foodItemSmallLayoutLblName)).setText(object.getString("Name"));
 
