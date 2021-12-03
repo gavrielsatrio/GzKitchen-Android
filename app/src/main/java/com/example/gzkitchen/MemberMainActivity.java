@@ -58,10 +58,82 @@ public class MemberMainActivity extends AppCompatActivity {
 
         try {
             JSONArray jsonArray = new JSONArray();
-            jsonArray.put(new JSONObject().put("Image", R.drawable.sushi2).put("Name", "Sushi").put("Price", 20000).put("Description", "This sushi is specially made for you by the chef. It uses the best quality of salmon dan tuna. The nori is still crispy and delicious"));
-            jsonArray.put(new JSONObject().put("Image", R.drawable.okonomiyaki).put("Name", "Okonomiyaki").put("Price", 32000).put("Description", "Okonomiyaki will be the best choice if it's raining. Because the sauce will make you awake. You will be amazed by the taste."));
-            jsonArray.put(new JSONObject().put("Image", R.drawable.onigiri).put("Name", "Onigiri").put("Price", 15000).put("Description", "It's made for you who don't want to eat too much. With the vegetables in it, it will helps you on a diet. The crispy nori will make you smile all day long"));
-            jsonArray.put(new JSONObject().put("Image", R.drawable.ramen).put("Name", "Ramen").put("Price", 27000).put("Description", "The best ramen is here. With our special hand-made noodles and cured eggs. The broth used in this ramen is from a 1 years old chicken"));
+            jsonArray.put(
+                    new JSONObject().put("Image", R.drawable.sushi2).put("Name", "Sushi").put("Price", 20000).put("Description", "This sushi is specially made for you by the chef. It uses the best quality of salmon dan tuna. The nori is still crispy and delicious")
+                    .put("Ingredients",
+                            new JSONArray()
+                                    .put(new JSONObject().put("Name", "Rice"))
+                                    .put(new JSONObject().put("Name", "Shrimp"))
+                                    .put(new JSONObject().put("Name", "Tuna"))
+                                    .put(new JSONObject().put("Name", "Salmon"))
+                                    .put(new JSONObject().put("Name", "Egg"))
+                                    .put(new JSONObject().put("Name", "Squid"))
+                                    .put(new JSONObject().put("Name", "Nori"))
+                    ).put("Details",
+                            new JSONArray()
+                                    .put("1 pc of Ika nigiri")
+                                    .put("1 pc of Sake nigiri")
+                                    .put("1 pc of Tamagoyaki")
+                                    .put("1 pc of Unagi")
+                                    .put("1 pc of Ebi nigiri")
+                                    .put("1 pc of Tobiko nigiri")
+                                    .put("1 pc of Uni")
+                                    .put("1 pc of Amaebi")
+                                    .put("2 pcs of Tekkamaki")
+                                    .put("2 pcs of Kappa maki")
+                    )
+            );
+            jsonArray.put(
+                    new JSONObject().put("Image", R.drawable.okonomiyaki).put("Name", "Okonomiyaki").put("Price", 32000).put("Description", "Okonomiyaki will be the best choice if it's raining. Because the sauce will make you awake. You will be amazed by the taste.")
+                    .put("Ingredients",
+                            new JSONArray()
+                                    .put(new JSONObject().put("Name", "Sauce"))
+                                    .put(new JSONObject().put("Name", "Cabbage"))
+                                    .put(new JSONObject().put("Name", "Flour"))
+                                    .put(new JSONObject().put("Name", "Egg"))
+                                    .put(new JSONObject().put("Name", "Mayonaise"))
+                                    .put(new JSONObject().put("Name", "Katsuobushi"))
+                    ).put("Details",
+                            new JSONArray()
+                                    .put("350 gr of Cabbage")
+                                    .put("100 gr of Flour")
+                                    .put("120 gr of Katsuobushi")
+                                    .put("2 pcs of Egg")
+                    )
+            );
+            jsonArray.put(
+                    new JSONObject().put("Image", R.drawable.onigiri).put("Name", "Onigiri").put("Price", 15000).put("Description", "It's made for you who don't want to eat too much. With the vegetables in it, it will helps you on a diet. The crispy nori will make you smile all day long")
+                    .put("Ingredients",
+                            new JSONArray()
+                                    .put(new JSONObject().put("Name", "Rice"))
+                                    .put(new JSONObject().put("Name", "Nori"))
+                                    .put(new JSONObject().put("Name", "Salt"))
+                                    .put(new JSONObject().put("Name", "Tuna"))
+                                    .put(new JSONObject().put("Name", "Sesame"))
+                    ).put("Details",
+                            new JSONArray()
+                                    .put("2 pcs of Onigiri")
+                                    .put("150 gr of Rice each")
+                                    .put("1 pc of Nori each")
+                    )
+            );
+            jsonArray.put(
+                    new JSONObject().put("Image", R.drawable.ramen).put("Name", "Ramen").put("Price", 27000).put("Description", "The best ramen is here. With our special hand-made noodle and cured egg. The broth used in this ramen is from a 1 years old chicken")
+                    .put("Ingredients",
+                            new JSONArray()
+                                    .put(new JSONObject().put("Name", "Noodle"))
+                                    .put(new JSONObject().put("Name", "Chicken"))
+                                    .put(new JSONObject().put("Name", "Egg"))
+                                    .put(new JSONObject().put("Name", "Soy Sauce"))
+                                    .put(new JSONObject().put("Name", "Garlic"))
+                                    .put(new JSONObject().put("Name", "Spring Onion"))
+                    ).put("Details",
+                            new JSONArray()
+                                    .put("400 gr of Noodle")
+                                    .put("100 gr of Chicken")
+                                    .put("1 pc of Cured Egg")
+                    )
+            );
 
             recViewRecommended.setAdapter(new FoodItemSmallAdapter(MemberMainActivity.this, jsonArray));
             recViewRecommended.setLayoutManager(new LinearLayoutManager(MemberMainActivity.this, LinearLayoutManager.HORIZONTAL, false));

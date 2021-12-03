@@ -140,7 +140,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:background="@android:color/transparent"
-                android:text="Food Details :"
+                android:text="Food Details"
                 android:textSize="18sp" />
 
             <TextView
@@ -162,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:orientation="vertical"></LinearLayout>

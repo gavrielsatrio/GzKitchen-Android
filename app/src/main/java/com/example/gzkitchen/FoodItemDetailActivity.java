@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -25,6 +27,8 @@ public class FoodItemDetailActivity extends AppCompatActivity {
     TextView lblPrice;
     Button btnOrder;
     RecyclerView recViewIngredients;
+    LinearLayout linearLayoutFoodDetails;
+    TextView lblFoodDetailDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,8 @@ public class FoodItemDetailActivity extends AppCompatActivity {
         lblPrice = findViewById(R.id.foodItemDetailLblPrice);
         btnOrder = findViewById(R.id.foodItemDetailBtnOrder);
         recViewIngredients = findViewById(R.id.foodItemDetailRecViewIngredients);
+        linearLayoutFoodDetails = findViewById(R.id.foodItemDetailLinearLayoutFoodDetail);
+        lblFoodDetailDesc = findViewById(R.id.foodItemDetailLblDetailDesc);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +57,7 @@ public class FoodItemDetailActivity extends AppCompatActivity {
             imgFood.setImageDrawable(getDrawable(object.getInt("Image")));
             lblName.setText(object.getString("Name"));
             lblDesc.setText(object.getString("Description"));
+            lblFoodDetailDesc.setText("1 portion of this " + object.getString("Name") + " contains :");
 
             int price = object.getInt("Price");
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
@@ -59,10 +66,18 @@ public class FoodItemDetailActivity extends AppCompatActivity {
             lblPrice.setText(formatter.format(price).replace("$", "Rp"));
 
 
-            JSONArray jsonArray = new JSONArray("[1, 2, 3, 4, 5]");
-
-            recViewIngredients.setAdapter(new IngredientsAdapter(FoodItemDetailActivity.this, jsonArray));
+            JSONArray jsonArrayIngredients = object.getJSONArray("Ingredients");
+            recViewIngredients.setAdapter(new IngredientsAdapter(FoodItemDetailActivity.this, jsonArrayIngredients));
             recViewIngredients.setLayoutManager(new LinearLayoutManager(FoodItemDetailActivity.this, LinearLayoutManager.HORIZONTAL, false));
+
+
+            JSONArray jsonArrayFoodDetails = object.getJSONArray("Details");
+            for(int i = 0; i < jsonArrayFoodDetails.length(); i++) {
+                View viewFoodDetail = LayoutInflater.from(FoodItemDetailActivity.this).inflate(R.layout.food_details_layout, null, false);
+                ((TextView)viewFoodDetail.findViewById(R.id.foodDetailsLayoutLbl)).setText(jsonArrayFoodDetails.getString(i));
+
+                linearLayoutFoodDetails.addView(viewFoodDetail);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

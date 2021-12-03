@@ -4,8 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +32,13 @@ class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHol
 
     @Override
     public void onBindViewHolder(IngredientsAdapter.ViewHolder holder, int position) {
+        try {
+            JSONObject object = jsonArray.getJSONObject(position);
 
+            ((TextView)viewInflate.findViewById(R.id.ingredientsLayoutLblName)).setText(object.getString("Name"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

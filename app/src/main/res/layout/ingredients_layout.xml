@@ -50,7 +50,7 @@
                 android:fontFamily="@font/open_sans_regular"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textColor="@color/colorGrey"
+                android:textColor="@color/colorMidGrey"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
