@@ -11,6 +11,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +38,8 @@ public class MemberMainActivity extends AppCompatActivity {
     TextView lblEmployee;
     RecyclerView recViewEmployee;
 
+    ImageView imgBackgroundOrnament;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +60,10 @@ public class MemberMainActivity extends AppCompatActivity {
         lblEmployee = findViewById(R.id.memberMainLblEmployeeOfTheMonth);
         recViewEmployee = findViewById(R.id.memberMainRecViewEmployeeOfTheMonth);
 
+        imgBackgroundOrnament = findViewById(R.id.memberMainImgBackgroundOrnament);
+
         try {
-            String userEmail = getIntent().getStringExtra("Email");
-            JSONObject objectUser = new UserController().getUserObjectByEmail(MemberMainActivity.this, userEmail);
+            JSONObject objectUser = new UserController().getLoggedInUserObject(MemberMainActivity.this);
             lblName.setText(objectUser.getString("Name"));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -171,15 +177,17 @@ public class MemberMainActivity extends AppCompatActivity {
     }
 
     private void LoadAnimation() {
-        lblHello.animate().setDuration(600).alpha(1).translationY(0);
-        lblName.animate().setDuration(600).setStartDelay(120).alpha(1).translationX(0);
-        btnProfile.animate().setDuration(1200).setStartDelay(240).alpha(1).translationY(0);
+        imgBackgroundOrnament.animate().setDuration(800).alpha(1).translationY(0).setInterpolator(new DecelerateInterpolator());
 
-        lblDesc.animate().setDuration(600).setStartDelay(360).alpha(1).translationX(0);
-        imgMemberMain.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);
+        lblHello.animate().setDuration(600).setStartDelay(120).alpha(1).translationY(0);
+        lblName.animate().setDuration(600).setStartDelay(240).alpha(1).translationX(0);
+        btnProfile.animate().setDuration(1200).setStartDelay(360).alpha(1).translationY(0);
 
-        lblRecommended.animate().setDuration(600).setStartDelay(600).alpha(1).translationX(0);
-        lblPopular.animate().setDuration(600).setStartDelay(720).alpha(1).translationX(0);
-        lblEmployee.animate().setDuration(600).setStartDelay(840).alpha(1).translationX(0);
+        lblDesc.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);
+        imgMemberMain.animate().setDuration(600).setStartDelay(600).alpha(1).translationX(0);
+
+        lblRecommended.animate().setDuration(600).setStartDelay(720).alpha(1).translationX(0);
+        lblPopular.animate().setDuration(600).setStartDelay(840).alpha(1).translationX(0);
+        lblEmployee.animate().setDuration(600).setStartDelay(960).alpha(1).translationX(0);
     }
 }

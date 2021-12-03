@@ -9,6 +9,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,6 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipToPadding="false"
             android:orientation="vertical"
             android:padding="36dp">
 
@@ -86,6 +88,7 @@
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/txt_background"
+                android:elevation="1dp"
                 android:ems="10"
                 android:hint="Name"
                 android:inputType="textPersonName"
@@ -99,6 +102,7 @@
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/txt_background"
+                android:elevation="1dp"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
@@ -112,6 +116,7 @@
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/txt_background"
+                android:elevation="1dp"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
@@ -125,6 +130,7 @@
                 android:layout_marginBottom="36dp"
                 android:alpha="0"
                 android:background="@drawable/txt_background"
+                android:elevation="1dp"
                 android:ems="10"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
