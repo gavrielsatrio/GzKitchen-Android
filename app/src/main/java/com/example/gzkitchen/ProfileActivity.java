@@ -26,7 +26,10 @@ public class ProfileActivity extends AppCompatActivity {
                 new UserController().logoutUser(ProfileActivity.this);
 
                 Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+
                 finish();
             }
         });
