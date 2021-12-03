@@ -44,7 +44,7 @@ public class LoadingActivity extends AppCompatActivity {
                     // Already used at least once
                 }
 
-                Intent intent = new Intent(LoadingActivity.this, SplashScreenActivity.class);
+                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
                 startActivity(intent);
                 finish();
             }

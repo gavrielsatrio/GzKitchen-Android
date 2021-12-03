@@ -47,6 +47,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/colorWhite"
         android:elevation="10dp"
+        android:fontFamily="@font/open_sans_regular"
         android:outlineProvider="none"
         android:text="Bulan"
         android:textColor="@color/colorGrey"

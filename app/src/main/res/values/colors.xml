@@ -14,5 +14,6 @@
     <color name="colorAlmostWhite">#FCFCFC</color>
     <color name="colorDarkGrey">#464646</color>
     <color name="colorGrey">#828282</color>
+    <color name="colorMidGrey">#AAAAAA</color>
     <color name="colorLightGrey">#DCDCDC</color>
 </resources>

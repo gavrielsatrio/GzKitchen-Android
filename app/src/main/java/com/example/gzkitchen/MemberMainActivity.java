@@ -58,10 +58,10 @@ public class MemberMainActivity extends AppCompatActivity {
 
         try {
             JSONArray jsonArray = new JSONArray();
-            jsonArray.put(new JSONObject().put("Image", R.drawable.sushi2).put("Name", "Sushi").put("Price", 20000));
-            jsonArray.put(new JSONObject().put("Image", R.drawable.okonomiyaki).put("Name", "Okonomiyaki").put("Price", 32000));
-            jsonArray.put(new JSONObject().put("Image", R.drawable.onigiri).put("Name", "Onigiri").put("Price", 15000));
-            jsonArray.put(new JSONObject().put("Image", R.drawable.ramen).put("Name", "Ramen").put("Price", 27000));
+            jsonArray.put(new JSONObject().put("Image", R.drawable.sushi2).put("Name", "Sushi").put("Price", 20000).put("Description", "This sushi is specially made for you by the chef. It uses the best quality of salmon dan tuna. The nori is still crispy and delicious"));
+            jsonArray.put(new JSONObject().put("Image", R.drawable.okonomiyaki).put("Name", "Okonomiyaki").put("Price", 32000).put("Description", "Okonomiyaki will be the best choice if it's raining. Because the sauce will make you awake. You will be amazed by the taste."));
+            jsonArray.put(new JSONObject().put("Image", R.drawable.onigiri).put("Name", "Onigiri").put("Price", 15000).put("Description", "It's made for you who don't want to eat too much. With the vegetables in it, it will helps you on a diet. The crispy nori will make you smile all day long"));
+            jsonArray.put(new JSONObject().put("Image", R.drawable.ramen).put("Name", "Ramen").put("Price", 27000).put("Description", "The best ramen is here. With our special hand-made noodles and cured eggs. The broth used in this ramen is from a 1 years old chicken"));
 
             recViewRecommended.setAdapter(new FoodItemSmallAdapter(MemberMainActivity.this, jsonArray));
             recViewRecommended.setLayoutManager(new LinearLayoutManager(MemberMainActivity.this, LinearLayoutManager.HORIZONTAL, false));
