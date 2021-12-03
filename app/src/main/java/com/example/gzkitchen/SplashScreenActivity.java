@@ -11,6 +11,7 @@ import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,13 +73,25 @@ public class SplashScreenActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        recView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-                selectedPosition = layoutManager.findLastVisibleItemPosition();
-                LoadButtonNextFinish();
-            }
-        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            recView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                    selectedPosition = layoutManager.findLastVisibleItemPosition();
+                    LoadButtonNextFinish();
+                }
+            });
+        } else {
+            recView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+
+                    selectedPosition = layoutManager.findLastVisibleItemPosition();
+                    LoadButtonNextFinish();
+                }
+            });
+        }
 
         btnNextFinish.setOnClickListener(new View.OnClickListener() {
             @Override
