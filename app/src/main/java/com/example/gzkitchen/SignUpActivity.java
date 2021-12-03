@@ -63,17 +63,10 @@ public class SignUpActivity extends AppCompatActivity {
                             if(txtConfirmPassword.getText().toString().trim().equals(txtPassword.getText().toString().trim())) {
                                 SharedPreferences sharedPref = getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
                                 try {
-                                    JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("", "defaultValue"));
-                                    boolean isEmailAlreadyExists = false;
-                                    for(int i = 0; i < jsonArrayUsers.length(); i++) {
-                                        JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
-                                        if(txtEmail.getText().toString().trim().equals(objectUser.getString("Email"))) {
-                                            isEmailAlreadyExists = true;
-                                            break;
-                                        }
-                                    }
+                                    JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+                                    JSONObject checkEmailUser = new UserController().getUserObjectByEmail(SignUpActivity.this, txtEmail.getText().toString().trim());
 
-                                    if(isEmailAlreadyExists == false) {
+                                    if(checkEmailUser == null) {
                                         jsonArrayUsers.put(new JSONObject()
                                                 .put("Name", txtName.getText().toString().trim())
                                                 .put("Email", txtEmail.getText().toString().trim())
@@ -85,6 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                         Intent intent = new Intent(SignUpActivity.this, MemberMainActivity.class);
                                         intent.putExtra("Email", txtEmail.getText().toString().trim());
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
 

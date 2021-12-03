@@ -10,7 +10,7 @@ import org.json.JSONObject;
 public class UserController {
     public JSONObject getUserObjectByEmail(Context context, String email) {
         SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
-        JSONObject objectUserReturn = new JSONObject();
+        JSONObject objectUserReturn = null;
 
         try {
             JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
@@ -27,5 +27,10 @@ public class UserController {
         }
 
         return objectUserReturn;
+    }
+
+    public void logoutUser(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
+        sharedPref.edit().remove("LoggedInUserEmail").apply();
     }
 }

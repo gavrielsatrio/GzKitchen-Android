@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +64,14 @@ public class MemberMainActivity extends AppCompatActivity {
         }
 
         LoadAnimation();
+
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MemberMainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         try {
             JSONArray jsonArray = new JSONArray();
