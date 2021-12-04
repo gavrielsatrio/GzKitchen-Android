@@ -125,7 +125,8 @@ public class ProfileActivity extends AppCompatActivity {
         btnAboutDeveloper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(ProfileActivity.this, AboutDeveloperActivity.class);
+                startActivity(intent);
             }
         });
 
