@@ -94,33 +94,33 @@ public class AdminMainActivity extends AppCompatActivity {
 
         if(positionSelected == 0) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                imgMenu.setColorFilter(getColor(R.color.colorMidGrey));
-                imgUsers.setColorFilter(getColor(R.color.colorMidGrey));
+                imgMenu.setColorFilter(getColor(R.color.colorLightGrey));
+                imgUsers.setColorFilter(getColor(R.color.colorLightGrey));
             } else {
-                imgMenu.setColorFilter(getResources().getColor(R.color.colorMidGrey));
-                imgUsers.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+                imgMenu.setColorFilter(getResources().getColor(R.color.colorLightGrey));
+                imgUsers.setColorFilter(getResources().getColor(R.color.colorLightGrey));
             }
 
             lblMenu.setVisibility(View.GONE);
             lblUsers.setVisibility(View.GONE);
         } else if(positionSelected == 1) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                imgHome.setColorFilter(getColor(R.color.colorMidGrey));
-                imgUsers.setColorFilter(getColor(R.color.colorMidGrey));
+                imgHome.setColorFilter(getColor(R.color.colorLightGrey));
+                imgUsers.setColorFilter(getColor(R.color.colorLightGrey));
             } else {
-                imgHome.setColorFilter(getResources().getColor(R.color.colorMidGrey));
-                imgUsers.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+                imgHome.setColorFilter(getResources().getColor(R.color.colorLightGrey));
+                imgUsers.setColorFilter(getResources().getColor(R.color.colorLightGrey));
             }
 
             lblHome.setVisibility(View.GONE);
             lblUsers.setVisibility(View.GONE);
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                imgHome.setColorFilter(getColor(R.color.colorMidGrey));
-                imgMenu.setColorFilter(getColor(R.color.colorMidGrey));
+                imgHome.setColorFilter(getColor(R.color.colorLightGrey));
+                imgMenu.setColorFilter(getColor(R.color.colorLightGrey));
             } else {
-                imgHome.setColorFilter(getResources().getColor(R.color.colorMidGrey));
-                imgMenu.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+                imgHome.setColorFilter(getResources().getColor(R.color.colorLightGrey));
+                imgMenu.setColorFilter(getResources().getColor(R.color.colorLightGrey));
             }
 
             lblHome.setVisibility(View.GONE);

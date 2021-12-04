@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/ic_fooditemtop" />
+            app:srcCompat="@drawable/ic_topcorner" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,10 +45,41 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:background="@android:color/transparent"
-                android:text="Hello"
+                android:text="Hello,"
                 android:textColor="@color/colorWhite"
                 android:textSize="28sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/adminMainHomeLblName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:text="Name"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/adminMainHomeLblName2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/open_sans_regular"
+                android:text="Role"
+                android:textColor="@color/colorLightGrey"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
         </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
