@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,10 +20,13 @@ public class AdminMainActivity extends AppCompatActivity {
     ViewPager2 viewPager;
     LinearLayout btnHome;
     TextView lblHome;
+    ImageView imgHome;
     LinearLayout btnMenu;
     TextView lblMenu;
+    ImageView imgMenu;
     LinearLayout btnUsers;
     TextView lblUsers;
+    ImageView imgUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +36,15 @@ public class AdminMainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.adminMainViewPager);
         btnHome = findViewById(R.id.adminMainBtnHome);
         lblHome = findViewById(R.id.adminMainLblHome);
+        imgHome = findViewById(R.id.adminMainImgHome);
+
         btnMenu = findViewById(R.id.adminMainBtnMenu);
         lblMenu = findViewById(R.id.adminMainLblMenu);
+        imgMenu = findViewById(R.id.adminMainImgMenu);
+
         btnUsers = findViewById(R.id.adminMainBtnUsers);
         lblUsers = findViewById(R.id.adminMainLblUsers);
+        imgUsers = findViewById(R.id.adminMainImgUsers);
 
         JSONArray jsonArrayLayout = new JSONArray()
                 .put(new AdminMainHomeFragment())
@@ -75,17 +84,45 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
     private void LoadSelectedTab(int positionSelected) {
+        imgHome.setColorFilter(null);
+        imgMenu.setColorFilter(null);
+        imgUsers.setColorFilter(null);
+
         lblHome.setVisibility(View.VISIBLE);
         lblMenu.setVisibility(View.VISIBLE);
         lblUsers.setVisibility(View.VISIBLE);
 
         if(positionSelected == 0) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                imgMenu.setColorFilter(getColor(R.color.colorMidGrey));
+                imgUsers.setColorFilter(getColor(R.color.colorMidGrey));
+            } else {
+                imgMenu.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+                imgUsers.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+            }
+
             lblMenu.setVisibility(View.GONE);
             lblUsers.setVisibility(View.GONE);
         } else if(positionSelected == 1) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                imgHome.setColorFilter(getColor(R.color.colorMidGrey));
+                imgUsers.setColorFilter(getColor(R.color.colorMidGrey));
+            } else {
+                imgHome.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+                imgUsers.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+            }
+
             lblHome.setVisibility(View.GONE);
             lblUsers.setVisibility(View.GONE);
         } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                imgHome.setColorFilter(getColor(R.color.colorMidGrey));
+                imgMenu.setColorFilter(getColor(R.color.colorMidGrey));
+            } else {
+                imgHome.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+                imgMenu.setColorFilter(getResources().getColor(R.color.colorMidGrey));
+            }
+
             lblHome.setVisibility(View.GONE);
             lblMenu.setVisibility(View.GONE);
         }
