@@ -83,7 +83,7 @@ public class LoadingActivity extends AppCompatActivity {
                         try {
                             String userRole = objectUser.getString("Role");
                             if(userRole.equals("Admin")) {
-                                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
+                                Intent intent = new Intent(LoadingActivity.this, AdminMainActivity.class);
                                 intent.putExtra("Email", loggedInUserEmail);
                                 startActivity(intent);
                             } else if (userRole.equals("Cashier")) {

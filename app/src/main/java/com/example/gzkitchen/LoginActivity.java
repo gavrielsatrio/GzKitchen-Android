@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                         sharedPref.edit().putString("LoggedInUserEmail", txtEmail.getText().toString().trim()).apply();
 
                         if(userRole.equals("Admin")) {
-                            Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                             intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Cashier")) {
