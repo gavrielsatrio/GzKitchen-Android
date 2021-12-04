@@ -1,6 +1,7 @@
 package com.example.gzkitchen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,14 +23,19 @@ import java.text.NumberFormat;
 
 public class FoodItemDetailActivity extends AppCompatActivity {
 
+    ImageView imgBackgroundTop;
     ImageView imgFood;
     TextView lblName;
+    TextView lblIngredients;
+    TextView lblDescTitle;
     TextView lblDesc;
     TextView btnBack;
+    CardView cardViewBottom;
     TextView lblPrice;
     Button btnOrder;
     RecyclerView recViewIngredients;
     LinearLayout linearLayoutFoodDetails;
+    TextView lblFoodDetailTitle;
     TextView lblFoodDetailDesc;
 
     @Override
@@ -36,15 +43,22 @@ public class FoodItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_item_detail);
 
+        imgBackgroundTop = findViewById(R.id.foodItemDetailImgBackground);
         imgFood = findViewById(R.id.foodItemDetailImg);
         lblName = findViewById(R.id.foodItemDetailLblName);
+        lblIngredients = findViewById(R.id.foodItemDetailLblIngredients);
+        lblDescTitle = findViewById(R.id.foodItemDetailLblDescription);
         lblDesc = findViewById(R.id.foodItemDetailLblDescriptionValue);
         btnBack = findViewById(R.id.foodItemDetailBtnBack);
+        cardViewBottom = findViewById(R.id.foodItemDetailCardViewBottom);
         lblPrice = findViewById(R.id.foodItemDetailLblPrice);
         btnOrder = findViewById(R.id.foodItemDetailBtnOrder);
         recViewIngredients = findViewById(R.id.foodItemDetailRecViewIngredients);
         linearLayoutFoodDetails = findViewById(R.id.foodItemDetailLinearLayoutFoodDetail);
+        lblFoodDetailTitle = findViewById(R.id.foodItemDetailLblDetail);
         lblFoodDetailDesc = findViewById(R.id.foodItemDetailLblDetailDesc);
+
+        LoadAnimation();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,5 +100,23 @@ public class FoodItemDetailActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void LoadAnimation() {
+        imgBackgroundTop.animate().setDuration(800).alpha(1).translationY(0).setInterpolator(new DecelerateInterpolator());
+
+        btnBack.animate().setDuration(600).setStartDelay(120).alpha(1).translationX(0);
+        imgFood.animate().setDuration(600).setStartDelay(240).alpha(1).translationY(0);
+        lblName.animate().setDuration(600).setStartDelay(360).alpha(1).translationY(0);
+
+        lblIngredients.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);
+        lblDescTitle.animate().setDuration(600).setStartDelay(600).alpha(1).translationX(0);
+        lblDesc.animate().setDuration(600).setStartDelay(720).alpha(1).translationY(0);
+        lblFoodDetailTitle.animate().setDuration(600).setStartDelay(840).alpha(1).translationX(0);
+        lblFoodDetailDesc.animate().setDuration(600).setStartDelay(960).alpha(1).translationY(0);
+
+        cardViewBottom.animate().setDuration(600).setStartDelay(600).alpha(1).translationY(0);
+        lblPrice.animate().setDuration(600).setStartDelay(720).alpha(1).translationX(0);
+        btnOrder.animate().setDuration(600).setStartDelay(840).alpha(1).translationX(0);
     }
 }

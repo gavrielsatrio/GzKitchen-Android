@@ -10,7 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHolder> {
@@ -36,6 +37,7 @@ class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHol
             JSONObject object = jsonArray.getJSONObject(position);
 
             ((TextView)viewInflate.findViewById(R.id.ingredientsLayoutLblName)).setText(object.getString("Name"));
+            ((CardView)viewInflate.findViewById(R.id.ingredientsLayoutCardView)).animate().setDuration(600).setStartDelay(200).alpha(1).translationY(0);
         } catch (JSONException e) {
             e.printStackTrace();
         }

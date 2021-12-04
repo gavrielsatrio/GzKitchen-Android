@@ -9,15 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GzKitchen">
-        <activity android:name=".FoodItemDetailActivity"></activity>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".MemberMainActivity" />
-        <activity android:name=".SplashScreenActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".FoodItemDetailActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ProfileActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SignUpActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MemberMainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SplashScreenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".LoadingActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -30,7 +30,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
+                    android:translationY="-180dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -42,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:paddingTop="8dp"
@@ -50,6 +53,7 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:translationX="-20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -60,8 +64,10 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="-150dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:scaleType="fitEnd"
+                android:translationY="-30dp"
                 app:srcCompat="@drawable/dot_unselected" />
 
             <TextView
@@ -74,10 +80,12 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
+                android:alpha="0"
                 android:text="Sushi"
                 android:textAlignment="center"
                 android:textSize="26sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:translationY="-20dp" />
 
             <TextView
                 android:id="@+id/foodItemDetailLblIngredients"
@@ -88,9 +96,11 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:text="Ingredients"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:translationX="-20dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/foodItemDetailRecViewIngredients"
@@ -113,9 +123,11 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:text="Description"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:translationX="-20dp" />
 
             <TextView
                 android:id="@+id/foodItemDetailLblDescriptionValue"
@@ -125,10 +137,12 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/open_sans_light"
                 android:text="TextView"
-                android:textColor="@color/colorGrey" />
+                android:textColor="@color/colorGrey"
+                android:translationY="-10dp" />
 
             <TextView
                 android:id="@+id/foodItemDetailLblDetail"
@@ -139,9 +153,11 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:text="Food Details"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:translationX="-20dp" />
 
             <TextView
                 android:id="@+id/foodItemDetailLblDetailDesc"
@@ -151,10 +167,12 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/open_sans_light"
                 android:text="1 portion of this {{ foodName }} contains :"
-                android:textColor="@color/colorGrey" />
+                android:textColor="@color/colorGrey"
+                android:translationY="-10dp" />
 
             <LinearLayout
                 android:id="@+id/foodItemDetailLinearLayoutFoodDetail"
@@ -177,9 +195,11 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:alpha="0"
         android:background="@android:color/transparent"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:translationY="30dp"
         app:cardCornerRadius="35dp"
         app:cardElevation="3dp"
         app:cardMaxElevation="5dp"
@@ -204,10 +224,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
+                android:alpha="0"
                 android:background="@drawable/primary_button_background"
                 android:text="Add To Order"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorWhite"
+                android:translationX="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/foodItemDetailLblPrice"
@@ -217,9 +239,11 @@
                 android:id="@+id/foodItemDetailLblPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:text="TextView"
                 android:textSize="16sp"
+                android:translationX="-20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

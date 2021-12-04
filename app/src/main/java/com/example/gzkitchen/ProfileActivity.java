@@ -59,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
                 View viewDialog = LayoutInflater.from(ProfileActivity.this).inflate(R.layout.edit_profile_popup_layout, null, false);
 
                 builder.setView(viewDialog);
-                builder.setCancelable(false);
+                builder.setCancelable(true);
 
                 AlertDialog dialog = builder.create();
 

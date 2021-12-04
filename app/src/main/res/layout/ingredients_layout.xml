@@ -7,14 +7,17 @@
     android:clipToPadding="true">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/ingredientsLayoutCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
+        android:alpha="0"
         android:background="@android:color/transparent"
         android:clipToPadding="true"
+        android:translationY="-30dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="5dp"
