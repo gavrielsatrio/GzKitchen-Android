@@ -4,6 +4,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +34,8 @@ class NewMemberAdapter extends RecyclerView.Adapter<NewMemberAdapter.ViewHolder>
     public void onBindViewHolder(NewMemberAdapter.ViewHolder holder, int position) {
         try {
             JSONObject object = jsonArray.getJSONObject(position);
+            ((TextView)viewInflate.findViewById(R.id.newMemberLblName)).setText(object.getString("Name"));
+            ((TextView)viewInflate.findViewById(R.id.newMemberLblDate)).setText(object.getString("Role"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

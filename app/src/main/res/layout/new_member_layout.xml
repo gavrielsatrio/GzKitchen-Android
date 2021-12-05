@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/newMemberLblDate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
@@ -28,6 +28,7 @@
         android:fontFamily="@font/open_sans_regular"
         android:outlineProvider="none"
         android:text="Date"
+        android:textAlignment="center"
         android:textColor="@color/colorGrey"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -37,13 +38,14 @@
 
     <TextView
         android:id="@+id/newMemberLblName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:elevation="10dp"
         android:outlineProvider="none"
         android:text="Name"
+        android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/newMemberImg"

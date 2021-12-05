@@ -1,5 +1,6 @@
 package com.example.gzkitchen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ public class AdminMainHomeFragment extends Fragment {
     View viewInflate;
     ImageView imgTop;
     TextView lblHello;
+    ImageView btnProfile;
     TextView lblName;
     TextView lblRole;
     TextView lblNewMember;
@@ -41,6 +43,7 @@ public class AdminMainHomeFragment extends Fragment {
 
         imgTop = viewInflate.findViewById(R.id.adminMainHomeImgTop);
         lblHello = viewInflate.findViewById(R.id.adminMainHomeLblHello);
+        btnProfile = viewInflate.findViewById(R.id.adminMainHomeBtnProfile);
         lblName = viewInflate.findViewById(R.id.adminMainHomeLblName);
         lblRole = viewInflate.findViewById(R.id.adminMainHomeLblRole);
         lblNewMember = viewInflate.findViewById(R.id.adminMainHomeLblNewMember);
@@ -62,6 +65,13 @@ public class AdminMainHomeFragment extends Fragment {
             e.printStackTrace();
         }
 
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(adminMainActivity, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return viewInflate;
     }
@@ -70,10 +80,11 @@ public class AdminMainHomeFragment extends Fragment {
         imgTop.animate().setDuration(800).alpha(1).translationY(0).setInterpolator(new DecelerateInterpolator());
 
         lblHello.animate().setDuration(600).setStartDelay(120).alpha(1).translationY(0);
-        lblName.animate().setDuration(600).setStartDelay(240).alpha(1).translationX(0);
-        lblRole.animate().setDuration(600).setStartDelay(360).alpha(1).translationX(0);
+        btnProfile.animate().setDuration(600).setStartDelay(240).alpha(1).translationY(0);
+        lblName.animate().setDuration(600).setStartDelay(360).alpha(1).translationX(0);
+        lblRole.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);
 
-        lblNewMember.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);
-        lblRecentMenu.animate().setDuration(600).setStartDelay(600).alpha(1).translationX(0);
+        lblNewMember.animate().setDuration(600).setStartDelay(600).alpha(1).translationX(0);
+        lblRecentMenu.animate().setDuration(600).setStartDelay(720).alpha(1).translationX(0);
     }
 }
