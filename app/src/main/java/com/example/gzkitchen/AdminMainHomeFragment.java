@@ -2,6 +2,7 @@ package com.example.gzkitchen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import org.w3c.dom.Text;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,16 @@ public class AdminMainHomeFragment extends Fragment {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100) {
+            // Update Profile
+            LoadDataAdmin();
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         viewInflate = inflater.inflate(R.layout.admin_main_home_layout, container, false);
 
@@ -52,28 +64,31 @@ public class AdminMainHomeFragment extends Fragment {
         recViewRecentMenu = viewInflate.findViewById(R.id.adminMainHomeRecViewRecentMenu);
 
         LoadAnimation();
+        LoadDataAdmin();
 
-        try {
-            JSONObject objectUser = new UserController().getLoggedInUserObject(adminMainActivity);
-            lblName.setText(objectUser.getString("Name"));
-            lblRole.setText(objectUser.getString("Role"));
-
-            JSONArray jsonArrayMember = new UserController().getUserWhere(adminMainActivity, "Role", "Member");
-            recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember));
-            recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        JSONArray jsonArrayMember = new UserController().getUserWhere(adminMainActivity, "Role", "Member");
+        recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember));
+        recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(adminMainActivity, ProfileActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 100);
             }
         });
 
         return viewInflate;
+    }
+
+    private void LoadDataAdmin() {
+        try {
+            JSONObject objectUser = new UserController().getLoggedInUserObject(adminMainActivity);
+            lblName.setText(objectUser.getString("Name"));
+            lblRole.setText(objectUser.getString("Role"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void LoadAnimation() {

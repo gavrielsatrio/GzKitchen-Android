@@ -1,5 +1,6 @@
 package com.example.gzkitchen;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,16 @@ public class MemberMainActivity extends AppCompatActivity {
     ImageView imgBackgroundOrnament;
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100) {
+            // Update Profile
+            LoadDataMember();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_main);
@@ -62,20 +73,14 @@ public class MemberMainActivity extends AppCompatActivity {
 
         imgBackgroundOrnament = findViewById(R.id.memberMainImgBackgroundOrnament);
 
-        try {
-            JSONObject objectUser = new UserController().getLoggedInUserObject(MemberMainActivity.this);
-            lblName.setText(objectUser.getString("Name"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         LoadAnimation();
+        LoadDataMember();
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MemberMainActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 100);
             }
         });
 
@@ -171,6 +176,15 @@ public class MemberMainActivity extends AppCompatActivity {
 
             recViewEmployee.setAdapter(new EmployeeOfTheMonthAdapter(MemberMainActivity.this, jsonArrayEmployee));
             recViewEmployee.setLayoutManager(new LinearLayoutManager(MemberMainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void LoadDataMember() {
+        try {
+            JSONObject objectUser = new UserController().getLoggedInUserObject(MemberMainActivity.this);
+            lblName.setText(objectUser.getString("Name"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
