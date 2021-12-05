@@ -1,12 +1,14 @@
 package com.example.gzkitchen;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -28,7 +30,7 @@ public class AdminMainHomeFragment extends Fragment {
     TextView lblNewMember;
     RecyclerView recViewNewMember;
     TextView lblRecentMenu;
-    RecyclerView recViewRecentMenu;
+    LinearLayout linearLayoutRecentMenu;
     UserController userController;
 
     public AdminMainHomeFragment(AdminMainActivity adminMainActivityParam) {
@@ -58,7 +60,7 @@ public class AdminMainHomeFragment extends Fragment {
         lblNewMember = viewInflate.findViewById(R.id.adminMainHomeLblNewMember);
         lblRecentMenu = viewInflate.findViewById(R.id.adminMainHomeLblRecentMenu);
         recViewNewMember = viewInflate.findViewById(R.id.adminMainHomeRecViewNewMembers);
-        recViewRecentMenu = viewInflate.findViewById(R.id.adminMainHomeRecViewRecentMenu);
+        linearLayoutRecentMenu = viewInflate.findViewById(R.id.adminMainHomeLinearLayoutRecentlyAddedMenu);
 
         LoadAnimation();
         LoadDataAdmin();
@@ -66,6 +68,23 @@ public class AdminMainHomeFragment extends Fragment {
         JSONArray jsonArrayMember = userController.getUserWhere("Role", "Member");
         recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember));
         recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
+
+        JSONArray jsonArrayFood = new FoodController(adminMainActivity).getFoods();
+        for(int i = 0; i < jsonArrayFood.length(); i++) {
+            try {
+                JSONObject objectFood = jsonArrayFood.getJSONObject(i);
+
+                View viewFood = LayoutInflater.from(adminMainActivity).inflate(R.layout.recently_added_menu_layout, null, false);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ((ImageView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutImg)).setImageDrawable(adminMainActivity.getDrawable(objectFood.getInt("Image")));
+                } else {
+                    ((ImageView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutImg)).setImageDrawable(adminMainActivity.getResources().getDrawable(objectFood.getInt("Image")));
+                }
+                linearLayoutRecentMenu.addView(viewFood);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
