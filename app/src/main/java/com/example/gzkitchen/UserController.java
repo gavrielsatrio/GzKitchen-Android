@@ -10,13 +10,14 @@ import org.json.JSONObject;
 
 public class UserController {
     Context context;
+    SharedPreferences sharedPref;
 
     public UserController(Context contextParam) {
         this.context = contextParam;
+        this.sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
     }
 
     public JSONObject getUserObjectByEmail(String email) {
-        SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         JSONObject objectUserReturn = null;
 
         try {
@@ -37,12 +38,10 @@ public class UserController {
     }
 
     public void logoutUser() {
-        SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         sharedPref.edit().remove("LoggedInUserEmail").apply();
     }
 
     public JSONObject getLoggedInUserObject() {
-        SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         String email = sharedPref.getString("LoggedInUserEmail", "defaultValue");
         JSONObject objectUserReturn = null;
 
@@ -64,7 +63,6 @@ public class UserController {
     }
 
     public void updateUserProfile(String nameUpdate, String emailUpdate, String passwordUpdate) {
-        SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         String loggedInEmail = sharedPref.getString("LoggedInUserEmail", "defaultValue");
 
         try {
@@ -91,7 +89,6 @@ public class UserController {
     public JSONArray getUserWhere(String column, String value) {
         JSONArray jsonArrayReturn = new JSONArray();
 
-        SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         try {
             JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
@@ -110,7 +107,6 @@ public class UserController {
     public boolean checkEmailAvailable(String email) {
         boolean isAvailable = false;
 
-        SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         try {
             JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
             for(int i = 0; i < jsonArrayUsers.length(); i++) {

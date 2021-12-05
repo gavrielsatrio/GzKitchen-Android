@@ -37,12 +37,14 @@ public class ProfileActivity extends AppCompatActivity {
     ImageView imgBtnAboutDeveloper;
 
     JSONObject objectUser = new JSONObject();
-    UserController userController = new UserController(ProfileActivity.this);
+    UserController userController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        userController = new UserController(ProfileActivity.this);
 
         imgBackgroundTop = findViewById(R.id.profileImgTop);
         cardViewBackground = findViewById(R.id.profileCardView);
