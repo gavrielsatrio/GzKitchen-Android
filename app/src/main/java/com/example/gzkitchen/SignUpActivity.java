@@ -64,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 SharedPreferences sharedPref = getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
                                 try {
                                     JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
-                                    JSONObject checkEmailUser = new UserController().getUserObjectByEmail(SignUpActivity.this, txtEmail.getText().toString().trim());
+                                    JSONObject checkEmailUser = new UserController(SignUpActivity.this).getUserObjectByEmail(txtEmail.getText().toString().trim());
 
                                     if(checkEmailUser == null) {
                                         jsonArrayUsers.put(new JSONObject()

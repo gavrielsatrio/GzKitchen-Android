@@ -79,7 +79,7 @@ public class LoadingActivity extends AppCompatActivity {
                     if(!loggedInUserEmail.equals("defaultValue")) {
                         // Already logged in before
 
-                        JSONObject objectUser = new UserController().getUserObjectByEmail(LoadingActivity.this, loggedInUserEmail);
+                        JSONObject objectUser = new UserController(LoadingActivity.this).getUserObjectByEmail(loggedInUserEmail);
                         try {
                             String userRole = objectUser.getString("Role");
                             if(userRole.equals("Admin")) {

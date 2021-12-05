@@ -34,9 +34,11 @@ public class AdminMainHomeFragment extends Fragment {
     RecyclerView recViewNewMember;
     TextView lblRecentMenu;
     RecyclerView recViewRecentMenu;
+    UserController userController;
 
     public AdminMainHomeFragment(AdminMainActivity adminMainActivityParam) {
         this.adminMainActivity = adminMainActivityParam;
+        this.userController = new UserController(adminMainActivity);
     }
 
     @Override
@@ -66,7 +68,7 @@ public class AdminMainHomeFragment extends Fragment {
         LoadAnimation();
         LoadDataAdmin();
 
-        JSONArray jsonArrayMember = new UserController().getUserWhere(adminMainActivity, "Role", "Member");
+        JSONArray jsonArrayMember = userController.getUserWhere("Role", "Member");
         recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember));
         recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
 
@@ -83,7 +85,7 @@ public class AdminMainHomeFragment extends Fragment {
 
     private void LoadDataAdmin() {
         try {
-            JSONObject objectUser = new UserController().getLoggedInUserObject(adminMainActivity);
+            JSONObject objectUser = userController.getLoggedInUserObject();
             lblName.setText(objectUser.getString("Name"));
             lblRole.setText(objectUser.getString("Role"));
         } catch (JSONException e) {

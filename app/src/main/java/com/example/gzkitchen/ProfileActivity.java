@@ -37,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     ImageView imgBtnAboutDeveloper;
 
     JSONObject objectUser = new JSONObject();
+    UserController userController = new UserController(ProfileActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +103,7 @@ public class ProfileActivity extends AppCompatActivity {
                         if(!txtName.getText().toString().trim().equals("") && !txtEmail.getText().toString().trim().equals("") && !txtPassword.getText().toString().trim().equals("")) {
                             if(Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString().trim()).matches()) {
                                 if(txtPassword.getText().toString().trim().length() >= 8) {
-                                    new UserController().updateUserProfile(ProfileActivity.this, txtName.getText().toString().trim(), txtEmail.getText().toString().trim(), txtPassword.getText().toString().trim());
+                                    userController.updateUserProfile(txtName.getText().toString().trim(), txtEmail.getText().toString().trim(), txtPassword.getText().toString().trim());
 
                                     LoadData();
                                     dialog.dismiss();
@@ -133,7 +134,7 @@ public class ProfileActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new UserController().logoutUser(ProfileActivity.this);
+                userController.logoutUser();
 
                 Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -166,7 +167,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void LoadData() {
-        objectUser = new UserController().getLoggedInUserObject(ProfileActivity.this);
+        objectUser = new UserController(ProfileActivity.this).getLoggedInUserObject();
         try {
             lblName.setText(objectUser.getString("Name"));
             lblRole.setText(objectUser.getString("Role"));

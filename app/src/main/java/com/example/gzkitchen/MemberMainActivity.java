@@ -183,7 +183,7 @@ public class MemberMainActivity extends AppCompatActivity {
 
     private void LoadDataMember() {
         try {
-            JSONObject objectUser = new UserController().getLoggedInUserObject(MemberMainActivity.this);
+            JSONObject objectUser = new UserController(MemberMainActivity.this).getLoggedInUserObject();
             lblName.setText(objectUser.getString("Name"));
         } catch (JSONException e) {
             e.printStackTrace();

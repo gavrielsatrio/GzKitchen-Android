@@ -9,7 +9,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class UserController {
-    public JSONObject getUserObjectByEmail(Context context, String email) {
+    Context context;
+
+    public UserController(Context contextParam) {
+        this.context = contextParam;
+    }
+
+    public JSONObject getUserObjectByEmail(String email) {
         SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         JSONObject objectUserReturn = null;
 
@@ -30,12 +36,12 @@ public class UserController {
         return objectUserReturn;
     }
 
-    public void logoutUser(Context context) {
+    public void logoutUser() {
         SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         sharedPref.edit().remove("LoggedInUserEmail").apply();
     }
 
-    public JSONObject getLoggedInUserObject(Context context) {
+    public JSONObject getLoggedInUserObject() {
         SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         String email = sharedPref.getString("LoggedInUserEmail", "defaultValue");
         JSONObject objectUserReturn = null;
@@ -57,7 +63,7 @@ public class UserController {
         return objectUserReturn;
     }
 
-    public void updateUserProfile(Context context, String nameUpdate, String emailUpdate, String passwordUpdate) {
+    public void updateUserProfile(String nameUpdate, String emailUpdate, String passwordUpdate) {
         SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         String loggedInEmail = sharedPref.getString("LoggedInUserEmail", "defaultValue");
 
@@ -82,7 +88,7 @@ public class UserController {
         }
     }
 
-    public JSONArray getUserWhere(Context context, String column, String value) {
+    public JSONArray getUserWhere(String column, String value) {
         JSONArray jsonArrayReturn = new JSONArray();
 
         SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
@@ -101,7 +107,7 @@ public class UserController {
         return jsonArrayReturn;
     }
 
-    public boolean checkEmailAvailable(Context context, String email) {
+    public boolean checkEmailAvailable(String email) {
         boolean isAvailable = false;
 
         SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
