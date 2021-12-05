@@ -59,6 +59,8 @@ public class AdminMainActivity extends AppCompatActivity {
             }
         });
 
+        Log.d("Test", "Test");
+
         LoadSelectedTab(0);
 
         btnHome.setOnClickListener(new View.OnClickListener() {
