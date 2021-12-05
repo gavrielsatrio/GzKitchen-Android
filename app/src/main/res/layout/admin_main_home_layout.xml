@@ -152,7 +152,7 @@
                     android:layout_marginRight="24dp"
                     android:alpha="0"
                     android:background="@android:color/transparent"
-                    android:text="Recently Added Menu :"
+                    android:text="Recently Added Menus :"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp"
                     android:textStyle="bold"
