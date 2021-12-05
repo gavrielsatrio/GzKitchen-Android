@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/employeeOfTheMonthConstraintLayout"
+    android:id="@+id/employeeOfTheMonthLayoutConstraintLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:alpha="0"
@@ -11,7 +11,7 @@
     android:translationY="-20dp">
 
     <ImageView
-        android:id="@+id/employeeOfTheMonthImg"
+        android:id="@+id/employeeOfTheMonthLayoutImg"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="4dp"
@@ -35,10 +35,10 @@
         android:text="Nama"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/employeeOfTheMonthImg"
+        app:layout_constraintEnd_toEndOf="@+id/employeeOfTheMonthLayoutImg"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/employeeOfTheMonthImg"
-        app:layout_constraintTop_toBottomOf="@+id/employeeOfTheMonthImg" />
+        app:layout_constraintStart_toStartOf="@+id/employeeOfTheMonthLayoutImg"
+        app:layout_constraintTop_toBottomOf="@+id/employeeOfTheMonthLayoutImg" />
 
     <TextView
         android:id="@+id/employeeOfTheMonthLayoutLblMonth"
@@ -52,13 +52,13 @@
         android:text="Bulan"
         android:textColor="@color/colorGrey"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/employeeOfTheMonthImg"
+        app:layout_constraintEnd_toEndOf="@+id/employeeOfTheMonthLayoutImg"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/employeeOfTheMonthImg"
+        app:layout_constraintStart_toStartOf="@+id/employeeOfTheMonthLayoutImg"
         app:layout_constraintTop_toBottomOf="@+id/employeeOfTheMonthLayoutLblName" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/employeeOfTheMonthBackground"
+        android:id="@+id/employeeOfTheMonthLayoutBackground"
         android:layout_width="130dp"
         android:layout_height="170dp"
         android:layout_marginStart="4dp"
@@ -69,6 +69,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employeeOfTheMonthImg" />
+        app:layout_constraintTop_toBottomOf="@+id/employeeOfTheMonthLayoutImg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

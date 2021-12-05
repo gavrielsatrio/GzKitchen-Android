@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,16 +78,16 @@ public class ProfileActivity extends AppCompatActivity {
 
                 AlertDialog dialog = builder.create();
 
-                ((TextView)viewDialog.findViewById(R.id.editProfilePopupBtnCancel)).setOnClickListener(new View.OnClickListener() {
+                ((TextView)viewDialog.findViewById(R.id.editProfilePopupLayoutBtnCancel)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
                     }
                 });
 
-                EditText txtName = (EditText)viewDialog.findViewById(R.id.editProfilePopupTxtName);
-                EditText txtEmail = (EditText)viewDialog.findViewById(R.id.editProfilePopupTxtEmail);
-                EditText txtPassword = (EditText)viewDialog.findViewById(R.id.editProfilePopupTxtPassword);
+                EditText txtName = (EditText)viewDialog.findViewById(R.id.editProfilePopupLayoutTxtName);
+                EditText txtEmail = (EditText)viewDialog.findViewById(R.id.editProfilePopupLayoutTxtEmail);
+                EditText txtPassword = (EditText)viewDialog.findViewById(R.id.editProfilePopupLayoutTxtPassword);
 
                 try {
                     txtName.setText(objectUser.getString("Name"));
@@ -99,7 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                ((Button)viewDialog.findViewById(R.id.editProfilePopupBtnSave)).setOnClickListener(new View.OnClickListener() {
+                ((Button)viewDialog.findViewById(R.id.editProfilePopupLayoutBtnSave)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if(!txtName.getText().toString().trim().equals("") && !txtEmail.getText().toString().trim().equals("") && !txtPassword.getText().toString().trim().equals("")) {

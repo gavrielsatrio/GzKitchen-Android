@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,7 +37,7 @@ class EmployeeOfTheMonthAdapter extends RecyclerView.Adapter<EmployeeOfTheMonthA
             ((TextView)viewInflate.findViewById(R.id.employeeOfTheMonthLayoutLblName)).setText(object.getString("Name"));
             ((TextView)viewInflate.findViewById(R.id.employeeOfTheMonthLayoutLblMonth)).setText(object.getString("Month"));
 
-            ((ConstraintLayout)viewInflate.findViewById(R.id.employeeOfTheMonthConstraintLayout)).animate().setDuration(800).translationY(0).alpha(1);
+            ((ConstraintLayout)viewInflate.findViewById(R.id.employeeOfTheMonthLayoutConstraintLayout)).animate().setDuration(800).translationY(0).alpha(1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
