@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabItem;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class AdminMainActivity extends AppCompatActivity {
 
@@ -47,7 +48,7 @@ public class AdminMainActivity extends AppCompatActivity {
         imgUsers = findViewById(R.id.adminMainImgUsers);
 
         JSONArray jsonArrayLayout = new JSONArray()
-                .put(new AdminMainHomeFragment())
+                .put(new AdminMainHomeFragment(AdminMainActivity.this))
                 .put(new AdminMainMenuFragment())
                 .put(new AdminMainUsersFragment());
         viewPager.setAdapter(new AdminMainPagerAdapter(AdminMainActivity.this, jsonArrayLayout));
@@ -58,8 +59,6 @@ public class AdminMainActivity extends AppCompatActivity {
                 LoadSelectedTab(position);
             }
         });
-
-        Log.d("Test", "Test");
 
         LoadSelectedTab(0);
 

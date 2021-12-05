@@ -81,13 +81,35 @@ public class UserController {
         }
     }
 
-    public boolean checkEmailAvailable(Context context) {
+    public JSONArray getUserWhere(Context context, String column, String value) {
+        JSONArray jsonArrayReturn = new JSONArray();
+
+        SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
+        try {
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            for(int i = 0; i < jsonArrayUsers.length(); i++) {
+                JSONObject object = jsonArrayUsers.getJSONObject(i);
+                if(object.getString(column).equals(value)) {
+                    jsonArrayReturn.put(object);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonArrayReturn;
+    }
+
+    public boolean checkEmailAvailable(Context context, String email) {
         boolean isAvailable = false;
 
         SharedPreferences sharedPref = context.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
         try {
             JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            for(int i = 0; i < jsonArrayUsers.length(); i++) {
+                JSONObject object = jsonArrayUsers.getJSONObject(i);
 
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
