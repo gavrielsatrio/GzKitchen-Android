@@ -35,7 +35,7 @@ public class MenuController {
             JSONArray jsonArrayMenu = new JSONArray(sharedPref.getString("Menus", "defaultValue"));
             for(int i = 0; i < jsonArrayMenu.length(); i++) {
                 JSONObject object = jsonArrayMenu.getJSONObject(i);
-                if(object.getString(column).equals(value)) {
+                if(object.getString(column).toLowerCase().contains(value.toLowerCase())) {
                     jsonArrayReturn.put(object);
                 }
             }

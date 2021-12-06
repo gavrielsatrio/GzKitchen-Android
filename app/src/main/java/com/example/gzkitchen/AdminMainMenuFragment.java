@@ -61,6 +61,7 @@ public class AdminMainMenuFragment extends Fragment {
     }
 
     private void LoadData() {
+        linearLayoutMenu.removeAllViews();
         MenuController menuController = new MenuController(adminMainActivity);
 
         JSONArray jsonArrayMenu = new JSONArray();
