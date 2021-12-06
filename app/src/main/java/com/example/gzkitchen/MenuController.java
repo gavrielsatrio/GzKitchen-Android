@@ -45,4 +45,26 @@ public class MenuController {
 
         return jsonArrayReturn;
     }
+
+    public JSONArray getRecentlyAddedMenus() {
+        JSONArray jsonArrayReturn = new JSONArray();
+
+        try {
+            JSONArray jsonArrayMenu = new JSONArray(sharedPref.getString("Menus", "defaultValue"));
+            int lastIndex = jsonArrayMenu.length() - 1;
+
+            if(jsonArrayMenu.length() >= 3) {
+                for(int i = lastIndex; i >= lastIndex - 2; i--) {
+                    JSONObject object = jsonArrayMenu.getJSONObject(i);
+                    jsonArrayReturn.put(object);
+                }
+            } else {
+                jsonArrayReturn = jsonArrayMenu;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonArrayReturn;
+    }
 }

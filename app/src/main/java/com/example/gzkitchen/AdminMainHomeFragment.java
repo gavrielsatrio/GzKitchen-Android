@@ -72,7 +72,7 @@ public class AdminMainHomeFragment extends Fragment {
         recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember));
         recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
 
-        JSONArray jsonArrayMenu = new MenuController(adminMainActivity).getMenus();
+        JSONArray jsonArrayMenu = new MenuController(adminMainActivity).getRecentlyAddedMenus();
         for(int i = 0; i < jsonArrayMenu.length(); i++) {
             try {
                 JSONObject objectMenu = jsonArrayMenu.getJSONObject(i);
