@@ -42,7 +42,7 @@
                 android:adjustViewBounds="true"
                 android:alpha="0"
                 android:background="@android:color/transparent"
-                android:translationY="-150dp"
+                android:translationY="-200dp"
                 app:srcCompat="@drawable/ic_topcorner" />
 
             <LinearLayout

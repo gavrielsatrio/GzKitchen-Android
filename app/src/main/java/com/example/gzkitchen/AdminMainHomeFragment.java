@@ -72,28 +72,28 @@ public class AdminMainHomeFragment extends Fragment {
         recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember));
         recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
 
-        JSONArray jsonArrayFood = new FoodController(adminMainActivity).getFoods();
+        JSONArray jsonArrayFood = new MenuController(adminMainActivity).getMenus();
         for(int i = 0; i < jsonArrayFood.length(); i++) {
             try {
                 JSONObject objectFood = jsonArrayFood.getJSONObject(i);
 
-                View viewFood = LayoutInflater.from(adminMainActivity).inflate(R.layout.recently_added_menu_layout, null, false);
+                View viewFood = LayoutInflater.from(adminMainActivity).inflate(R.layout.menu_item_large_layout, null, false);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ((ImageView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutImg)).setImageDrawable(adminMainActivity.getDrawable(objectFood.getInt("Image")));
+                    ((ImageView)viewFood.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getDrawable(objectFood.getInt("Image")));
                 } else {
-                    ((ImageView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutImg)).setImageDrawable(adminMainActivity.getResources().getDrawable(objectFood.getInt("Image")));
+                    ((ImageView)viewFood.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getResources().getDrawable(objectFood.getInt("Image")));
                 }
 
-                ((TextView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutLblName)).setText(objectFood.getString("Name"));
+                ((TextView)viewFood.findViewById(R.id.menuItemLargeLayoutLblName)).setText(objectFood.getString("Name"));
 
                 int price = objectFood.getInt("Price");
                 NumberFormat formatter = NumberFormat.getCurrencyInstance();
                 formatter.setMaximumFractionDigits(0);
 
-                ((TextView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
-                ((TextView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutLblIngredientsCount)).setText("Ingredients : " + objectFood.getJSONArray("Ingredients").length());
+                ((TextView)viewFood.findViewById(R.id.menuItemLargeLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
+                ((TextView)viewFood.findViewById(R.id.menuItemLargeLayoutLblIngredientsCount)).setText("Ingredients : " + objectFood.getJSONArray("Ingredients").length());
 
-                ((ConstraintLayout)viewFood.findViewById(R.id.recentlyAddedMenuLayoutConstraintLayout)).animate().setDuration(600).alpha(1).translationY(0);
+                ((ConstraintLayout)viewFood.findViewById(R.id.menuItemLargeLayoutConstraintLayout)).animate().setDuration(600).alpha(1).translationY(0);
 
                 linearLayoutRecentMenu.addView(viewFood);
             } catch (JSONException e) {

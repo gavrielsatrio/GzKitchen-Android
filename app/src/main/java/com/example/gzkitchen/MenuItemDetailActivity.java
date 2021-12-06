@@ -21,10 +21,10 @@ import org.json.JSONObject;
 
 import java.text.NumberFormat;
 
-public class FoodItemDetailActivity extends AppCompatActivity {
+public class MenuItemDetailActivity extends AppCompatActivity {
 
     ImageView imgBackgroundTop;
-    ImageView imgFood;
+    ImageView imgMenu;
     TextView lblName;
     TextView lblIngredients;
     TextView lblDescTitle;
@@ -41,38 +41,38 @@ public class FoodItemDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_item_detail);
+        setContentView(R.layout.activity_menu_item_detail);
 
-        imgBackgroundTop = findViewById(R.id.foodItemDetailImgBackground);
-        imgFood = findViewById(R.id.foodItemDetailImg);
-        lblName = findViewById(R.id.foodItemDetailLblName);
-        lblIngredients = findViewById(R.id.foodItemDetailLblIngredients);
-        lblDescTitle = findViewById(R.id.foodItemDetailLblDescription);
-        lblDesc = findViewById(R.id.foodItemDetailLblDescriptionValue);
-        btnBack = findViewById(R.id.foodItemDetailBtnBack);
-        cardViewBottom = findViewById(R.id.foodItemDetailCardViewBottom);
-        lblPrice = findViewById(R.id.foodItemDetailLblPrice);
-        btnOrder = findViewById(R.id.foodItemDetailBtnOrder);
-        recViewIngredients = findViewById(R.id.foodItemDetailRecViewIngredients);
-        linearLayoutFoodDetails = findViewById(R.id.foodItemDetailLinearLayoutFoodDetail);
-        lblFoodDetailTitle = findViewById(R.id.foodItemDetailLblDetail);
-        lblFoodDetailDesc = findViewById(R.id.foodItemDetailLblDetailDesc);
+        imgBackgroundTop = findViewById(R.id.menuItemDetailImgBackground);
+        imgMenu = findViewById(R.id.menuItemDetailImg);
+        lblName = findViewById(R.id.menuItemDetailLblName);
+        lblIngredients = findViewById(R.id.menuItemDetailLblIngredients);
+        lblDescTitle = findViewById(R.id.menuItemDetailLblDescription);
+        lblDesc = findViewById(R.id.menuItemDetailLblDescriptionValue);
+        btnBack = findViewById(R.id.menuItemDetailBtnBack);
+        cardViewBottom = findViewById(R.id.menuItemDetailCardViewBottom);
+        lblPrice = findViewById(R.id.menuItemDetailLblPrice);
+        btnOrder = findViewById(R.id.menuItemDetailBtnOrder);
+        recViewIngredients = findViewById(R.id.menuItemDetailRecViewIngredients);
+        linearLayoutFoodDetails = findViewById(R.id.menuItemDetailLinearLayoutFoodDetail);
+        lblFoodDetailTitle = findViewById(R.id.menuItemDetailLblDetail);
+        lblFoodDetailDesc = findViewById(R.id.menuItemDetailLblDetailDesc);
 
         LoadAnimation();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FoodItemDetailActivity.super.onBackPressed();
+                MenuItemDetailActivity.super.onBackPressed();
             }
         });
 
         try {
             JSONObject object = new JSONObject(getIntent().getStringExtra("Object"));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                imgFood.setImageDrawable(getDrawable(object.getInt("Image")));
+                imgMenu.setImageDrawable(getDrawable(object.getInt("Image")));
             } else {
-                imgFood.setImageDrawable(getResources().getDrawable(object.getInt("Image")));
+                imgMenu.setImageDrawable(getResources().getDrawable(object.getInt("Image")));
             }
             lblName.setText(object.getString("Name"));
             lblDesc.setText(object.getString("Description"));
@@ -86,14 +86,14 @@ public class FoodItemDetailActivity extends AppCompatActivity {
 
 
             JSONArray jsonArrayIngredients = object.getJSONArray("Ingredients");
-            recViewIngredients.setAdapter(new IngredientsAdapter(FoodItemDetailActivity.this, jsonArrayIngredients));
-            recViewIngredients.setLayoutManager(new LinearLayoutManager(FoodItemDetailActivity.this, LinearLayoutManager.HORIZONTAL, false));
+            recViewIngredients.setAdapter(new IngredientsAdapter(MenuItemDetailActivity.this, jsonArrayIngredients));
+            recViewIngredients.setLayoutManager(new LinearLayoutManager(MenuItemDetailActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
 
             JSONArray jsonArrayFoodDetails = object.getJSONArray("Details");
             for(int i = 0; i < jsonArrayFoodDetails.length(); i++) {
-                View viewFoodDetail = LayoutInflater.from(FoodItemDetailActivity.this).inflate(R.layout.food_details_layout, null, false);
-                ((TextView)viewFoodDetail.findViewById(R.id.foodDetailsLayoutLbl)).setText(jsonArrayFoodDetails.getString(i));
+                View viewFoodDetail = LayoutInflater.from(MenuItemDetailActivity.this).inflate(R.layout.menu_details_layout, null, false);
+                ((TextView)viewFoodDetail.findViewById(R.id.menuDetailsLayoutLbl)).setText(jsonArrayFoodDetails.getString(i));
 
                 linearLayoutFoodDetails.addView(viewFoodDetail);
             }
@@ -106,7 +106,7 @@ public class FoodItemDetailActivity extends AppCompatActivity {
         imgBackgroundTop.animate().setDuration(800).alpha(1).translationY(0).setInterpolator(new DecelerateInterpolator());
 
         btnBack.animate().setDuration(600).setStartDelay(120).alpha(1).translationX(0);
-        imgFood.animate().setDuration(600).setStartDelay(240).alpha(1).translationY(0);
+        imgMenu.animate().setDuration(600).setStartDelay(240).alpha(1).translationY(0);
         lblName.animate().setDuration(600).setStartDelay(360).alpha(1).translationY(0);
 
         lblIngredients.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);

@@ -18,19 +18,19 @@ import java.text.NumberFormat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-class FoodItemSmallAdapter extends RecyclerView.Adapter<FoodItemSmallAdapter.ViewHolder> {
+class MenuItemSmallAdapter extends RecyclerView.Adapter<MenuItemSmallAdapter.ViewHolder> {
     View viewInflate;
     Context context;
     JSONArray jsonArray;
 
-    public FoodItemSmallAdapter(Context contextParam, JSONArray jsonArrayParam) {
+    public MenuItemSmallAdapter(Context contextParam, JSONArray jsonArrayParam) {
         this.context = contextParam;
         this.jsonArray = jsonArrayParam;
     }
 
     @Override
-    public FoodItemSmallAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        viewInflate = LayoutInflater.from(context).inflate(R.layout.food_item_small_layout, parent, false);
+    public MenuItemSmallAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        viewInflate = LayoutInflater.from(context).inflate(R.layout.menu_item_small_layout, parent, false);
 
         return new ViewHolder(viewInflate);
     }
@@ -43,19 +43,19 @@ class FoodItemSmallAdapter extends RecyclerView.Adapter<FoodItemSmallAdapter.Vie
             int image = object.getInt("Image");
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setImageDrawable(context.getDrawable(image));
+                ((ImageView)viewInflate.findViewById(R.id.menuItemSmallLayoutImg)).setImageDrawable(context.getDrawable(image));
             } else {
-                ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setImageDrawable(context.getResources().getDrawable(image));
+                ((ImageView)viewInflate.findViewById(R.id.menuItemSmallLayoutImg)).setImageDrawable(context.getResources().getDrawable(image));
             }
-            ((ImageView)viewInflate.findViewById(R.id.foodItemSmallLayoutImg)).setBackground(null);
-            ((TextView)viewInflate.findViewById(R.id.foodItemSmallLayoutLblName)).setText(object.getString("Name"));
+            ((ImageView)viewInflate.findViewById(R.id.menuItemSmallLayoutImg)).setBackground(null);
+            ((TextView)viewInflate.findViewById(R.id.menuItemSmallLayoutLblName)).setText(object.getString("Name"));
 
-            ConstraintLayout layout = (ConstraintLayout)viewInflate.findViewById(R.id.foodItemSmallLayoutConstraintLayout);
+            ConstraintLayout layout = (ConstraintLayout)viewInflate.findViewById(R.id.menuItemSmallLayoutConstraintLayout);
             layout.animate().setDuration(800).alpha(1).translationY(0);
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, FoodItemDetailActivity.class);
+                    Intent intent = new Intent(context, MenuItemDetailActivity.class);
                     intent.putExtra("Object", object.toString());
                     context.startActivity(intent);
                 }
@@ -65,7 +65,7 @@ class FoodItemSmallAdapter extends RecyclerView.Adapter<FoodItemSmallAdapter.Vie
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
             formatter.setMaximumFractionDigits(0);
 
-            ((TextView)viewInflate.findViewById(R.id.foodItemSmallLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
+            ((TextView)viewInflate.findViewById(R.id.menuItemSmallLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

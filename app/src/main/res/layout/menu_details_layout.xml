@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/foodDetailsLayoutImg"
+        android:id="@+id/menuDetailsLayoutImg"
         android:layout_width="6dp"
         android:layout_height="6dp"
         android:background="@android:color/transparent"
@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/dot_dark_grey" />
 
     <TextView
-        android:id="@+id/foodDetailsLayoutLbl"
+        android:id="@+id/menuDetailsLayoutLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -30,6 +30,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/foodDetailsLayoutImg"
+        app:layout_constraintStart_toEndOf="@+id/menuDetailsLayoutImg"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

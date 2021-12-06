@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FoodItemDetailActivity">
+    tools:context=".MenuItemDetailActivity">
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/foodItemDetailCardViewBottom"
+        app:layout_constraintBottom_toTopOf="@+id/menuItemDetailCardViewBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/foodItemDetailImgBackground"
+                    android:id="@+id/menuItemDetailImgBackground"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
@@ -39,7 +39,7 @@
                     app:srcCompat="@drawable/ic_fooditemtop" />
 
                 <TextView
-                    android:id="@+id/foodItemDetailBtnBack"
+                    android:id="@+id/menuItemDetailBtnBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -59,7 +59,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/foodItemDetailImg"
+                android:id="@+id/menuItemDetailImg"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
@@ -71,7 +71,7 @@
                 app:srcCompat="@drawable/dot_unselected" />
 
             <TextView
-                android:id="@+id/foodItemDetailLblName"
+                android:id="@+id/menuItemDetailLblName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -88,7 +88,7 @@
                 android:translationY="-20dp" />
 
             <TextView
-                android:id="@+id/foodItemDetailLblIngredients"
+                android:id="@+id/menuItemDetailLblIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -103,7 +103,7 @@
                 android:translationX="-20dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/foodItemDetailRecViewIngredients"
+                android:id="@+id/menuItemDetailRecViewIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -115,7 +115,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/foodItemDetailLblDescription"
+                android:id="@+id/menuItemDetailLblDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -130,7 +130,7 @@
                 android:translationX="-20dp" />
 
             <TextView
-                android:id="@+id/foodItemDetailLblDescriptionValue"
+                android:id="@+id/menuItemDetailLblDescriptionValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -145,7 +145,7 @@
                 android:translationY="-10dp" />
 
             <TextView
-                android:id="@+id/foodItemDetailLblDetail"
+                android:id="@+id/menuItemDetailLblDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -160,7 +160,7 @@
                 android:translationX="-20dp" />
 
             <TextView
-                android:id="@+id/foodItemDetailLblDetailDesc"
+                android:id="@+id/menuItemDetailLblDetailDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -175,7 +175,7 @@
                 android:translationY="-10dp" />
 
             <LinearLayout
-                android:id="@+id/foodItemDetailLinearLayoutFoodDetail"
+                android:id="@+id/menuItemDetailLinearLayoutFoodDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -189,7 +189,7 @@
     </ScrollView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/foodItemDetailCardViewBottom"
+        android:id="@+id/menuItemDetailCardViewBottom"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="24dp"
@@ -220,7 +220,7 @@
             android:clipToPadding="false">
 
             <Button
-                android:id="@+id/foodItemDetailBtnOrder"
+                android:id="@+id/menuItemDetailBtnOrder"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
@@ -232,11 +232,11 @@
                 android:translationX="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/foodItemDetailLblPrice"
+                app:layout_constraintStart_toEndOf="@+id/menuItemDetailLblPrice"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/foodItemDetailLblPrice"
+                android:id="@+id/menuItemDetailLblPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0"

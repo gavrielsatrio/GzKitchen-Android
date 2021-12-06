@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/foodItemSmallLayoutConstraintLayout"
+    android:id="@+id/menuItemSmallLayoutConstraintLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:alpha="0"
@@ -11,7 +11,7 @@
     android:translationY="-20dp">
 
     <ImageView
-        android:id="@+id/foodItemSmallLayoutImg"
+        android:id="@+id/menuItemSmallLayoutImg"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="4dp"
@@ -26,7 +26,7 @@
         app:srcCompat="@drawable/sushi2" />
 
     <TextView
-        android:id="@+id/foodItemSmallLayoutLblName"
+        android:id="@+id/menuItemSmallLayoutLblName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
@@ -35,13 +35,13 @@
         android:text="Sushi"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/foodItemSmallLayoutImg"
+        app:layout_constraintEnd_toEndOf="@+id/menuItemSmallLayoutImg"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/foodItemSmallLayoutImg"
-        app:layout_constraintTop_toBottomOf="@+id/foodItemSmallLayoutImg" />
+        app:layout_constraintStart_toStartOf="@+id/menuItemSmallLayoutImg"
+        app:layout_constraintTop_toBottomOf="@+id/menuItemSmallLayoutImg" />
 
     <TextView
-        android:id="@+id/foodItemSmallLayoutLblPrice"
+        android:id="@+id/menuItemSmallLayoutLblPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -52,13 +52,13 @@
         android:text="Price"
         android:textAllCaps="false"
         android:textColor="@color/colorGrey"
-        app:layout_constraintEnd_toEndOf="@+id/foodItemSmallLayoutImg"
+        app:layout_constraintEnd_toEndOf="@+id/menuItemSmallLayoutImg"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/foodItemSmallLayoutImg"
-        app:layout_constraintTop_toBottomOf="@+id/foodItemSmallLayoutLblName" />
+        app:layout_constraintStart_toStartOf="@+id/menuItemSmallLayoutImg"
+        app:layout_constraintTop_toBottomOf="@+id/menuItemSmallLayoutLblName" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/foodItemSmallLayoutImgBackground"
+        android:id="@+id/menuItemSmallLayoutImgBackground"
         android:layout_width="130dp"
         android:layout_height="170dp"
         android:layout_marginStart="4dp"
@@ -69,6 +69,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodItemSmallLayoutImg" />
+        app:layout_constraintTop_toBottomOf="@+id/menuItemSmallLayoutImg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

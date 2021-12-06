@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GzKitchen">
-        <activity android:name=".AdminMainActivity"></activity>
+        <activity android:name=".AdminMainActivity" android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".AboutDeveloperActivity" />
         <activity
-            android:name=".FoodItemDetailActivity"
+            android:name=".MenuItemDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"

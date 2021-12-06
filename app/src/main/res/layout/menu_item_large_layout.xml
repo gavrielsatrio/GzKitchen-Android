@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recentlyAddedMenuLayoutConstraintLayout"
+    android:id="@+id/menuItemLargeLayoutConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:alpha="0"
@@ -11,7 +11,7 @@
     android:translationY="-15dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/recentlyAddedMenuLayoutCardView"
+        android:id="@+id/menuItemLargeLayoutCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -33,7 +33,7 @@
             android:background="@android:color/transparent">
 
             <ImageView
-                android:id="@+id/recentlyAddedMenuLayoutImg"
+                android:id="@+id/menuItemLargeLargeLayoutImg"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="16dp"
@@ -46,7 +46,7 @@
                 app:srcCompat="@drawable/dot_unselected" />
 
             <TextView
-                android:id="@+id/recentlyAddedMenuLayoutLblName"
+                android:id="@+id/menuItemLargeLayoutLblName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -54,11 +54,11 @@
                 android:text="Name"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/recentlyAddedMenuLayoutImg"
-                app:layout_constraintTop_toTopOf="@+id/recentlyAddedMenuLayoutImg" />
+                app:layout_constraintStart_toEndOf="@+id/menuItemLargeLargeLayoutImg"
+                app:layout_constraintTop_toTopOf="@+id/menuItemLargeLargeLayoutImg" />
 
             <TextView
-                android:id="@+id/recentlyAddedMenuLayoutLblPrice"
+                android:id="@+id/menuItemLargeLayoutLblPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -68,11 +68,11 @@
                 android:text="Price"
                 android:textColor="@color/colorGrey"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/recentlyAddedMenuLayoutImg"
-                app:layout_constraintTop_toBottomOf="@+id/recentlyAddedMenuLayoutLblName" />
+                app:layout_constraintStart_toEndOf="@+id/menuItemLargeLargeLayoutImg"
+                app:layout_constraintTop_toBottomOf="@+id/menuItemLargeLayoutLblName" />
 
             <TextView
-                android:id="@+id/recentlyAddedMenuLayoutLblIngredientsCount"
+                android:id="@+id/menuItemLargeLayoutLblIngredientsCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -81,8 +81,8 @@
                 android:text="Ingredients :"
                 android:textColor="@color/colorGrey"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/recentlyAddedMenuLayoutImg"
-                app:layout_constraintStart_toEndOf="@+id/recentlyAddedMenuLayoutImg" />
+                app:layout_constraintBottom_toBottomOf="@+id/menuItemLargeLargeLayoutImg"
+                app:layout_constraintStart_toEndOf="@+id/menuItemLargeLargeLayoutImg" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

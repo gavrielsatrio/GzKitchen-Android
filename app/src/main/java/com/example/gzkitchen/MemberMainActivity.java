@@ -1,19 +1,12 @@
 package com.example.gzkitchen;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.animation.AnimatorListenerAdapter;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -85,12 +78,12 @@ public class MemberMainActivity extends AppCompatActivity {
         });
 
         try {
-            JSONArray jsonArrayFoods = new FoodController(MemberMainActivity.this).getFoods();
+            JSONArray jsonArrayFoods = new MenuController(MemberMainActivity.this).getMenus();
 
-            recViewRecommended.setAdapter(new FoodItemSmallAdapter(MemberMainActivity.this, jsonArrayFoods));
+            recViewRecommended.setAdapter(new MenuItemSmallAdapter(MemberMainActivity.this, jsonArrayFoods));
             recViewRecommended.setLayoutManager(new LinearLayoutManager(MemberMainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
-            recViewPopular.setAdapter(new FoodItemSmallAdapter(MemberMainActivity.this, jsonArrayFoods));
+            recViewPopular.setAdapter(new MenuItemSmallAdapter(MemberMainActivity.this, jsonArrayFoods));
             recViewPopular.setLayoutManager(new LinearLayoutManager(MemberMainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
             JSONArray jsonArrayEmployee = new JSONArray();
