@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MenuController {
     Context context;
@@ -25,5 +26,23 @@ public class MenuController {
         }
 
         return jsonArrayMenu;
+    }
+
+    public JSONArray getMenusWhere(String column, String value) {
+        JSONArray jsonArrayReturn = new JSONArray();
+
+        try {
+            JSONArray jsonArrayMenu = new JSONArray(sharedPref.getString("Menus", "defaultValue"));
+            for(int i = 0; i < jsonArrayMenu.length(); i++) {
+                JSONObject object = jsonArrayMenu.getJSONObject(i);
+                if(object.getString(column).equals(value)) {
+                    jsonArrayReturn.put(object);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonArrayReturn;
     }
 }

@@ -72,30 +72,30 @@ public class AdminMainHomeFragment extends Fragment {
         recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember));
         recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
 
-        JSONArray jsonArrayFood = new MenuController(adminMainActivity).getMenus();
-        for(int i = 0; i < jsonArrayFood.length(); i++) {
+        JSONArray jsonArrayMenu = new MenuController(adminMainActivity).getMenus();
+        for(int i = 0; i < jsonArrayMenu.length(); i++) {
             try {
-                JSONObject objectFood = jsonArrayFood.getJSONObject(i);
+                JSONObject objectMenu = jsonArrayMenu.getJSONObject(i);
 
-                View viewFood = LayoutInflater.from(adminMainActivity).inflate(R.layout.menu_item_large_layout, null, false);
+                View viewMenu = LayoutInflater.from(adminMainActivity).inflate(R.layout.menu_item_large_layout, null, false);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ((ImageView)viewFood.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getDrawable(objectFood.getInt("Image")));
+                    ((ImageView)viewMenu.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getDrawable(objectMenu.getInt("Image")));
                 } else {
-                    ((ImageView)viewFood.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getResources().getDrawable(objectFood.getInt("Image")));
+                    ((ImageView)viewMenu.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getResources().getDrawable(objectMenu.getInt("Image")));
                 }
 
-                ((TextView)viewFood.findViewById(R.id.menuItemLargeLayoutLblName)).setText(objectFood.getString("Name"));
+                ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblName)).setText(objectMenu.getString("Name"));
 
-                int price = objectFood.getInt("Price");
+                int price = objectMenu.getInt("Price");
                 NumberFormat formatter = NumberFormat.getCurrencyInstance();
                 formatter.setMaximumFractionDigits(0);
 
-                ((TextView)viewFood.findViewById(R.id.menuItemLargeLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
-                ((TextView)viewFood.findViewById(R.id.menuItemLargeLayoutLblIngredientsCount)).setText("Ingredients : " + objectFood.getJSONArray("Ingredients").length());
+                ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
+                ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblIngredientsCount)).setText("Ingredients : " + objectMenu.getJSONArray("Ingredients").length());
 
-                ((ConstraintLayout)viewFood.findViewById(R.id.menuItemLargeLayoutConstraintLayout)).animate().setDuration(600).alpha(1).translationY(0);
+                ((ConstraintLayout)viewMenu.findViewById(R.id.menuItemLargeLayoutConstraintLayout)).animate().setDuration(600).alpha(1).translationY(0);
 
-                linearLayoutRecentMenu.addView(viewFood);
+                linearLayoutRecentMenu.addView(viewMenu);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

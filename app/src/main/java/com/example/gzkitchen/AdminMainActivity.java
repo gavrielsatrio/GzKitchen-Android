@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
@@ -49,7 +50,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
         JSONArray jsonArrayLayout = new JSONArray()
                 .put(new AdminMainHomeFragment(AdminMainActivity.this))
-                .put(new AdminMainMenuFragment())
+                .put(new AdminMainMenuFragment(AdminMainActivity.this))
                 .put(new AdminMainUsersFragment());
         viewPager.setAdapter(new AdminMainPagerAdapter(AdminMainActivity.this, jsonArrayLayout));
 

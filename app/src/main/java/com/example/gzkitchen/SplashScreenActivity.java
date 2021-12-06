@@ -41,7 +41,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(SplashScreenActivity.this, RecyclerView.HORIZONTAL, false);
         try {
             JSONArray jsonArray = new JSONArray();
-            jsonArray.put(new JSONObject().put("Image", R.drawable.ic_japan).put("Title", "What is GzKitchen ?").put("Desc", "GzKitchen is a japanese style restaurant. Here, you can find all kinds of japanese food"));
+            jsonArray.put(new JSONObject().put("Image", R.drawable.ic_japan).put("Title", "What is GzKitchen ?").put("Desc", "GzKitchen is a japanese style restaurant. Here, you can find all kinds of japanese menu"));
             jsonArray.put(new JSONObject().put("Image", R.drawable.ic_chef).put("Title", "Fresh & Delicious Food").put("Desc", "We provides you the best quality and freshly cooked food by the best chef from Japan"));
             jsonArray.put(new JSONObject().put("Image", R.drawable.ic_confirmed).put("Title", "Fast Service").put("Desc", "Once we placed your order, it will be sent directly to the chef and be prepared for you right away"));
 
