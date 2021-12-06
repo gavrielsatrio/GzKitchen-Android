@@ -15,6 +15,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -80,6 +83,18 @@ public class AdminMainHomeFragment extends Fragment {
                 } else {
                     ((ImageView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutImg)).setImageDrawable(adminMainActivity.getResources().getDrawable(objectFood.getInt("Image")));
                 }
+
+                ((TextView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutLblName)).setText(objectFood.getString("Name"));
+
+                int price = objectFood.getInt("Price");
+                NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                formatter.setMaximumFractionDigits(0);
+
+                ((TextView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
+                ((TextView)viewFood.findViewById(R.id.recentlyAddedMenuLayoutLblIngredientsCount)).setText("Ingredients : " + objectFood.getJSONArray("Ingredients").length());
+
+                ((ConstraintLayout)viewFood.findViewById(R.id.recentlyAddedMenuLayoutConstraintLayout)).animate().setDuration(600).alpha(1).translationY(0);
+
                 linearLayoutRecentMenu.addView(viewFood);
             } catch (JSONException e) {
                 e.printStackTrace();

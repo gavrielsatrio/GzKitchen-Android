@@ -2,10 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recentlyAddedMenuLayoutConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:alpha="0"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:translationY="-15dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/recentlyAddedMenuLayoutCardView"
@@ -41,6 +44,46 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/dot_unselected" />
+
+            <TextView
+                android:id="@+id/recentlyAddedMenuLayoutLblName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@android:color/transparent"
+                android:text="Name"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/recentlyAddedMenuLayoutImg"
+                app:layout_constraintTop_toTopOf="@+id/recentlyAddedMenuLayoutImg" />
+
+            <TextView
+                android:id="@+id/recentlyAddedMenuLayoutLblPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/open_sans_regular"
+                android:text="Price"
+                android:textColor="@color/colorGrey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/recentlyAddedMenuLayoutImg"
+                app:layout_constraintTop_toBottomOf="@+id/recentlyAddedMenuLayoutLblName" />
+
+            <TextView
+                android:id="@+id/recentlyAddedMenuLayoutLblIngredientsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/open_sans_regular"
+                android:text="Ingredients :"
+                android:textColor="@color/colorGrey"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/recentlyAddedMenuLayoutImg"
+                app:layout_constraintStart_toEndOf="@+id/recentlyAddedMenuLayoutImg" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
