@@ -1,5 +1,6 @@
 package com.example.gzkitchen;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +31,7 @@ public class AdminMainMenuFragment extends Fragment {
     EditText txtSearch;
     ImageView btnSearch;
     LinearLayout linearLayoutMenu;
+    FloatingActionButton btnAdd;
 
     public AdminMainMenuFragment(AdminMainActivity adminMainActivityParam) {
         this.adminMainActivity = adminMainActivityParam;
@@ -42,6 +46,7 @@ public class AdminMainMenuFragment extends Fragment {
         txtSearch = viewInflate.findViewById(R.id.adminMainMenuTxtSearch);
         btnSearch = viewInflate.findViewById(R.id.adminMainMenuBtnSearch);
         linearLayoutMenu = viewInflate.findViewById(R.id.adminMainMenuLinearLayout);
+        btnAdd = viewInflate.findViewById(R.id.adminMainMenuBtnAdd);
 
         LoadAnimation();
         LoadData();
@@ -50,6 +55,14 @@ public class AdminMainMenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 LoadData();
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(adminMainActivity, AddEditMenuActivity.class);
+                startActivity(intent);
             }
         });
 
