@@ -242,6 +242,21 @@
                     android:text="Details"
                     android:textSize="16sp" />
 
+                <TextView
+                    android:id="@+id/addEditMenuLblDetailsDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/open_sans_light"
+                    android:text="1 portion of this menu contains :"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="14sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -262,7 +277,7 @@
                         android:background="@drawable/txt_background"
                         android:elevation="1dp"
                         android:ems="10"
-                        android:hint="Details"
+                        android:hint="Details (e.g. 300 gr of Rice)"
                         android:inputType="textPersonName|textCapSentences"
                         android:textSize="16sp" />
 
@@ -282,17 +297,17 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <ListView
-                    android:id="@+id/addEditMenuListViewDetails"
+                <LinearLayout
+                    android:id="@+id/addEditMenuLinearLayoutDetails"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="36dp"
                     android:layout_marginLeft="36dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
                     android:background="@android:color/transparent"
-                    android:divider="@null" />
+                    android:orientation="vertical"></LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

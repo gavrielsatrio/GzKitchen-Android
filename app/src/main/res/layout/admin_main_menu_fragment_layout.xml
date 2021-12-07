@@ -15,9 +15,11 @@
         android:clickable="true"
         android:src="@drawable/ic_addwhite"
         app:backgroundTint="@color/colorRed"
+        app:fabCustomSize="50dp"
         app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="20dp" />
 
     <ScrollView
         android:id="@+id/adminMainMenuScrollView"

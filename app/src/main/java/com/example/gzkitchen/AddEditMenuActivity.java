@@ -1,6 +1,5 @@
 package com.example.gzkitchen;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,16 +11,16 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.TimedMetaData;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -49,7 +48,7 @@ public class AddEditMenuActivity extends AppCompatActivity {
     RecyclerView recViewIngredients;
     EditText txtDescription;
     EditText txtDetails;
-    ListView listViewDetails;
+    LinearLayout linearLayoutDetails;
 
     JSONArray jsonArrayQueryIngredients;
 
@@ -57,6 +56,8 @@ public class AddEditMenuActivity extends AppCompatActivity {
     JSONArray jsonArrayMenuDetails = new JSONArray();
 
     Bitmap menuImageBitmap = null;
+    MenuController menuController;
+    BitmapHelper bitmapHelper = new BitmapHelper();
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -96,7 +97,9 @@ public class AddEditMenuActivity extends AppCompatActivity {
         recViewIngredients = findViewById(R.id.addEditMenuRecViewIngredients);
         txtDescription = findViewById(R.id.addEditMenuTxtDescription);
         txtDetails = findViewById(R.id.addEditMenuTxtDetails);
-        listViewDetails = findViewById(R.id.addEditMenuListViewDetails);
+        linearLayoutDetails = findViewById(R.id.addEditMenuLinearLayoutDetails);
+
+        menuController = new MenuController(AddEditMenuActivity.this);
 
         String menuID = getIntent().getStringExtra("MenuID");
         if(menuID != null) {
@@ -125,11 +128,18 @@ public class AddEditMenuActivity extends AppCompatActivity {
                                     if(jsonArrayMenuIngredients.length() > 0) {
                                         if(!txtDescription.getText().toString().trim().equals("")) {
                                             if(jsonArrayMenuDetails.length() > 0) {
-                                                MenuController menuController = new MenuController(AddEditMenuActivity.this);
-                                                BitmapHelper bitmapHelper = new BitmapHelper();
-
                                                 if(menuID != null) {
                                                     // Update
+                                                    try {
+                                                        JSONObject objectMenuUpdate = new JSONObject();
+                                                        objectMenuUpdate.put("ID", menuID).put("Image", bitmapHelper.convertToBase64String(menuImageBitmap)).put("Name", txtName.getText().toString().trim()).put("Price", price).put("Description", txtDescription.getText().toString().trim())
+                                                                .put("Ingredients", jsonArrayMenuIngredients)
+                                                                .put("Details", jsonArrayMenuDetails);
+
+                                                        menuController.editMenu(menuID, objectMenuUpdate);
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
                                                 } else {
                                                     // Insert
                                                     try {
@@ -148,7 +158,12 @@ public class AddEditMenuActivity extends AppCompatActivity {
                                                     }
                                                 }
 
+                                                Intent intent = new Intent(AddEditMenuActivity.this, AdminMainActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
 
+                                                finish();
                                             } else {
                                                 Toast.makeText(AddEditMenuActivity.this, "Please add at least one detail to the menu", Toast.LENGTH_LONG).show();
                                             }
@@ -248,7 +263,23 @@ public class AddEditMenuActivity extends AppCompatActivity {
     }
 
     private void LoadData(String menuID) {
+        try {
+            JSONObject objectMenu = menuController.getMenusWhere("ID", menuID).getJSONObject(0);
+            txtName.setText(objectMenu.getString("Name"));
+            txtPrice.setText(objectMenu.getString("Price"));
+            txtDescription.setText(objectMenu.getString("Description"));
 
+            menuImageBitmap = bitmapHelper.convertToBitmap(objectMenu.getString("Image"));
+            imgMenu.setImageBitmap(menuImageBitmap);
+
+            jsonArrayMenuIngredients = objectMenu.getJSONArray("Ingredients");
+            jsonArrayMenuDetails = objectMenu.getJSONArray("Details");
+
+            LoadDataIngredients();
+            LoadDataDetails();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isReadExternalPermitted() {
@@ -261,11 +292,32 @@ public class AddEditMenuActivity extends AppCompatActivity {
     }
 
     public void LoadDataIngredients() {
-        recViewIngredients.setAdapter(new IngredientsAdapter(AddEditMenuActivity.this, jsonArrayMenuIngredients));
+        recViewIngredients.setAdapter(new AddEditMenuIngredientsAdapter(AddEditMenuActivity.this, jsonArrayMenuIngredients));
         recViewIngredients.setLayoutManager(new LinearLayoutManager(AddEditMenuActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     public void LoadDataDetails() {
-        listViewDetails.setAdapter(new MenuDetailsAdapter(AddEditMenuActivity.this, jsonArrayMenuDetails));
+        linearLayoutDetails.removeAllViews();
+
+        for(int i = 0; i < jsonArrayMenuDetails.length(); i++) {
+            try {
+                View viewDetails = LayoutInflater.from(AddEditMenuActivity.this).inflate(R.layout.add_edit_menu_details_layout, null, false);
+
+                ((TextView)viewDetails.findViewById(R.id.addEditMenuDetailsLayoutLbl)).setText(jsonArrayMenuDetails.getString(i));
+
+                int index = i;
+                ((TextView)viewDetails.findViewById(R.id.addEditMenuDetailsLayoutBtnDelete)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        jsonArrayMenuDetails.remove(index);
+                        LoadDataDetails();
+                    }
+                });
+
+                linearLayoutDetails.addView(viewDetails);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
