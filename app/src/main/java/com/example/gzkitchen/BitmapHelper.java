@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 public class BitmapHelper {
     public String convertToBase64String(Bitmap bitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 30, outputStream);
         byte[] byteArray = outputStream.toByteArray();
 
         return Base64.encodeToString(byteArray, Base64.NO_WRAP);

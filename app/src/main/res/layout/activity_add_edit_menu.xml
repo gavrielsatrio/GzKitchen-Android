@@ -24,7 +24,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
+                android:alpha="0"
                 android:clickable="true"
+                android:translationY="-15dp"
                 app:backgroundTint="@color/colorWhite"
                 app:elevation="3dp"
                 app:fabCustomSize="40dp"
@@ -36,7 +38,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
+                android:alpha="0"
                 android:background="@android:color/transparent"
+                android:translationY="-50dp"
                 app:srcCompat="@drawable/ic_fooditemtop" />
 
             <TextView
@@ -48,13 +52,15 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:clickable="true"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="&lt; Back"
                 android:textColor="@color/colorWhite"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:translationY="-15dp" />
 
             <ImageView
                 android:id="@+id/addEditMenuImg"
@@ -65,9 +71,11 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:cropToPadding="true"
                 android:scaleType="fitCenter"
+                android:translationY="-50dp"
                 app:srcCompat="@drawable/dot_unselected" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -79,8 +87,10 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="0dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:clickable="true"
+                android:translationY="-50dp"
                 app:backgroundTint="@color/colorWhite"
                 app:elevation="2dp"
                 app:fabCustomSize="45dp"
@@ -104,9 +114,11 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
                     android:text="Name"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationY="-10dp" />
 
                 <EditText
                     android:id="@+id/addEditMenuTxtName"
@@ -117,12 +129,14 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@drawable/txt_background"
                     android:elevation="1dp"
                     android:ems="10"
                     android:hint="Name"
                     android:inputType="textPersonName|textCapSentences"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationX="-10dp" />
 
                 <TextView
                     android:id="@+id/addEditMenuLblPrice"
@@ -133,9 +147,11 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
                     android:text="Price"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationY="-10dp" />
 
                 <EditText
                     android:id="@+id/addEditMenuTxtPrice"
@@ -146,12 +162,14 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@drawable/txt_background"
                     android:elevation="1dp"
                     android:ems="10"
                     android:hint="Price"
                     android:inputType="number"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationX="-10dp" />
 
                 <TextView
                     android:id="@+id/addEditMenuLblIngredients"
@@ -162,17 +180,22 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
                     android:text="Ingredients"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationY="-10dp" />
 
                 <LinearLayout
+                    android:id="@+id/addEditMenuIngredientsControls"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
                     android:layout_weight="2"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:translationX="-10dp">
 
                     <Spinner
                         android:id="@+id/addEditMenuComboIngredients"
@@ -223,9 +246,11 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
                     android:text="Description"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationY="-10dp" />
 
                 <EditText
                     android:id="@+id/addEditMenuTxtDescription"
@@ -236,13 +261,15 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@drawable/txt_background"
                     android:elevation="1dp"
                     android:ems="10"
                     android:gravity="left"
                     android:hint="Description"
                     android:inputType="textMultiLine|textPersonName|textCapSentences"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationX="-10dp" />
 
                 <TextView
                     android:id="@+id/addEditMenuLblDetails"
@@ -253,9 +280,11 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
                     android:text="Details"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationY="-10dp" />
 
                 <TextView
                     android:id="@+id/addEditMenuLblDetailsDesc"
@@ -266,18 +295,23 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/open_sans_light"
                     android:text="1 portion of this menu contains :"
                     android:textColor="@color/colorGrey"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:translationY="-10dp" />
 
                 <LinearLayout
+                    android:id="@+id/addEditMenuDetailsControls"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:translationX="-10dp">
 
                     <EditText
                         android:id="@+id/addEditMenuTxtDetails"
@@ -344,10 +378,12 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
+                        android:alpha="0"
                         android:background="@drawable/primary_button_background"
                         android:text="Save"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/colorWhite" />
+                        android:textColor="@color/colorWhite"
+                        android:translationX="-10dp" />
 
                     <Button
                         android:id="@+id/addEditMenuBtnCancel"
@@ -356,10 +392,12 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_weight="1"
+                        android:alpha="0"
                         android:background="@drawable/secondary_button_background"
                         android:text="Cancel"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/colorRed" />
+                        android:textColor="@color/colorRed"
+                        android:translationX="10dp" />
                 </LinearLayout>
 
             </LinearLayout>

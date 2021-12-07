@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -46,11 +47,18 @@ public class AddEditMenuActivity extends AppCompatActivity {
     TextView btnAddDetails;
     FloatingActionButton btnDeleteMenu;
 
+    ImageView imgTop;
     ImageView imgMenu;
+    TextView lblName;
     EditText txtName;
+    TextView lblPrice;
     EditText txtPrice;
+    TextView lblIngredients;
     RecyclerView recViewIngredients;
+    TextView lblDescription;
     EditText txtDescription;
+    TextView lblDetails;
+    TextView lblDetailsDesc;
     EditText txtDetails;
     LinearLayout linearLayoutDetails;
 
@@ -97,14 +105,23 @@ public class AddEditMenuActivity extends AppCompatActivity {
         btnAddDetails = findViewById(R.id.addEditMenuBtnAddDetails);
         btnDeleteMenu = findViewById(R.id.addEditMenuBtnDeleteMenu);
         imgMenu = findViewById(R.id.addEditMenuImg);
+        imgTop = findViewById(R.id.addEditMenuImgTop);
+        lblName = findViewById(R.id.addEditMenuLblName);
         txtName = findViewById(R.id.addEditMenuTxtName);
+        lblPrice = findViewById(R.id.addEditMenuLblPrice);
         txtPrice = findViewById(R.id.addEditMenuTxtPrice);
+        lblIngredients = findViewById(R.id.addEditMenuLblIngredients);
         recViewIngredients = findViewById(R.id.addEditMenuRecViewIngredients);
+        lblDescription = findViewById(R.id.addEditMenuLblDescription);
         txtDescription = findViewById(R.id.addEditMenuTxtDescription);
+        lblDetails = findViewById(R.id.addEditMenuLblDetails);
+        lblDetailsDesc = findViewById(R.id.addEditMenuLblDetailsDesc);
         txtDetails = findViewById(R.id.addEditMenuTxtDetails);
         linearLayoutDetails = findViewById(R.id.addEditMenuLinearLayoutDetails);
 
         menuController = new MenuController(AddEditMenuActivity.this);
+
+        LoadAnimation();
 
         String menuID = getIntent().getStringExtra("MenuID");
         if(menuID != null) {
@@ -369,5 +386,28 @@ public class AddEditMenuActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void LoadAnimation() {
+        imgTop.animate().setDuration(800).alpha(1).translationY(0).setInterpolator(new DecelerateInterpolator());
+
+        btnBack.animate().setDuration(600).setStartDelay(120).alpha(1).translationY(0);
+        btnDeleteMenu.animate().setDuration(600).setStartDelay(240).alpha(1).translationY(0);
+        imgMenu.animate().setDuration(600).setStartDelay(360).alpha(1).translationY(0);
+        btnAddImage.animate().setDuration(600).setStartDelay(480).alpha(1).translationY(0);
+
+        lblName.animate().setDuration(600).setStartDelay(600).alpha(1).translationY(0);
+        txtName.animate().setDuration(600).setStartDelay(720).alpha(1).translationX(0);
+        lblPrice.animate().setDuration(600).setStartDelay(840).alpha(1).translationY(0);
+        txtPrice.animate().setDuration(600).setStartDelay(960).alpha(1).translationX(0);
+        lblIngredients.animate().setDuration(600).setStartDelay(1080).alpha(1).translationY(0);
+        ((LinearLayout)findViewById(R.id.addEditMenuIngredientsControls)).animate().setDuration(600).setStartDelay(1200).alpha(1).translationX(0);
+        lblDescription.animate().setDuration(600).setStartDelay(1320).alpha(1).translationY(0);
+        txtDescription.animate().setDuration(600).setStartDelay(1440).alpha(1).translationX(0);
+        lblDetails.animate().setDuration(600).setStartDelay(1560).alpha(1).translationY(0);
+        lblDetailsDesc.animate().setDuration(600).setStartDelay(1680).alpha(1).translationY(0);
+        ((LinearLayout)findViewById(R.id.addEditMenuDetailsControls)).animate().setDuration(600).setStartDelay(1800).alpha(1).translationX(0);
+        btnSave.animate().setDuration(600).setStartDelay(1920).alpha(1).translationX(0);
+        btnCancel.animate().setDuration(600).setStartDelay(2040).alpha(1).translationX(0);
     }
 }
