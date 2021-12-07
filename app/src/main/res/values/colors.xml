@@ -16,4 +16,5 @@
     <color name="colorGrey">#828282</color>
     <color name="colorMidGrey">#AAAAAA</color>
     <color name="colorLightGrey">#DCDCDC</color>
+    <color name="colorUltraLightGrey">#F8F8F8</color>
 </resources>

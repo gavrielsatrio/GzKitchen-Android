@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/deleteConfirmationPopupLayoutLinearLayoutTop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/delete_confirmation_top_background"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/deleteConfirmationPopupLayoutImg"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_marginTop="36dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_trash" />
+
+        <TextView
+            android:id="@+id/deleteConfirmationPopupLayoutLblHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="36dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/ms_sans_serif"
+            android:text="Delete {{thing}}"
+            android:textAlignment="center"
+            android:textColor="@color/colorRed"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/deleteConfirmationPopupLayoutLinearLayoutBottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/delete_confirmation_bottom_background"
+        android:orientation="vertical"
+        android:paddingStart="44dp"
+        android:paddingLeft="44dp"
+        android:paddingTop="36dp"
+        android:paddingEnd="44dp"
+        android:paddingRight="44dp"
+        android:paddingBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteConfirmationPopupLayoutLinearLayoutTop">
+
+        <TextView
+            android:id="@+id/deleteConfirmationPopupLayoutLblDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/open_sans_light"
+            android:text="Deleting a {{thing}} will permanently remove it from your {{thing}} list."
+            android:textAlignment="center"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:clipToPadding="false"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/deleteConfirmationPopupLayoutBtnNegative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/quartenary_button_background"
+                android:text="No, Keep {{thing}}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorGrey" />
+
+            <Button
+                android:id="@+id/deleteConfirmationPopupLayoutBtnPositive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/tertiary_button_background"
+                android:text="Yes, Delete {{thing}}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorWhite" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

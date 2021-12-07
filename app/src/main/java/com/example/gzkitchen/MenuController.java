@@ -99,4 +99,23 @@ public class MenuController {
             e.printStackTrace();
         }
     }
+
+    public void deleteMenu(String menuID) {
+        try {
+            JSONArray jsonArrayMenuUpdate = new JSONArray();
+            JSONArray jsonArrayMenu = new JSONArray(sharedPref.getString("Menus", "defaultValue"));
+
+            for(int i = 0; i < jsonArrayMenu.length(); i++) {
+                JSONObject objectMenuUpdate = jsonArrayMenu.getJSONObject(i);
+
+                if(!objectMenuUpdate.getString("ID").equals(menuID)) {
+                    jsonArrayMenuUpdate.put(objectMenuUpdate);
+                }
+            }
+
+            sharedPref.edit().putString("Menus", jsonArrayMenuUpdate.toString()).apply();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

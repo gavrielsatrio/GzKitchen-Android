@@ -1,5 +1,6 @@
 package com.example.gzkitchen;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,6 +42,7 @@ public class AddEditMenuActivity extends AppCompatActivity {
     Spinner comboIngredients;
     TextView btnAddIngredients;
     TextView btnAddDetails;
+    FloatingActionButton btnDeleteMenu;
 
     ImageView imgMenu;
     EditText txtName;
@@ -91,6 +93,7 @@ public class AddEditMenuActivity extends AppCompatActivity {
         comboIngredients = findViewById(R.id.addEditMenuComboIngredients);
         btnAddIngredients = findViewById(R.id.addEditMenuBtnAddIngredients);
         btnAddDetails = findViewById(R.id.addEditMenuBtnAddDetails);
+        btnDeleteMenu = findViewById(R.id.addEditMenuBtnDeleteMenu);
         imgMenu = findViewById(R.id.addEditMenuImg);
         txtName = findViewById(R.id.addEditMenuTxtName);
         txtPrice = findViewById(R.id.addEditMenuTxtPrice);
@@ -104,6 +107,8 @@ public class AddEditMenuActivity extends AppCompatActivity {
         String menuID = getIntent().getStringExtra("MenuID");
         if(menuID != null) {
             LoadData(menuID);
+        } else {
+            btnDeleteMenu.setVisibility(View.GONE);
         }
 
         LoadComboIngredients();
@@ -112,6 +117,50 @@ public class AddEditMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AddEditMenuActivity.super.onBackPressed();
+            }
+        });
+
+        btnDeleteMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddEditMenuActivity.this);
+                View viewDialog = LayoutInflater.from(AddEditMenuActivity.this).inflate(R.layout.delete_confirmation_popup_layout, null, false);
+
+                builder.setView(viewDialog);
+                builder.setCancelable(false);
+
+                AlertDialog dialog = builder.create();
+
+                ((TextView)viewDialog.findViewById(R.id.deleteConfirmationPopupLayoutLblHeader)).setText("Delete Menu");
+                ((TextView)viewDialog.findViewById(R.id.deleteConfirmationPopupLayoutLblDesc)).setText("Delete a menu will permanently remove it from your menu list.");
+
+                Button btnPositive = (Button)viewDialog.findViewById(R.id.deleteConfirmationPopupLayoutBtnPositive);
+                btnPositive.setText("Yes, Delete Menu");
+                btnPositive.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        menuController.deleteMenu(menuID);
+                        dialog.dismiss();
+
+                        Intent intent = new Intent(AddEditMenuActivity.this, AdminMainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+
+                        finish();
+                    }
+                });
+
+                Button btnNegative = (Button)viewDialog.findViewById(R.id.deleteConfirmationPopupLayoutBtnNegative);
+                btnNegative.setText("No, Keep Menu");
+                btnNegative.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
             }
         });
 

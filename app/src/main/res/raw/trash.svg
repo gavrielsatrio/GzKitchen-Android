@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20">
+  <g id="Trash" transform="translate(-3 -2)">
+    <path id="Path_20" data-name="Path 20" d="M5,20a2,2,0,0,0,2,2H17a2,2,0,0,0,2-2V8h2V6H17V4a2,2,0,0,0-2-2H9A2,2,0,0,0,7,4V6H3V8H5ZM9,4h6V6H9ZM8,8h9V20H7V8Z" fill="#cc293e"/>
+    <path id="Path_21" data-name="Path 21" d="M9,10h2v8H9Zm4,0h2v8H13Z" fill="#cc293e"/>
+  </g>
+</svg>
