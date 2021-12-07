@@ -67,10 +67,7 @@ public class AdminMainHomeFragment extends Fragment {
 
         LoadAnimation();
         LoadDataAdmin();
-
-        JSONArray jsonArrayMember = userController.getUserWhere("Role", "Member");
-        recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember));
-        recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
+        LoadDataNewMembers();
 
         JSONArray jsonArrayMenu = new MenuController(adminMainActivity).getRecentlyAddedMenus();
         for(int i = 0; i < jsonArrayMenu.length(); i++) {
@@ -107,6 +104,12 @@ public class AdminMainHomeFragment extends Fragment {
         });
 
         return viewInflate;
+    }
+
+    public void LoadDataNewMembers() {
+        JSONArray jsonArrayMember = userController.getUserWhere("Role", "Member");
+        recViewNewMember.setAdapter(new NewMemberAdapter(adminMainActivity, jsonArrayMember, AdminMainHomeFragment.this));
+        recViewNewMember.setLayoutManager(new LinearLayoutManager(adminMainActivity, LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void LoadDataAdmin() {

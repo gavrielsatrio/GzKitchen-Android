@@ -138,4 +138,24 @@ public class UserController {
 
         return lastUserID;
     }
+
+    public void updateRole(String userID, String role) {
+        try {
+            JSONArray jsonArrayUpdate = new JSONArray();
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+
+            for(int i = 0; i < jsonArrayUsers.length(); i++) {
+                JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
+                if(objectUser.getString("ID").equals(userID)) {
+                    objectUser.put("Role", role);
+                }
+
+                jsonArrayUpdate.put(objectUser);
+            }
+
+            sharedPref.edit().putString("Users", jsonArrayUpdate.toString()).apply();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
