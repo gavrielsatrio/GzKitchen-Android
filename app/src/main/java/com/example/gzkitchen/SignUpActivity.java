@@ -68,6 +68,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                                     if(checkEmailUser == null) {
                                         jsonArrayUsers.put(new JSONObject()
+                                                .put("ID", new UserController(SignUpActivity.this).getLastUserID() + 1)
+                                                .put("Image", "")
                                                 .put("Name", txtName.getText().toString().trim())
                                                 .put("Email", txtEmail.getText().toString().trim())
                                                 .put("Password", txtPassword.getText().toString().trim())

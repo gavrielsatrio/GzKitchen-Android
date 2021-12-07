@@ -7,20 +7,32 @@
 
     <ScrollView
         android:id="@+id/adminMainUsersScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:tag="scrollView">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:tag="scrollView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:background="@android:color/transparent"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/adminMainUsersLblHeader"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Users" />
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@android:color/transparent"
+                android:text="Users"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 

@@ -2,6 +2,7 @@ package com.example.gzkitchen;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -104,19 +105,37 @@ public class UserController {
         return jsonArrayReturn;
     }
 
-    public boolean checkEmailAvailable(String email) {
-        boolean isAvailable = false;
+    public void updateUserImage(Bitmap bitmapImage) {
+        try {
+            String userID = getLoggedInUserObject().getString("ID");
 
+            JSONArray jsonArrayUpdate = new JSONArray();
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+
+            for(int i = 0; i < jsonArrayUsers.length(); i++) {
+                JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
+                if(objectUser.getString("ID").equals(userID)) {
+                    objectUser.put("Image", new BitmapHelper().convertToBase64String(bitmapImage));
+                }
+
+                jsonArrayUpdate.put(objectUser);
+            }
+
+            sharedPref.edit().putString("Users", jsonArrayUpdate.toString()).apply();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getLastUserID() {
+        int lastUserID = 0;
         try {
             JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
-            for(int i = 0; i < jsonArrayUsers.length(); i++) {
-                JSONObject object = jsonArrayUsers.getJSONObject(i);
-
-            }
+            lastUserID = jsonArrayUsers.getJSONObject(jsonArrayUsers.length() - 1).getInt("ID");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return isAvailable;
+        return lastUserID;
     }
 }
