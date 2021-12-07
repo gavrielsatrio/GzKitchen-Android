@@ -48,9 +48,11 @@
                 android:layout_below="@+id/addEditMenuBtnBack"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
+                android:cropToPadding="true"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/dot_unselected" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -84,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginLeft="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
                     android:background="@android:color/transparent"
@@ -104,7 +106,7 @@
                     android:elevation="1dp"
                     android:ems="10"
                     android:hint="Name"
-                    android:inputType="textPersonName"
+                    android:inputType="textPersonName|textCapSentences"
                     android:textSize="16sp" />
 
                 <TextView
@@ -168,7 +170,7 @@
                     <TextView
                         android:id="@+id/addEditMenuBtnAddIngredients"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="24dp"
@@ -176,6 +178,7 @@
                         android:layout_marginRight="24dp"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
                         android:text="Add +"
                         android:textColor="@color/colorRed"
                         android:textSize="16sp" />
@@ -191,7 +194,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    android:background="@android:color/transparent" >
+                    android:background="@android:color/transparent"
+                    android:minHeight="130dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -222,7 +226,7 @@
                     android:ems="10"
                     android:gravity="left"
                     android:hint="Description"
-                    android:inputType="textMultiLine|textPersonName"
+                    android:inputType="textMultiLine|textPersonName|textCapSentences"
                     android:textSize="16sp" />
 
                 <TextView
@@ -253,12 +257,13 @@
                         android:layout_marginLeft="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="24dp"
+                        android:layout_marginBottom="4dp"
                         android:layout_weight="0.5"
                         android:background="@drawable/txt_background"
                         android:elevation="1dp"
                         android:ems="10"
                         android:hint="Details"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapSentences"
                         android:textSize="16sp" />
 
                     <TextView
@@ -280,12 +285,14 @@
                 <ListView
                     android:id="@+id/addEditMenuListViewDetails"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="300dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp" />
+                    android:layout_marginRight="24dp"
+                    android:background="@android:color/transparent"
+                    android:divider="@null" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

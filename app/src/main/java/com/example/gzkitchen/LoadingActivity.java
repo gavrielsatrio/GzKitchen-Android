@@ -82,13 +82,13 @@ public class LoadingActivity extends AppCompatActivity {
                                 new JSONObject().put("ID", 1).put("Image", bitmapHelper.convertToBase64String(menuBitmap[0])).put("Name", "Sushi").put("Price", 20000).put("Description", "This sushi is specially made for you by the chef. It uses the best quality of salmon dan tuna. The nori is still crispy and delicious")
                                         .put("Ingredients",
                                                 new JSONArray()
-                                                        .put(new JSONObject().put("Name", "Rice"))
-                                                        .put(new JSONObject().put("Name", "Shrimp"))
-                                                        .put(new JSONObject().put("Name", "Tuna"))
-                                                        .put(new JSONObject().put("Name", "Salmon"))
-                                                        .put(new JSONObject().put("Name", "Egg"))
-                                                        .put(new JSONObject().put("Name", "Squid"))
-                                                        .put(new JSONObject().put("Name", "Nori"))
+                                                        .put(new JSONObject().put("ID", 1).put("Name", "Rice"))
+                                                        .put(new JSONObject().put("ID", 2).put("Name", "Shrimp"))
+                                                        .put(new JSONObject().put("ID", 3).put("Name", "Tuna"))
+                                                        .put(new JSONObject().put("ID", 4).put("Name", "Salmon"))
+                                                        .put(new JSONObject().put("ID", 5).put("Name", "Egg"))
+                                                        .put(new JSONObject().put("ID", 6).put("Name", "Squid"))
+                                                        .put(new JSONObject().put("ID", 7).put("Name", "Nori"))
                                         ).put("Details",
                                         new JSONArray()
                                                 .put("1 pc of Ika nigiri")
@@ -107,12 +107,12 @@ public class LoadingActivity extends AppCompatActivity {
                                 new JSONObject().put("ID", 2).put("Image", bitmapHelper.convertToBase64String(menuBitmap[1])).put("Name", "Okonomiyaki").put("Price", 32000).put("Description", "Okonomiyaki will be the best choice if it's raining. Because the sauce will make you awake. You will be amazed by the taste.")
                                         .put("Ingredients",
                                                 new JSONArray()
-                                                        .put(new JSONObject().put("Name", "Sauce"))
-                                                        .put(new JSONObject().put("Name", "Cabbage"))
-                                                        .put(new JSONObject().put("Name", "Flour"))
-                                                        .put(new JSONObject().put("Name", "Egg"))
-                                                        .put(new JSONObject().put("Name", "Mayonaise"))
-                                                        .put(new JSONObject().put("Name", "Katsuobushi"))
+                                                        .put(new JSONObject().put("ID", 8).put("Name", "Sauce"))
+                                                        .put(new JSONObject().put("ID", 9).put("Name", "Cabbage"))
+                                                        .put(new JSONObject().put("ID", 10).put("Name", "Flour"))
+                                                        .put(new JSONObject().put("ID", 11).put("Name", "Egg"))
+                                                        .put(new JSONObject().put("ID", 12).put("Name", "Mayonaise"))
+                                                        .put(new JSONObject().put("ID", 13).put("Name", "Katsuobushi"))
                                         ).put("Details",
                                         new JSONArray()
                                                 .put("350 gr of Cabbage")
@@ -125,11 +125,11 @@ public class LoadingActivity extends AppCompatActivity {
                                 new JSONObject().put("ID", 3).put("Image", bitmapHelper.convertToBase64String(menuBitmap[2])).put("Name", "Onigiri").put("Price", 15000).put("Description", "It's made for you who don't want to eat too much. With the vegetables in it, it will helps you on a diet. The crispy nori will make you smile all day long")
                                         .put("Ingredients",
                                                 new JSONArray()
-                                                        .put(new JSONObject().put("Name", "Rice"))
-                                                        .put(new JSONObject().put("Name", "Nori"))
-                                                        .put(new JSONObject().put("Name", "Salt"))
-                                                        .put(new JSONObject().put("Name", "Tuna"))
-                                                        .put(new JSONObject().put("Name", "Sesame"))
+                                                        .put(new JSONObject().put("ID", 1).put("Name", "Rice"))
+                                                        .put(new JSONObject().put("ID", 7).put("Name", "Nori"))
+                                                        .put(new JSONObject().put("ID", 14).put("Name", "Salt"))
+                                                        .put(new JSONObject().put("ID", 3).put("Name", "Tuna"))
+                                                        .put(new JSONObject().put("ID", 15).put("Name", "Sesame"))
                                         ).put("Details",
                                         new JSONArray()
                                                 .put("2 pcs of Onigiri")
@@ -141,12 +141,12 @@ public class LoadingActivity extends AppCompatActivity {
                                 new JSONObject().put("ID", 4).put("Image", bitmapHelper.convertToBase64String(menuBitmap[3])).put("Name", "Ramen").put("Price", 27000).put("Description", "The best ramen is here. With our special hand-made noodle and cured egg. The broth used in this ramen is from a 1 years old chicken")
                                         .put("Ingredients",
                                                 new JSONArray()
-                                                        .put(new JSONObject().put("Name", "Noodle"))
-                                                        .put(new JSONObject().put("Name", "Chicken"))
-                                                        .put(new JSONObject().put("Name", "Egg"))
-                                                        .put(new JSONObject().put("Name", "Soy Sauce"))
-                                                        .put(new JSONObject().put("Name", "Garlic"))
-                                                        .put(new JSONObject().put("Name", "Spring Onion"))
+                                                        .put(new JSONObject().put("ID", 16).put("Name", "Noodle"))
+                                                        .put(new JSONObject().put("ID", 17).put("Name", "Chicken"))
+                                                        .put(new JSONObject().put("ID", 5).put("Name", "Egg"))
+                                                        .put(new JSONObject().put("ID", 18).put("Name", "Soy Sauce"))
+                                                        .put(new JSONObject().put("ID", 19).put("Name", "Garlic"))
+                                                        .put(new JSONObject().put("ID", 20).put("Name", "Spring Onion"))
                                         ).put("Details",
                                         new JSONArray()
                                                 .put("400 gr of Noodle")
@@ -157,6 +157,33 @@ public class LoadingActivity extends AppCompatActivity {
 
                         sharedPref.edit()
                                 .putString("Menus", jsonArrayMenu.toString())
+                                .apply();
+
+                        JSONArray jsonArrayIngredients = new JSONArray();
+                        jsonArrayIngredients
+                                .put(new JSONObject().put("ID", 1).put("Name", "Rice"))
+                                .put(new JSONObject().put("ID", 2).put("Name", "Shrimp"))
+                                .put(new JSONObject().put("ID", 3).put("Name", "Tuna"))
+                                .put(new JSONObject().put("ID", 4).put("Name", "Salmon"))
+                                .put(new JSONObject().put("ID", 5).put("Name", "Egg"))
+                                .put(new JSONObject().put("ID", 6).put("Name", "Squid"))
+                                .put(new JSONObject().put("ID", 7).put("Name", "Nori"))
+                                .put(new JSONObject().put("ID", 8).put("Name", "Sauce"))
+                                .put(new JSONObject().put("ID", 9).put("Name", "Cabbage"))
+                                .put(new JSONObject().put("ID", 10).put("Name", "Flour"))
+                                .put(new JSONObject().put("ID", 11).put("Name", "Egg"))
+                                .put(new JSONObject().put("ID", 12).put("Name", "Mayonaise"))
+                                .put(new JSONObject().put("ID", 13).put("Name", "Katsuobushi"))
+                                .put(new JSONObject().put("ID", 14).put("Name", "Salt"))
+                                .put(new JSONObject().put("ID", 15).put("Name", "Sesame"))
+                                .put(new JSONObject().put("ID", 16).put("Name", "Noodle"))
+                                .put(new JSONObject().put("ID", 17).put("Name", "Chicken"))
+                                .put(new JSONObject().put("ID", 18).put("Name", "Soy Sauce"))
+                                .put(new JSONObject().put("ID", 19).put("Name", "Garlic"))
+                                .put(new JSONObject().put("ID", 20).put("Name", "Spring Onion"));
+
+                        sharedPref.edit()
+                                .putString("Ingredients", jsonArrayIngredients.toString())
                                 .apply();
                     } catch (JSONException e) {
                         e.printStackTrace();
