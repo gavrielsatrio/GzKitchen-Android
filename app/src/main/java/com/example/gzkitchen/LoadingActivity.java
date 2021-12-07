@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
@@ -66,10 +68,18 @@ public class LoadingActivity extends AppCompatActivity {
                                 .putString("Users", jsonArrayUsers.toString())
                                 .apply();
 
+                        Bitmap[] menuBitmap = {
+                                BitmapFactory.decodeResource(getResources(), R.drawable.sushi2),
+                                BitmapFactory.decodeResource(getResources(), R.drawable.okonomiyaki),
+                                BitmapFactory.decodeResource(getResources(), R.drawable.onigiri),
+                                BitmapFactory.decodeResource(getResources(), R.drawable.ramen)
+                        };
+
+                        BitmapHelper bitmapHelper = new BitmapHelper();
 
                         JSONArray jsonArrayMenu = new JSONArray();
                         jsonArrayMenu.put(
-                                new JSONObject().put("ID", 1).put("Image", R.drawable.sushi2).put("Name", "Sushi").put("Price", 20000).put("Description", "This sushi is specially made for you by the chef. It uses the best quality of salmon dan tuna. The nori is still crispy and delicious")
+                                new JSONObject().put("ID", 1).put("Image", bitmapHelper.convertToBase64String(menuBitmap[0])).put("Name", "Sushi").put("Price", 20000).put("Description", "This sushi is specially made for you by the chef. It uses the best quality of salmon dan tuna. The nori is still crispy and delicious")
                                         .put("Ingredients",
                                                 new JSONArray()
                                                         .put(new JSONObject().put("Name", "Rice"))
@@ -94,7 +104,7 @@ public class LoadingActivity extends AppCompatActivity {
                                 )
                         );
                         jsonArrayMenu.put(
-                                new JSONObject().put("ID", 2).put("Image", R.drawable.okonomiyaki).put("Name", "Okonomiyaki").put("Price", 32000).put("Description", "Okonomiyaki will be the best choice if it's raining. Because the sauce will make you awake. You will be amazed by the taste.")
+                                new JSONObject().put("ID", 2).put("Image", bitmapHelper.convertToBase64String(menuBitmap[1])).put("Name", "Okonomiyaki").put("Price", 32000).put("Description", "Okonomiyaki will be the best choice if it's raining. Because the sauce will make you awake. You will be amazed by the taste.")
                                         .put("Ingredients",
                                                 new JSONArray()
                                                         .put(new JSONObject().put("Name", "Sauce"))
@@ -112,7 +122,7 @@ public class LoadingActivity extends AppCompatActivity {
                                 )
                         );
                         jsonArrayMenu.put(
-                                new JSONObject().put("ID", 3).put("Image", R.drawable.onigiri).put("Name", "Onigiri").put("Price", 15000).put("Description", "It's made for you who don't want to eat too much. With the vegetables in it, it will helps you on a diet. The crispy nori will make you smile all day long")
+                                new JSONObject().put("ID", 3).put("Image", bitmapHelper.convertToBase64String(menuBitmap[2])).put("Name", "Onigiri").put("Price", 15000).put("Description", "It's made for you who don't want to eat too much. With the vegetables in it, it will helps you on a diet. The crispy nori will make you smile all day long")
                                         .put("Ingredients",
                                                 new JSONArray()
                                                         .put(new JSONObject().put("Name", "Rice"))
@@ -128,7 +138,7 @@ public class LoadingActivity extends AppCompatActivity {
                                 )
                         );
                         jsonArrayMenu.put(
-                                new JSONObject().put("ID", 4).put("Image", R.drawable.ramen).put("Name", "Ramen").put("Price", 27000).put("Description", "The best ramen is here. With our special hand-made noodle and cured egg. The broth used in this ramen is from a 1 years old chicken")
+                                new JSONObject().put("ID", 4).put("Image", bitmapHelper.convertToBase64String(menuBitmap[3])).put("Name", "Ramen").put("Price", 27000).put("Description", "The best ramen is here. With our special hand-made noodle and cured egg. The broth used in this ramen is from a 1 years old chicken")
                                         .put("Ingredients",
                                                 new JSONArray()
                                                         .put(new JSONObject().put("Name", "Noodle"))

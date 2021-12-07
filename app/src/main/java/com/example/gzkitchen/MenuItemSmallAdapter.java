@@ -40,13 +40,10 @@ class MenuItemSmallAdapter extends RecyclerView.Adapter<MenuItemSmallAdapter.Vie
         try {
             JSONObject object = jsonArray.getJSONObject(position);
 
-            int image = object.getInt("Image");
+            String menuID = object.getString("ID");
+            String base64Image = object.getString("Image");
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ((ImageView)viewInflate.findViewById(R.id.menuItemSmallLayoutImg)).setImageDrawable(context.getDrawable(image));
-            } else {
-                ((ImageView)viewInflate.findViewById(R.id.menuItemSmallLayoutImg)).setImageDrawable(context.getResources().getDrawable(image));
-            }
+            ((ImageView)viewInflate.findViewById(R.id.menuItemSmallLayoutImg)).setImageBitmap(new BitmapHelper().convertToBitmap(base64Image));
             ((ImageView)viewInflate.findViewById(R.id.menuItemSmallLayoutImg)).setBackground(null);
             ((TextView)viewInflate.findViewById(R.id.menuItemSmallLayoutLblName)).setText(object.getString("Name"));
 
@@ -56,7 +53,7 @@ class MenuItemSmallAdapter extends RecyclerView.Adapter<MenuItemSmallAdapter.Vie
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, MenuItemDetailActivity.class);
-                    intent.putExtra("Object", object.toString());
+                    intent.putExtra("MenuID", menuID);
                     context.startActivity(intent);
                 }
             });

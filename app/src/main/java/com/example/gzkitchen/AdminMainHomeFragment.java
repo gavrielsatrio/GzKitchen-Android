@@ -78,12 +78,9 @@ public class AdminMainHomeFragment extends Fragment {
                 JSONObject objectMenu = jsonArrayMenu.getJSONObject(i);
 
                 View viewMenu = LayoutInflater.from(adminMainActivity).inflate(R.layout.menu_item_large_layout, null, false);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ((ImageView)viewMenu.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getDrawable(objectMenu.getInt("Image")));
-                } else {
-                    ((ImageView)viewMenu.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getResources().getDrawable(objectMenu.getInt("Image")));
-                }
 
+                String base64Image = objectMenu.getString("Image");
+                ((ImageView)viewMenu.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageBitmap(new BitmapHelper().convertToBitmap(base64Image));
                 ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblName)).setText(objectMenu.getString("Name"));
 
                 int price = objectMenu.getInt("Price");

@@ -68,12 +68,12 @@ public class MenuItemDetailActivity extends AppCompatActivity {
         });
 
         try {
-            JSONObject object = new JSONObject(getIntent().getStringExtra("Object"));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                imgMenu.setImageDrawable(getDrawable(object.getInt("Image")));
-            } else {
-                imgMenu.setImageDrawable(getResources().getDrawable(object.getInt("Image")));
-            }
+            String menuID = getIntent().getStringExtra("MenuID");
+            JSONObject object = new MenuController(MenuItemDetailActivity.this).getMenusWhere("ID", menuID).getJSONObject(0);
+
+            String base64Image = object.getString("Image");
+            imgMenu.setImageBitmap(new BitmapHelper().convertToBitmap(base64Image));
+
             lblName.setText(object.getString("Name"));
             lblDesc.setText(object.getString("Description"));
             lblFoodDetailDesc.setText("1 portion of this " + object.getString("Name") + " contains :");

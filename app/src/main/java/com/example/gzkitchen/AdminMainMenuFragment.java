@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -89,12 +90,9 @@ public class AdminMainMenuFragment extends Fragment {
                 JSONObject objectMenu = jsonArrayMenu.getJSONObject(i);
                 View viewMenu = LayoutInflater.from(adminMainActivity).inflate(R.layout.menu_item_large_layout, null, false);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ((ImageView)viewMenu.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getDrawable(objectMenu.getInt("Image")));
-                } else {
-                    ((ImageView)viewMenu.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageDrawable(adminMainActivity.getResources().getDrawable(objectMenu.getInt("Image")));
-                }
-
+                String menuID = objectMenu.getString("ID");
+                String base64Image = objectMenu.getString("Image");
+                ((ImageView)viewMenu.findViewById(R.id.menuItemLargeLargeLayoutImg)).setImageBitmap(new BitmapHelper().convertToBitmap(base64Image));
                 ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblName)).setText(objectMenu.getString("Name"));
 
                 int price = objectMenu.getInt("Price");
@@ -104,7 +102,16 @@ public class AdminMainMenuFragment extends Fragment {
                 ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
                 ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblIngredientsCount)).setText("Ingredients : " + objectMenu.getJSONArray("Ingredients").length());
 
-                ((ConstraintLayout)viewMenu.findViewById(R.id.menuItemLargeLayoutConstraintLayout)).animate().setDuration(600).alpha(1).translationY(0);
+                ConstraintLayout constraintLayout = (ConstraintLayout)viewMenu.findViewById(R.id.menuItemLargeLayoutConstraintLayout);
+                constraintLayout.animate().setDuration(600).alpha(1).translationY(0);
+                constraintLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(adminMainActivity, AddEditMenuActivity.class);
+                        intent.putExtra("MenuID", menuID);
+                        startActivity(intent);
+                    }
+                });
 
                 linearLayoutMenu.addView(viewMenu);
             } catch (JSONException e) {
