@@ -74,7 +74,8 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:clipToPadding="false"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="4dp">
 
             <Button
                 android:id="@+id/deleteConfirmationPopupLayoutBtnNegative"

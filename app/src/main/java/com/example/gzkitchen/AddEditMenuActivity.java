@@ -12,6 +12,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -126,10 +128,9 @@ public class AddEditMenuActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(AddEditMenuActivity.this);
                 View viewDialog = LayoutInflater.from(AddEditMenuActivity.this).inflate(R.layout.delete_confirmation_popup_layout, null, false);
 
-                builder.setView(viewDialog);
-                builder.setCancelable(false);
-
                 AlertDialog dialog = builder.create();
+                dialog.setView(viewDialog);
+                dialog.setCancelable(true);
 
                 ((TextView)viewDialog.findViewById(R.id.deleteConfirmationPopupLayoutLblHeader)).setText("Delete Menu");
                 ((TextView)viewDialog.findViewById(R.id.deleteConfirmationPopupLayoutLblDesc)).setText("Delete a menu will permanently remove it from your menu list.");
