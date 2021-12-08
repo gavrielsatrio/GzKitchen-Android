@@ -62,13 +62,12 @@ class NewMemberAdapter extends RecyclerView.Adapter<NewMemberAdapter.ViewHolder>
             constraintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AlertDialog dialog = new AlertDialog.Builder(adminMainActivity).create();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(adminMainActivity);
                     View viewDialog = LayoutInflater.from(adminMainActivity).inflate(R.layout.assign_member_popup_layout, null, false);
 
+                    AlertDialog dialog = builder.create();
                     dialog.setView(viewDialog);
                     dialog.setCancelable(true);
-
-                    dialog.create();
 
                     Button btnPositive = (Button)viewDialog.findViewById(R.id.assignMemberPopupLayoutBtnGo);
                     Button btnNegative = (Button)viewDialog.findViewById(R.id.assignMemberPopupLayoutBtnCancel);

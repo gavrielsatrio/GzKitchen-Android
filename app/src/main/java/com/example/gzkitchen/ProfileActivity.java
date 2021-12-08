@@ -212,7 +212,7 @@ public class ProfileActivity extends AppCompatActivity {
         cardViewBackground.animate().setDuration(600).setStartDelay(240).alpha(1).translationY(0);
         imgProfile.animate().setDuration(600).setStartDelay(360).alpha(1).translationY(0);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            imgProfile.setElevation(7);
+            imgProfile.setElevation(8);
         }
         btnUploadImage.animate().setDuration(600).setStartDelay(360).alpha(1).translationY(0);
 

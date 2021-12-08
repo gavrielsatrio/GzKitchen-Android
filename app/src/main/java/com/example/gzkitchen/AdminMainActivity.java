@@ -51,7 +51,7 @@ public class AdminMainActivity extends AppCompatActivity {
         JSONArray jsonArrayLayout = new JSONArray()
                 .put(new AdminMainHomeFragment(AdminMainActivity.this))
                 .put(new AdminMainMenuFragment(AdminMainActivity.this))
-                .put(new AdminMainUsersFragment());
+                .put(new AdminMainUsersFragment(AdminMainActivity.this));
         viewPager.setAdapter(new AdminMainPagerAdapter(AdminMainActivity.this, jsonArrayLayout));
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

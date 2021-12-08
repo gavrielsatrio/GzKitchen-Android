@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.text.NumberFormat;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
@@ -71,7 +72,10 @@ public class AdminMainMenuFragment extends Fragment {
     }
 
     private void LoadAnimation() {
-
+        lblHeader.animate().setDuration(600).alpha(1).translationY(0);
+        lblDesc.animate().setDuration(600).setStartDelay(120).alpha(1).translationY(0);
+        txtSearch.animate().setDuration(600).setStartDelay(240).alpha(1).translationX(0);
+        btnSearch.animate().setDuration(600).setStartDelay(360).alpha(1).translationX(0);
     }
 
     private void LoadData() {
@@ -102,9 +106,9 @@ public class AdminMainMenuFragment extends Fragment {
                 ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
                 ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblIngredientsCount)).setText("Ingredients : " + objectMenu.getJSONArray("Ingredients").length());
 
-                ConstraintLayout constraintLayout = (ConstraintLayout)viewMenu.findViewById(R.id.menuItemLargeLayoutConstraintLayout);
-                constraintLayout.animate().setDuration(600).alpha(1).translationY(0);
-                constraintLayout.setOnClickListener(new View.OnClickListener() {
+                CardView cardView = (CardView) viewMenu.findViewById(R.id.menuItemLargeLayoutCardView);
+                cardView.animate().setDuration(600).setStartDelay(120 * i).alpha(1).translationY(0);
+                cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(adminMainActivity, AddEditMenuActivity.class);

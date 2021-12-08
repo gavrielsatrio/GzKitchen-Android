@@ -158,4 +158,40 @@ public class UserController {
             e.printStackTrace();
         }
     }
+
+    public JSONArray getAllUsers() {
+        JSONArray jsonArrayReturn = new JSONArray();
+
+        try {
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            for(int i = 0; i < jsonArrayUsers.length(); i++) {
+                JSONObject object = jsonArrayUsers.getJSONObject(i);
+                if(!object.getString("Role").equals("Admin")) {
+                    jsonArrayReturn.put(object);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonArrayReturn;
+    }
+
+    public JSONArray getSearchUser(String search) {
+        JSONArray jsonArrayReturn = new JSONArray();
+
+        try {
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            for(int i = 0; i < jsonArrayUsers.length(); i++) {
+                JSONObject object = jsonArrayUsers.getJSONObject(i);
+                if(!object.getString("Role").equals("Admin") && (object.getString("Name").toLowerCase().contains(search.toLowerCase()) || object.getString("Email").toLowerCase().contains(search.toLowerCase()) || object.getString("Role").toLowerCase().contains(search.toLowerCase()))) {
+                    jsonArrayReturn.put(object);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonArrayReturn;
+    }
 }

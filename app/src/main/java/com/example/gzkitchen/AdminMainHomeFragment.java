@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.text.NumberFormat;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -87,7 +88,7 @@ public class AdminMainHomeFragment extends Fragment {
                 ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
                 ((TextView)viewMenu.findViewById(R.id.menuItemLargeLayoutLblIngredientsCount)).setText("Ingredients : " + objectMenu.getJSONArray("Ingredients").length());
 
-                ((ConstraintLayout)viewMenu.findViewById(R.id.menuItemLargeLayoutConstraintLayout)).animate().setDuration(600).alpha(1).translationY(0);
+                ((CardView)viewMenu.findViewById(R.id.menuItemLargeLayoutCardView)).animate().setDuration(600).setStartDelay(120 * i).alpha(1).translationY(0);
 
                 linearLayoutRecentMenu.addView(viewMenu);
             } catch (JSONException e) {

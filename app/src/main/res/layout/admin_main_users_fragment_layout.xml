@@ -33,6 +33,70 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/adminMainUsersLblDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/open_sans_regular"
+                android:text="List of all users in GzKitchen"
+                android:textColor="@color/colorGrey"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_weight="2"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/adminMainUsersTxtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/txt_background"
+                    android:elevation="1dp"
+                    android:ems="10"
+                    android:hint="Search"
+                    android:inputType="textPersonName"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/adminMainUsersBtnSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="24dp"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:scaleType="fitEnd"
+                    app:srcCompat="@drawable/ic_search" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/adminMainUsersLinearLayoutUsers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"></LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

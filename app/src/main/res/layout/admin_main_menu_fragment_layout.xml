@@ -40,10 +40,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:text="Menu"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:translationY="-15dp" />
 
             <TextView
                 android:id="@+id/adminMainMenuLblDesc"
@@ -51,12 +53,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
+                android:alpha="0"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/open_sans_regular"
-                android:text="List of GzKitchen menus"
+                android:text="List of all GzKitchen menus"
                 android:textColor="@color/colorGrey"
                 android:textSize="14sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:translationY="-15dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,12 +79,14 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="4dp"
                     android:layout_weight="0.3"
+                    android:alpha="0"
                     android:background="@drawable/txt_background"
                     android:elevation="1dp"
                     android:ems="10"
                     android:hint="Search"
                     android:inputType="textPersonName"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:translationX="-15dp" />
 
                 <ImageView
                     android:id="@+id/adminMainMenuBtnSearch"
@@ -89,9 +95,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="24dp"
                     android:adjustViewBounds="true"
+                    android:alpha="0"
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:scaleType="fitEnd"
+                    android:translationX="15dp"
                     app:srcCompat="@drawable/ic_search" />
             </LinearLayout>
 
