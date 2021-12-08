@@ -91,11 +91,11 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Cashier")) {
-                            Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, CashierMainActivity.class);
                             intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Chef")) {
-                            Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, ChefMainActivity.class);
                             intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else {

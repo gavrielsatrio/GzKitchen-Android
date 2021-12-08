@@ -212,11 +212,11 @@ public class LoadingActivity extends AppCompatActivity {
                                 intent.putExtra("Email", loggedInUserEmail);
                                 startActivity(intent);
                             } else if (userRole.equals("Cashier")) {
-                                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
+                                Intent intent = new Intent(LoadingActivity.this, CashierMainActivity.class);
                                 intent.putExtra("Email", loggedInUserEmail);
                                 startActivity(intent);
                             } else if(userRole.equals("Chef")) {
-                                Intent intent = new Intent(LoadingActivity.this, MemberMainActivity.class);
+                                Intent intent = new Intent(LoadingActivity.this, ChefMainActivity.class);
                                 intent.putExtra("Email", loggedInUserEmail);
                                 startActivity(intent);
                             } else {
