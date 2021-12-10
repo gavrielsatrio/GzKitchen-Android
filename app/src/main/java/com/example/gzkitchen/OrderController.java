@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class OrderController {
     Context context;
@@ -22,7 +23,28 @@ public class OrderController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ;
+        return jsonArrayReturn;
+    }
+
+    public JSONArray getOrderWhere(String column, String value, String whereType) {
+        JSONArray jsonArrayReturn = new JSONArray();
+        try {
+            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "defaultValue"));
+            for(int i = 0; i < jsonArrayOrder.length(); i++) {
+                JSONObject objectOrder = jsonArrayOrder.getJSONObject(i);
+                if(whereType.equals("contains")) {
+                    if(objectOrder.getString(column).contains(value)) {
+                        jsonArrayReturn.put(objectOrder);
+                    }
+                } else {
+                    if(objectOrder.getString(column).equals(value)) {
+                        jsonArrayReturn.put(objectOrder);
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return jsonArrayReturn;
     }
 }
