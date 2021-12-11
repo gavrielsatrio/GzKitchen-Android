@@ -47,4 +47,24 @@ public class OrderController {
         }
         return jsonArrayReturn;
     }
+
+    public void updateOrderStatus(String orderID, String status) {
+        JSONArray jsonArrayUpdate = new JSONArray();
+        try {
+            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "defaultValue"));
+            for(int i = 0; i < jsonArrayOrder.length(); i++) {
+                JSONObject objectOrder = jsonArrayOrder.getJSONObject(i);
+
+                if(objectOrder.getString("ID").equals(orderID)) {
+                    objectOrder.put("Status", status);
+                }
+
+                jsonArrayUpdate.put(objectOrder);
+            }
+
+            sharedPref.edit().putString("Orders", jsonArrayUpdate.toString()).apply();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
