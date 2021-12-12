@@ -67,4 +67,15 @@ public class OrderController {
             e.printStackTrace();
         }
     }
+
+    public void addOrder(JSONObject objectOrder) {
+        try {
+            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "defaultValue"));
+            jsonArrayOrder.put(objectOrder);
+
+            sharedPref.edit().putString("Orders", jsonArrayOrder.toString()).apply();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
