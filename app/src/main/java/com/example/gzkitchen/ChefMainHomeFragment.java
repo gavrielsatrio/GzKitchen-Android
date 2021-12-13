@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,8 @@ public class ChefMainHomeFragment extends Fragment {
         this.chefMainActivity = chefMainActivityParam;
     }
 
+    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         viewInflate = inflater.inflate(R.layout.chef_main_home_layout, container, false);
@@ -38,13 +41,16 @@ public class ChefMainHomeFragment extends Fragment {
         lblHello = viewInflate.findViewById(R.id.chefMainHomeLblHello);
         lblName = viewInflate.findViewById(R.id.chefMainHomeLblName);
         lblRole = viewInflate.findViewById(R.id.chefMainHomeLblRole);
+        btnProfile = viewInflate.findViewById(R.id.chefMainHomeBtnProfile);
 
-        LoadUserData();
+        LoadDataChef();
+
+
 
         return viewInflate;
     }
 
-    private void LoadUserData() {
+    private void LoadDataChef() {
         UserController userController = new UserController(chefMainActivity);
         JSONObject objectUser = userController.getLoggedInUserObject();
 
