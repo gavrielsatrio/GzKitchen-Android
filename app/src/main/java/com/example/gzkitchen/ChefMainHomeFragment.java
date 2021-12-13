@@ -31,7 +31,14 @@ public class ChefMainHomeFragment extends Fragment {
         this.chefMainActivity = chefMainActivityParam;
     }
 
-    
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100) {
+            LoadDataChef();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +52,13 @@ public class ChefMainHomeFragment extends Fragment {
 
         LoadDataChef();
 
-
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(chefMainActivity, ProfileActivity.class);
+                startActivityForResult(intent, 100);
+            }
+        });
 
         return viewInflate;
     }
