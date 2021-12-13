@@ -15,7 +15,7 @@
             android:background="@android:color/transparent">
 
             <ImageView
-                android:id="@+id/chefMainHomeLblHello"
+                android:id="@+id/chefMainHomeImgTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -23,10 +23,10 @@
                 app:srcCompat="@drawable/ic_topcorner" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/chefMainHomeBtnProfile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_alignBottom="@+id/chefMainHomeLblHello"
+                android:layout_alignBottom="@+id/chefMainHomeImgTop"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
@@ -41,7 +41,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/chefMainHomeLblHello"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -53,7 +53,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/chefMainHomeLblName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -65,7 +65,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/chefMainHomeLblRole"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -81,7 +81,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_below="@+id/chefMainHomeLblHello"
+                android:layout_below="@+id/chefMainHomeImgTop"
                 android:layout_marginTop="0dp"
                 android:background="@android:color/transparent"
                 android:orientation="vertical"></LinearLayout>
