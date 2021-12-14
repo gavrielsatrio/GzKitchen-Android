@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/chefMainTakeOrderCardViewBottom"
+        app:layout_constraintBottom_toTopOf="@+id/cashierMainTakeOrderCardViewBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,31 +22,32 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/chefMainTakeOrderLblHeader"
+                android:id="@+id/cashierMainTakeOrderLblHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:background="@android:color/transparent"
                 android:text="Take Order"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/chefMainTakeOrderCardViewBottom"
+        android:id="@+id/cashierMainTakeOrderCardViewBottom"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         app:cardCornerRadius="35dp"
         app:cardElevation="3dp"
         app:cardMaxElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" >
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,22 +55,22 @@
             android:background="@android:color/transparent">
 
             <Button
-                android:id="@+id/chefMainTakeOrderBtnProceedPayment"
+                android:id="@+id/cashierMainTakeOrderBtnProceedPayment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="54dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/primary_button_background"
                 android:text="Proceed Payment"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/chefMainTakeOrderLblPrice"
+                app:layout_constraintStart_toEndOf="@+id/cashierMainTakeOrderLblPrice"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/chefMainTakeOrderLblPrice"
+                android:id="@+id/cashierMainTakeOrderLblPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"

@@ -55,7 +55,7 @@ public class ChefMainActivity extends AppCompatActivity {
             }
         });
 
-        btnTakeOrderImg.setOnClickListener(new View.OnClickListener() {
+        btnTakeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoadSelectedTab(1);

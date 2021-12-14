@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -91,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Cashier")) {
-                            Intent intent = new Intent(LoginActivity.this, CashierMainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, Cashier2MainActivity.class);
                             intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Chef")) {

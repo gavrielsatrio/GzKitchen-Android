@@ -16,7 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Member;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -212,7 +211,7 @@ public class LoadingActivity extends AppCompatActivity {
                                 intent.putExtra("Email", loggedInUserEmail);
                                 startActivity(intent);
                             } else if (userRole.equals("Cashier")) {
-                                Intent intent = new Intent(LoadingActivity.this, CashierMainActivity.class);
+                                Intent intent = new Intent(LoadingActivity.this, Cashier2MainActivity.class);
                                 intent.putExtra("Email", loggedInUserEmail);
                                 startActivity(intent);
                             } else if(userRole.equals("Chef")) {

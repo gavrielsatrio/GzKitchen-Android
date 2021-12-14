@@ -1,9 +1,5 @@
 package com.example.gzkitchen;
 
-import android.annotation.SuppressLint;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -42,7 +38,7 @@ public class ChefMainHomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        viewInflate = inflater.inflate(R.layout.chef_main_home_layout, container, false);
+        viewInflate = inflater.inflate(R.layout.cashier_main_home_layout, container, false);
 
         imgTop = viewInflate.findViewById(R.id.chefMainHomeImgTop);
         lblHello = viewInflate.findViewById(R.id.chefMainHomeLblHello);
