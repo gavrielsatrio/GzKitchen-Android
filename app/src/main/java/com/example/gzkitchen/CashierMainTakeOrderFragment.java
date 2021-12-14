@@ -10,12 +10,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 public class CashierMainTakeOrderFragment extends Fragment {
     CashierMainActivity cashierMainActivity;
     View viewInflate;
+    OrderController orderController;
 
     TextView lblHeader;
     EditText txtSearch;
@@ -27,6 +30,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
 
     public CashierMainTakeOrderFragment(CashierMainActivity cashierMainActivityParam) {
         this.cashierMainActivity = cashierMainActivityParam;
+        orderController = new OrderController(cashierMainActivity);
     }
 
     @Override
@@ -41,8 +45,11 @@ public class CashierMainTakeOrderFragment extends Fragment {
         lblPrice = viewInflate.findViewById(R.id.cashierMainTakeOrderLblPrice);
         btnPay = viewInflate.findViewById(R.id.cashierMainTakeOrderBtnProceedPayment);
 
-        View viewOrderMenu = LayoutInflater.from(cashierMainActivity).inflate(R.layout.take_order_layout, null, false);
-        linearLayoutOrderMenuList.addView(viewOrderMenu);
+        JSONArray jsonArrayOrderMenu = orderController.getOrder();
+        for(int i = 0; i < jsonArrayOrderMenu.length(); i++) {
+            View viewOrderMenu = LayoutInflater.from(cashierMainActivity).inflate(R.layout.take_order_layout, null, false);
+            linearLayoutOrderMenuList.addView(viewOrderMenu);
+        }
 
         return viewInflate;
     }
