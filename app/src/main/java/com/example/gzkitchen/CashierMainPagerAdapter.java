@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class ChefMainPagerAdapter extends FragmentStateAdapter {
+public class CashierMainPagerAdapter extends FragmentStateAdapter {
     JSONArray jsonArray;
 
-    public ChefMainPagerAdapter(FragmentActivity fragmentActivity, JSONArray jsonArrayParam) {
+    public CashierMainPagerAdapter(FragmentActivity fragmentActivity, JSONArray jsonArrayParam) {
         super(fragmentActivity);
         this.jsonArray = jsonArrayParam;
     }

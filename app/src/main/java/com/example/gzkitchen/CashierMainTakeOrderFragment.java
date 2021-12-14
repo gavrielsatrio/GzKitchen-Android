@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class ChefMainTakeOrderFragment extends Fragment {
-    ChefMainActivity chefMainActivity;
+public class CashierMainTakeOrderFragment extends Fragment {
+    CashierMainActivity cashierMainActivity;
     View viewInflate;
 
-    public ChefMainTakeOrderFragment(ChefMainActivity chefMainActivityParam) {
-        this.chefMainActivity = chefMainActivityParam;
+    public CashierMainTakeOrderFragment(CashierMainActivity cashierMainActivityParam) {
+        this.cashierMainActivity = cashierMainActivityParam;
     }
 
     @Override

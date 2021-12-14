@@ -211,7 +211,7 @@ public class LoadingActivity extends AppCompatActivity {
                                 intent.putExtra("Email", loggedInUserEmail);
                                 startActivity(intent);
                             } else if (userRole.equals("Cashier")) {
-                                Intent intent = new Intent(LoadingActivity.this, Cashier2MainActivity.class);
+                                Intent intent = new Intent(LoadingActivity.this, CashierMainActivity.class);
                                 intent.putExtra("Email", loggedInUserEmail);
                                 startActivity(intent);
                             } else if(userRole.equals("Chef")) {

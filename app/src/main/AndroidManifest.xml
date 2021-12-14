@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GzKitchen">
-        <activity android:name=".Cashier2MainActivity"></activity>
-        <activity android:name=".ChefMainActivity" />
+        <activity android:name=".ChefMainActivity"></activity>
+        <activity android:name=".CashierMainActivity" />
         <activity
             android:name=".AddEditMenuActivity"
             android:screenOrientation="portrait" />

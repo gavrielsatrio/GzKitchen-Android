@@ -13,9 +13,9 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ChefMainHomeFragment extends Fragment {
+public class CashierMainHomeFragment extends Fragment {
     View viewInflate;
-    ChefMainActivity chefMainActivity;
+    CashierMainActivity cashierMainActivity;
 
     ImageView imgTop;
     TextView lblHello;
@@ -23,8 +23,8 @@ public class ChefMainHomeFragment extends Fragment {
     TextView lblRole;
     ImageView btnProfile;
 
-    public ChefMainHomeFragment(ChefMainActivity chefMainActivityParam) {
-        this.chefMainActivity = chefMainActivityParam;
+    public CashierMainHomeFragment(CashierMainActivity cashierMainActivityParam) {
+        this.cashierMainActivity = cashierMainActivityParam;
     }
 
     @Override
@@ -40,18 +40,18 @@ public class ChefMainHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         viewInflate = inflater.inflate(R.layout.cashier_main_home_layout, container, false);
 
-        imgTop = viewInflate.findViewById(R.id.chefMainHomeImgTop);
-        lblHello = viewInflate.findViewById(R.id.chefMainHomeLblHello);
-        lblName = viewInflate.findViewById(R.id.chefMainHomeLblName);
-        lblRole = viewInflate.findViewById(R.id.chefMainHomeLblRole);
-        btnProfile = viewInflate.findViewById(R.id.chefMainHomeBtnProfile);
+        imgTop = viewInflate.findViewById(R.id.cashierMainHomeImgTop);
+        lblHello = viewInflate.findViewById(R.id.cashierMainHomeLblHello);
+        lblName = viewInflate.findViewById(R.id.cashierMainHomeLblName);
+        lblRole = viewInflate.findViewById(R.id.cashierMainHomeLblRole);
+        btnProfile = viewInflate.findViewById(R.id.cashierMainHomeBtnProfile);
 
         LoadDataChef();
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(chefMainActivity, ProfileActivity.class);
+                Intent intent = new Intent(cashierMainActivity, ProfileActivity.class);
                 startActivityForResult(intent, 100);
             }
         });
@@ -60,7 +60,7 @@ public class ChefMainHomeFragment extends Fragment {
     }
 
     private void LoadDataChef() {
-        UserController userController = new UserController(chefMainActivity);
+        UserController userController = new UserController(cashierMainActivity);
         JSONObject objectUser = userController.getLoggedInUserObject();
 
         try {

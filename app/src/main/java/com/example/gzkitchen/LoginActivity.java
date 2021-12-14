@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Cashier")) {
-                            Intent intent = new Intent(LoginActivity.this, Cashier2MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, CashierMainActivity.class);
                             intent.putExtra("Email", txtEmail.getText().toString().trim());
                             startActivity(intent);
                         } else if(userRole.equals("Chef")) {
