@@ -58,7 +58,7 @@ public class LoadingActivity extends AppCompatActivity {
                                 .put("Image", "")
                                 .put("Name","Cashier")
                                 .put("Email", "cashier@gmail.com")
-                                .put("Password", "admin123")
+                                .put("Password", "cashier123")
                                 .put("Role", "Cashier")
                         ).put(new JSONObject()
                                 .put("ID", 3)
