@@ -9,6 +9,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorLightRed">#4DCC293E</color>
     <color name="colorRed">#CC293E</color>
+    <color name="colorSecondaryRed">#D13D50</color>
     <color name="colorYellow">#FF9C3E</color>
     <color name="colorGreen">#19A69B</color>
     <color name="colorAlmostWhite">#FCFCFC</color>

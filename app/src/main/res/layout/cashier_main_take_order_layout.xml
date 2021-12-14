@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/cashierMainTakeOrderScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/transparent"
@@ -28,9 +28,57 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:background="@android:color/transparent"
-                android:text="Take Order"
+                android:text="Menu List"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="2"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/cashierMainTakeOrderTxtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/txt_background"
+                    android:ems="10"
+                    android:hint="Search"
+                    android:inputType="textPersonName"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/cashierMainTakeOrderBtnSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="16dp"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitEnd"
+                    app:srcCompat="@drawable/icon_search" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cashierMainTakeOrderLinearLayoutOrderMenuList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="8dp"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -58,7 +106,7 @@
                 android:id="@+id/cashierMainTakeOrderBtnProceedPayment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="54dp"
+                android:layout_marginStart="68dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/primary_button_background"
                 android:text="Proceed Payment"
@@ -74,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="TextView"
+                android:text="Rp0"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

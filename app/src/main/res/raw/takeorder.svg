@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2230" height="1030" viewBox="0 0 2230 1030">
+  <defs>
+    <filter id="TakeOrder" x="0" y="0" width="2230" height="1030" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#TakeOrder)">
+    <path id="TakeOrder-2" data-name="TakeOrder" d="M2535,1000H415a39.966,39.966,0,0,1-40-40V875a379.6,379.6,0,0,0,38.288-1.941,372.851,372.851,0,0,0,171.233-62.191A376.951,376.951,0,0,0,720.484,645.827a372.147,372.147,0,0,0,27.576-107.54A379.28,379.28,0,0,0,750,500c0-206.776-168.224-375-375-375V40A39.966,39.966,0,0,1,415,0H2535a39.966,39.966,0,0,1,40,40V960a39.967,39.967,0,0,1-40,40Z" transform="translate(-370 5)" fill="#fff"/>
+  </g>
+</svg>

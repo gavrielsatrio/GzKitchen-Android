@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/takeOrderLayoutBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:cardMaxElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/takeOrderLayoutImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="36dp"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dot_unselected" />
+
+    <TextView
+        android:id="@+id/takeOrderLayoutLblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:elevation="3dp"
+        android:text="Name"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutImg"
+        app:layout_constraintTop_toTopOf="@+id/takeOrderLayoutBackground" />
+
+    <TextView
+        android:id="@+id/takeOrderLayoutLblPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:elevation="3dp"
+        android:fontFamily="@font/open_sans_regular"
+        android:text="Rp0"
+        android:textColor="@color/colorGrey"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutImg"
+        app:layout_constraintTop_toBottomOf="@+id/takeOrderLayoutLblName" />
+
+    <Button
+        android:id="@+id/takeOrderLayoutBtnMinus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/quartenary_button_background"
+        android:elevation="3dp"
+        android:text="-"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorRed"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/takeOrderLayoutBackground"
+        app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutImg"
+        app:layout_constraintTop_toBottomOf="@+id/takeOrderLayoutLblPrice"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/takeOrderLayoutBtnPlus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/quartenary_button_background"
+        android:elevation="3dp"
+        android:text="+"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorRed"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/takeOrderLayoutBtnMinus"
+        app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutTxtQty"
+        app:layout_constraintTop_toTopOf="@+id/takeOrderLayoutBtnMinus" />
+
+    <EditText
+        android:id="@+id/takeOrderLayoutTxtQty"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:elevation="3dp"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingStart="4dp"
+        android:paddingLeft="4dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/takeOrderLayoutBtnMinus"
+        app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutBtnMinus"
+        app:layout_constraintTop_toTopOf="@+id/takeOrderLayoutBtnMinus" />
+
+    <Button
+        android:id="@+id/takeOrderLayoutBtnAdd"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorSecondaryRed"
+        android:elevation="4dp"
+        android:text="Add"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/takeOrderLayoutBackground"
+        app:layout_constraintEnd_toEndOf="@+id/takeOrderLayoutBackground"
+        app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutImg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
