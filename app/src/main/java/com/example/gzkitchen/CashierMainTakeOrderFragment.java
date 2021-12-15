@@ -97,14 +97,24 @@ public class CashierMainTakeOrderFragment extends Fragment {
                             int qty = Integer.parseInt(txtQty.getText().toString());
                             qty--;
 
-                            txtQty.setText(String.valueOf(qty));
-
                             if(qty == 0) {
                                 btnAdd.setVisibility(View.VISIBLE);
                                 btnMinus.setVisibility(View.GONE);
                                 btnPlus.setVisibility(View.GONE);
                                 txtQty.setVisibility(View.GONE);
                             }
+
+                            try {
+                                jsonArrayOrderedMenu = orderedMenuController.editMenuInOrder(jsonArrayOrderedMenu, new JSONObject()
+                                        .put("MenuID", menuID)
+                                        .put("Qty", qty)
+                                        .put("Price", price));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            txtQty.setText(String.valueOf(qty));
+                            LoadTotalPrice();
                         }
                     }
                 });
@@ -121,7 +131,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
                         qty++;
 
                         try {
-                            jsonArrayOrderedMenu = orderedMenuController.addMenuToOrder(jsonArrayOrderedMenu, new JSONObject()
+                            jsonArrayOrderedMenu = orderedMenuController.editMenuInOrder(jsonArrayOrderedMenu, new JSONObject()
                                     .put("MenuID", menuID)
                                     .put("Qty", qty)
                                     .put("Price", price));
