@@ -25,6 +25,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
     OrderHeaderController orderHeaderController;
     MenuController menuController;
     PriceHelper priceHelper = new PriceHelper();
+    OrderedMenuController orderedMenuController = new OrderedMenuController();
 
     TextView lblHeader;
     EditText txtSearch;
@@ -80,7 +81,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
                         btnPlus.setVisibility(View.VISIBLE);
                         txtQty.setVisibility(View.VISIBLE);
 
-                        txtQty.setText("1");
+                        btnPlus.performClick();
                     }
                 });
 
@@ -120,10 +121,10 @@ public class CashierMainTakeOrderFragment extends Fragment {
                         qty++;
 
                         try {
-                            jsonArrayOrderedMenu.put(new JSONObject()
-                            .put("MenuID", menuID)
-                            .put("Qty", qty)
-                            .put("Price", price));
+                            jsonArrayOrderedMenu = orderedMenuController.addMenuToOrder(jsonArrayOrderedMenu, new JSONObject()
+                                    .put("MenuID", menuID)
+                                    .put("Qty", qty)
+                                    .put("Price", price));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -144,6 +145,15 @@ public class CashierMainTakeOrderFragment extends Fragment {
 
     private void LoadTotalPrice() {
         int totalPrice = 0;
+
+        for(int i = 0; i < jsonArrayOrderedMenu.length(); i++) {
+            try {
+                JSONObject objectOrderedMenu = jsonArrayOrderedMenu.getJSONObject(i);
+                totalPrice += objectOrderedMenu.getInt("Price") * objectOrderedMenu.getInt("Qty");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
         lblTotalPrice.setText(priceHelper.convertToRupiah(totalPrice));
     }
