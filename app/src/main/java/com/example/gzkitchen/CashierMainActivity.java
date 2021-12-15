@@ -1,16 +1,22 @@
 package com.example.gzkitchen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CashierMainActivity extends AppCompatActivity {
 
@@ -21,6 +27,8 @@ public class CashierMainActivity extends AppCompatActivity {
     LinearLayout btnTakeOrder;
     ImageView btnTakeOrderImg;
     TextView btnTakeOrderLbl;
+    LinearLayout linearLayoutBottomNav;
+    CashierMainPagerAdapter cashierMainPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +42,14 @@ public class CashierMainActivity extends AppCompatActivity {
         btnTakeOrder = findViewById(R.id.cashierMainBtnTakeOrder);
         btnTakeOrderImg = findViewById(R.id.cashierMainImgTakeOrder);
         btnTakeOrderLbl = findViewById(R.id.cashierMainLblTakeOrder);
-
+        linearLayoutBottomNav = findViewById(R.id.cashierMainLinearLayoutBottomNav);
 
         JSONArray jsonArrayLayout = new JSONArray()
                 .put(new CashierMainHomeFragment(CashierMainActivity.this))
                 .put(new CashierMainTakeOrderFragment(CashierMainActivity.this));
 
-        viewPager.setAdapter(new CashierMainPagerAdapter(CashierMainActivity.this, jsonArrayLayout));
+        cashierMainPagerAdapter = new CashierMainPagerAdapter(CashierMainActivity.this, jsonArrayLayout);
+        viewPager.setAdapter(cashierMainPagerAdapter);
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -79,6 +88,9 @@ public class CashierMainActivity extends AppCompatActivity {
             } else {
                 btnTakeOrderImg.setColorFilter(getResources().getColor(R.color.colorLightGrey));
             }
+
+            linearLayoutBottomNav.setVisibility(View.VISIBLE);
+            linearLayoutBottomNav.animate().setDuration(500).translationY(0).alpha(1);
         } else {
             btnHomeLbl.setVisibility(View.GONE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -86,6 +98,19 @@ public class CashierMainActivity extends AppCompatActivity {
             } else {
                 btnHomeImg.setColorFilter(getResources().getColor(R.color.colorLightGrey));
             }
+
+            linearLayoutBottomNav.animate().setDuration(500).translationY(50).alpha(0);
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            linearLayoutBottomNav.setVisibility(View.GONE);
+                        }
+                    });
+                }
+            }, 500);
         }
 
         viewPager.setCurrentItem(selectedPosition, true);

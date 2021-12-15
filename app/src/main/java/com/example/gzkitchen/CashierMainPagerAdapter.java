@@ -32,4 +32,15 @@ public class CashierMainPagerAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return jsonArray.length();
     }
+
+    public Fragment getItem(int position) {
+        Fragment fragmentReturn = null;
+        try {
+            fragmentReturn = (Fragment) jsonArray.get(position);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return fragmentReturn;
+    }
 }

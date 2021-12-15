@@ -11,6 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.NumberFormat;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -19,6 +23,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
     CashierMainActivity cashierMainActivity;
     View viewInflate;
     OrderController orderController;
+    MenuController menuController;
 
     TextView lblHeader;
     EditText txtSearch;
@@ -31,6 +36,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
     public CashierMainTakeOrderFragment(CashierMainActivity cashierMainActivityParam) {
         this.cashierMainActivity = cashierMainActivityParam;
         orderController = new OrderController(cashierMainActivity);
+        menuController = new MenuController(cashierMainActivity);
     }
 
     @Override
@@ -45,10 +51,80 @@ public class CashierMainTakeOrderFragment extends Fragment {
         lblPrice = viewInflate.findViewById(R.id.cashierMainTakeOrderLblPrice);
         btnPay = viewInflate.findViewById(R.id.cashierMainTakeOrderBtnProceedPayment);
 
-        JSONArray jsonArrayOrderMenu = orderController.getOrder();
+        JSONArray jsonArrayOrderMenu = menuController.getMenus();
         for(int i = 0; i < jsonArrayOrderMenu.length(); i++) {
-            View viewOrderMenu = LayoutInflater.from(cashierMainActivity).inflate(R.layout.take_order_layout, null, false);
-            linearLayoutOrderMenuList.addView(viewOrderMenu);
+            try {
+                JSONObject objectMenu = jsonArrayOrderMenu.getJSONObject(i);
+                View viewOrderMenu = LayoutInflater.from(cashierMainActivity).inflate(R.layout.take_order_menu_layout, null, false);
+
+                int price = objectMenu.getInt("Price");
+                NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                formatter.setMaximumFractionDigits(0);
+
+                ((ImageView)viewOrderMenu.findViewById(R.id.takeOrderLayoutImg)).setImageBitmap(new BitmapHelper().convertToBitmap(objectMenu.getString("Image")));
+                ((TextView)viewOrderMenu.findViewById(R.id.takeOrderLayoutLblName)).setText(objectMenu.getString("Name"));
+                ((TextView)viewOrderMenu.findViewById(R.id.takeOrderLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
+
+                Button btnAdd = viewOrderMenu.findViewById(R.id.takeOrderLayoutBtnAdd);
+                Button btnMinus = viewOrderMenu.findViewById(R.id.takeOrderLayoutBtnMinus);
+                Button btnPlus = viewOrderMenu.findViewById(R.id.takeOrderLayoutBtnPlus);
+                EditText txtQty = viewOrderMenu.findViewById(R.id.takeOrderLayoutTxtQty);
+
+                btnAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        btnAdd.setVisibility(View.GONE);
+                        btnMinus.setVisibility(View.VISIBLE);
+                        btnPlus.setVisibility(View.VISIBLE);
+                        txtQty.setVisibility(View.VISIBLE);
+
+                        txtQty.setText("1");
+                    }
+                });
+
+                btnMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(txtQty.getText().toString().trim().equals("")) {
+                            btnAdd.setVisibility(View.VISIBLE);
+                            btnMinus.setVisibility(View.GONE);
+                            btnPlus.setVisibility(View.GONE);
+                            txtQty.setVisibility(View.GONE);
+                        } else {
+                            int qty = Integer.parseInt(txtQty.getText().toString());
+                            qty--;
+
+                            txtQty.setText(String.valueOf(qty));
+
+                            if(qty == 0) {
+                                btnAdd.setVisibility(View.VISIBLE);
+                                btnMinus.setVisibility(View.GONE);
+                                btnPlus.setVisibility(View.GONE);
+                                txtQty.setVisibility(View.GONE);
+                            }
+                        }
+                    }
+                });
+
+                btnPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int qty = 0;
+
+                        if(!txtQty.getText().toString().trim().equals("")) {
+                            qty = Integer.parseInt(txtQty.getText().toString());
+                        }
+
+                        qty++;
+
+                        txtQty.setText(String.valueOf(qty));
+                    }
+                });
+
+                linearLayoutOrderMenuList.addView(viewOrderMenu);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         return viewInflate;
