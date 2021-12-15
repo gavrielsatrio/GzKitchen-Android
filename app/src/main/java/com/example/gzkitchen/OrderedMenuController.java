@@ -5,7 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class OrderedMenuController {
-    public JSONArray addMenuToOrder(JSONArray jsonArrayOrderedMenu, JSONObject objectAddMenu) {
+    public JSONArray editMenuInOrder(JSONArray jsonArrayOrderedMenu, JSONObject objectAddMenu) {
         boolean isMenuAlreadyInOrderList = false;
 
         int indexUpdate = 0;
