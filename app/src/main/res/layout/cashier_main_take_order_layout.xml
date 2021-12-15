@@ -35,8 +35,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
@@ -48,8 +48,13 @@
                     android:id="@+id/cashierMainTakeOrderTxtSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
                     android:layout_weight="0.3"
                     android:background="@drawable/txt_background"
+                    android:elevation="1dp"
                     android:ems="10"
                     android:hint="Search"
                     android:inputType="textPersonName"
@@ -65,7 +70,7 @@
                     android:adjustViewBounds="true"
                     android:background="@android:color/transparent"
                     android:scaleType="fitEnd"
-                    app:srcCompat="@drawable/icon_search" />
+                    app:srcCompat="@drawable/ic_search" />
             </LinearLayout>
 
             <LinearLayout
@@ -104,27 +109,32 @@
 
             <Button
                 android:id="@+id/cashierMainTakeOrderBtnProceedPayment"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="68dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/primary_button_background"
+                android:paddingStart="24dp"
+                android:paddingLeft="24dp"
+                android:paddingEnd="24dp"
+                android:paddingRight="24dp"
                 android:text="Proceed Payment"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cashierMainTakeOrderLblPrice"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/cashierMainTakeOrderLblPrice"
-                android:layout_width="wrap_content"
+                android:id="@+id/cashierMainTakeOrderLblTotalPrice"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
                 android:text="Rp0"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cashierMainTakeOrderBtnProceedPayment"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,11 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class OrderController {
+public class OrderHeaderController {
     Context context;
     SharedPreferences sharedPref;
 
-    public OrderController(Context contextParam) {
+    public OrderHeaderController(Context contextParam) {
         this.context = contextParam;
         this.sharedPref = contextParam.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
     }

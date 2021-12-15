@@ -22,20 +22,23 @@ import androidx.fragment.app.Fragment;
 public class CashierMainTakeOrderFragment extends Fragment {
     CashierMainActivity cashierMainActivity;
     View viewInflate;
-    OrderController orderController;
+    OrderHeaderController orderHeaderController;
     MenuController menuController;
+    PriceHelper priceHelper = new PriceHelper();
 
     TextView lblHeader;
     EditText txtSearch;
     ImageView btnSearch;
     LinearLayout linearLayoutOrderMenuList;
     CardView cardViewBottom;
-    TextView lblPrice;
+    TextView lblTotalPrice;
     Button btnPay;
+
+    JSONArray jsonArrayOrderedMenu = new JSONArray();
 
     public CashierMainTakeOrderFragment(CashierMainActivity cashierMainActivityParam) {
         this.cashierMainActivity = cashierMainActivityParam;
-        orderController = new OrderController(cashierMainActivity);
+        orderHeaderController = new OrderHeaderController(cashierMainActivity);
         menuController = new MenuController(cashierMainActivity);
     }
 
@@ -48,7 +51,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
         btnSearch = viewInflate.findViewById(R.id.cashierMainTakeOrderBtnSearch);
         linearLayoutOrderMenuList = viewInflate.findViewById(R.id.cashierMainTakeOrderLinearLayoutOrderMenuList);
         cardViewBottom = viewInflate.findViewById(R.id.cashierMainTakeOrderCardViewBottom);
-        lblPrice = viewInflate.findViewById(R.id.cashierMainTakeOrderLblPrice);
+        lblTotalPrice = viewInflate.findViewById(R.id.cashierMainTakeOrderLblTotalPrice);
         btnPay = viewInflate.findViewById(R.id.cashierMainTakeOrderBtnProceedPayment);
 
         JSONArray jsonArrayOrderMenu = menuController.getMenus();
@@ -57,13 +60,12 @@ public class CashierMainTakeOrderFragment extends Fragment {
                 JSONObject objectMenu = jsonArrayOrderMenu.getJSONObject(i);
                 View viewOrderMenu = LayoutInflater.from(cashierMainActivity).inflate(R.layout.take_order_menu_layout, null, false);
 
+                int menuID = objectMenu.getInt("ID");
                 int price = objectMenu.getInt("Price");
-                NumberFormat formatter = NumberFormat.getCurrencyInstance();
-                formatter.setMaximumFractionDigits(0);
 
                 ((ImageView)viewOrderMenu.findViewById(R.id.takeOrderLayoutImg)).setImageBitmap(new BitmapHelper().convertToBitmap(objectMenu.getString("Image")));
                 ((TextView)viewOrderMenu.findViewById(R.id.takeOrderLayoutLblName)).setText(objectMenu.getString("Name"));
-                ((TextView)viewOrderMenu.findViewById(R.id.takeOrderLayoutLblPrice)).setText(formatter.format(price).replace("$", "Rp"));
+                ((TextView)viewOrderMenu.findViewById(R.id.takeOrderLayoutLblPrice)).setText(priceHelper.convertToRupiah(price));
 
                 Button btnAdd = viewOrderMenu.findViewById(R.id.takeOrderLayoutBtnAdd);
                 Button btnMinus = viewOrderMenu.findViewById(R.id.takeOrderLayoutBtnMinus);
@@ -117,7 +119,17 @@ public class CashierMainTakeOrderFragment extends Fragment {
 
                         qty++;
 
+                        try {
+                            jsonArrayOrderedMenu.put(new JSONObject()
+                            .put("MenuID", menuID)
+                            .put("Qty", qty)
+                            .put("Price", price));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                         txtQty.setText(String.valueOf(qty));
+                        LoadTotalPrice();
                     }
                 });
 
@@ -128,5 +140,11 @@ public class CashierMainTakeOrderFragment extends Fragment {
         }
 
         return viewInflate;
+    }
+
+    private void LoadTotalPrice() {
+        int totalPrice = 0;
+
+        lblTotalPrice.setText(priceHelper.convertToRupiah(totalPrice));
     }
 }

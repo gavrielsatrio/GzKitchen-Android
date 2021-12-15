@@ -84,7 +84,6 @@ public class MenuItemDetailActivity extends AppCompatActivity {
 
             lblPrice.setText(formatter.format(price).replace("$", "Rp"));
 
-
             JSONArray jsonArrayIngredients = object.getJSONArray("Ingredients");
             recViewIngredients.setAdapter(new IngredientsAdapter(MenuItemDetailActivity.this, jsonArrayIngredients));
             recViewIngredients.setLayoutManager(new LinearLayoutManager(MenuItemDetailActivity.this, LinearLayoutManager.HORIZONTAL, false));
