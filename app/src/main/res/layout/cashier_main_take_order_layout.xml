@@ -108,7 +108,7 @@
             android:background="@android:color/transparent">
 
             <Button
-                android:id="@+id/cashierMainTakeOrderBtnProceedPayment"
+                android:id="@+id/cashierMainTakeOrderBtnProceedOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -117,7 +117,7 @@
                 android:paddingLeft="24dp"
                 android:paddingEnd="24dp"
                 android:paddingRight="24dp"
-                android:text="Proceed Payment"
+                android:text="Proceed Order"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -134,7 +134,7 @@
                 android:text="Rp0"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cashierMainTakeOrderBtnProceedPayment"
+                app:layout_constraintEnd_toStartOf="@+id/cashierMainTakeOrderBtnProceedOrder"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/orderedMenuLayoutImgDot"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dot_dark_grey" />
+
+    <TextView
+        android:id="@+id/orderedMenuLayoutLblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Name"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/orderedMenuLayoutImgDot"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/orderedMenuLayoutImgDot"
+        app:layout_constraintTop_toBottomOf="@+id/orderedMenuLayoutLblName">
+
+        <TextView
+            android:id="@+id/orderedMenuLayoutLblPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:fontFamily="@font/open_sans_light"
+            android:text="Rp0"
+            android:textColor="@color/colorGrey" />
+
+        <TextView
+            android:id="@+id/orderedMenuLayoutLblQty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:fontFamily="@font/open_sans_light"
+            android:text="x2"
+            android:textAlignment="center"
+            android:textColor="@color/colorGrey" />
+
+        <TextView
+            android:id="@+id/orderedMenuLayoutLblSubtotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:fontFamily="@font/open_sans_light"
+            android:text="Rp0"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorGrey" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

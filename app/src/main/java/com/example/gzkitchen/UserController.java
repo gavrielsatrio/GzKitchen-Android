@@ -22,7 +22,7 @@ public class UserController {
         JSONObject objectUserReturn = null;
 
         try {
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
 
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
                 JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
@@ -47,7 +47,7 @@ public class UserController {
         JSONObject objectUserReturn = null;
 
         try {
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
 
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
                 JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
@@ -67,7 +67,7 @@ public class UserController {
         String loggedInEmail = sharedPref.getString("LoggedInUserEmail", "defaultValue");
 
         try {
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
 
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
                 JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
@@ -91,7 +91,7 @@ public class UserController {
         JSONArray jsonArrayReturn = new JSONArray();
 
         try {
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
                 JSONObject object = jsonArrayUsers.getJSONObject(i);
                 if(object.getString(column).equals(value)) {
@@ -110,7 +110,7 @@ public class UserController {
             String userID = getLoggedInUserObject().getString("ID");
 
             JSONArray jsonArrayUpdate = new JSONArray();
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
 
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
                 JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
@@ -130,8 +130,10 @@ public class UserController {
     public int getLastUserID() {
         int lastUserID = 0;
         try {
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
-            lastUserID = jsonArrayUsers.getJSONObject(jsonArrayUsers.length() - 1).getInt("ID");
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
+            if(jsonArrayUsers.length() > 0) {
+                lastUserID = jsonArrayUsers.getJSONObject(jsonArrayUsers.length() - 1).getInt("ID");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -142,7 +144,7 @@ public class UserController {
     public void updateRole(String userID, String role) {
         try {
             JSONArray jsonArrayUpdate = new JSONArray();
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
 
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
                 JSONObject objectUser = jsonArrayUsers.getJSONObject(i);
@@ -163,7 +165,7 @@ public class UserController {
         JSONArray jsonArrayReturn = new JSONArray();
 
         try {
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
                 JSONObject object = jsonArrayUsers.getJSONObject(i);
                 if(!object.getString("Role").equals("Admin")) {
@@ -181,7 +183,7 @@ public class UserController {
         JSONArray jsonArrayReturn = new JSONArray();
 
         try {
-            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "defaultValue"));
+            JSONArray jsonArrayUsers = new JSONArray(sharedPref.getString("Users", "[]"));
             for(int i = 0; i < jsonArrayUsers.length(); i++) {
                 JSONObject object = jsonArrayUsers.getJSONObject(i);
                 if(!object.getString("Role").equals("Admin") && (object.getString("Name").toLowerCase().contains(search.toLowerCase()) || object.getString("Email").toLowerCase().contains(search.toLowerCase()) || object.getString("Role").toLowerCase().contains(search.toLowerCase()))) {

@@ -7,19 +7,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class OrderHeaderController {
+public class OrderController {
     Context context;
     SharedPreferences sharedPref;
 
-    public OrderHeaderController(Context contextParam) {
+    public OrderController(Context contextParam) {
         this.context = contextParam;
         this.sharedPref = contextParam.getSharedPreferences("AppLocalData", Context.MODE_PRIVATE);
     }
 
-    public JSONArray getOrder() {
+    public JSONArray getOrders() {
         JSONArray jsonArrayReturn = new JSONArray();
         try {
-            jsonArrayReturn = new JSONArray(sharedPref.getString("Orders", "defaultValue"));
+            jsonArrayReturn = new JSONArray(sharedPref.getString("Orders", "[]"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -29,7 +29,7 @@ public class OrderHeaderController {
     public JSONArray getOrderWhere(String column, String value, String whereType) {
         JSONArray jsonArrayReturn = new JSONArray();
         try {
-            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "defaultValue"));
+            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "[]"));
             for(int i = 0; i < jsonArrayOrder.length(); i++) {
                 JSONObject objectOrder = jsonArrayOrder.getJSONObject(i);
                 if(whereType.equals("contains")) {
@@ -51,7 +51,7 @@ public class OrderHeaderController {
     public void updateOrderStatus(String orderID, String status) {
         JSONArray jsonArrayUpdate = new JSONArray();
         try {
-            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "defaultValue"));
+            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "[]"));
             for(int i = 0; i < jsonArrayOrder.length(); i++) {
                 JSONObject objectOrder = jsonArrayOrder.getJSONObject(i);
 
@@ -68,9 +68,24 @@ public class OrderHeaderController {
         }
     }
 
+    public int getLastOrderID() {
+        int lastOrderID = 0;
+
+        try {
+            JSONArray jsonArrayOrders = new JSONArray(sharedPref.getString("Orders", "[]"));
+            if(jsonArrayOrders.length() > 0) {
+                lastOrderID = jsonArrayOrders.getJSONObject(jsonArrayOrders.length() - 1).getInt("ID");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return lastOrderID;
+    }
+
     public void addOrder(JSONObject objectOrder) {
         try {
-            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "defaultValue"));
+            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "[]"));
             jsonArrayOrder.put(objectOrder);
 
             sharedPref.edit().putString("Orders", jsonArrayOrder.toString()).apply();

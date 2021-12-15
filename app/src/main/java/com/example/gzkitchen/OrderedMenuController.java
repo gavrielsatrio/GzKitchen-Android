@@ -1,5 +1,7 @@
 package com.example.gzkitchen;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,12 +26,22 @@ public class OrderedMenuController {
 
         if(isMenuAlreadyInOrderList) {
             try {
-                jsonArrayOrderedMenu.getJSONObject(indexUpdate).put("Qty", objectAddMenu.getInt("Qty"));
+                if(objectAddMenu.getInt("Qty") == 0) {
+                    jsonArrayOrderedMenu.remove(indexUpdate);
+                } else {
+                    jsonArrayOrderedMenu.getJSONObject(indexUpdate).put("Qty", objectAddMenu.getInt("Qty"));
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
-            jsonArrayOrderedMenu.put(objectAddMenu);
+            try {
+                if(objectAddMenu.getInt("Qty") > 0) {
+                    jsonArrayOrderedMenu.put(objectAddMenu);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         return jsonArrayOrderedMenu;
