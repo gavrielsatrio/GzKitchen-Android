@@ -60,8 +60,6 @@ public class CashierMainTakeOrderFragment extends Fragment {
         lblTotalPrice = viewInflate.findViewById(R.id.cashierMainTakeOrderLblTotalPrice);
         btnProceedOrder = viewInflate.findViewById(R.id.cashierMainTakeOrderBtnProceedOrder);
 
-        Log.d("Orders", orderController.getOrders().toString());
-
         LoadData();
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +121,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
                                     objectOrder.put("ID", orderController.getLastOrderID() + 1);
                                     objectOrder.put("Date", Calendar.getInstance().getTime());
                                     objectOrder.put("TableNo", txtTableNo.getText().toString().trim());
+                                    objectOrder.put("StatusID", 1);
                                     objectOrder.put("OrderedMenus", jsonArrayOrderedMenu);
 
                                     orderController.addOrder(objectOrder);

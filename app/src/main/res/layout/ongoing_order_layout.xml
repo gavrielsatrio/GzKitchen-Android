@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:paddingBottom="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/quartenary_button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ongoingOrderLayoutImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ongoingOrderLayoutLblOrderID"
+            app:srcCompat="@drawable/dot_unselected" />
+
+        <TextView
+            android:id="@+id/ongoingOrderLayoutLblOrderID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/open_sans_light"
+            android:text="GK-00000001"
+            android:textColor="@color/colorGrey"
+            app:layout_constraintStart_toStartOf="@+id/ongoingOrderLayoutImg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ongoingOrderLayoutLblMenu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:text="Menu :"
+            app:layout_constraintBottom_toBottomOf="@+id/ongoingOrderLayoutImg"
+            app:layout_constraintEnd_toStartOf="@+id/ongoingOrderLayoutCardViewStatus"
+            app:layout_constraintStart_toEndOf="@+id/ongoingOrderLayoutImg"
+            app:layout_constraintTop_toTopOf="@+id/ongoingOrderLayoutImg" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ongoingOrderLayoutCardViewStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            app:cardBackgroundColor="@color/colorGreen"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="2dp"
+            app:cardMaxElevation="3dp"
+            app:contentPaddingBottom="4dp"
+            app:contentPaddingLeft="8dp"
+            app:contentPaddingRight="8dp"
+            app:contentPaddingTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ongoingOrderLayoutLblMenu"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent">
+
+                <TextView
+                    android:id="@+id/ongoingOrderLayoutLblStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="Status"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,7 +48,7 @@ public class OrderController {
         return jsonArrayReturn;
     }
 
-    public void updateOrderStatus(String orderID, String status) {
+    public void updateOrderStatus(String orderID, int statusID) {
         JSONArray jsonArrayUpdate = new JSONArray();
         try {
             JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "[]"));
@@ -56,7 +56,7 @@ public class OrderController {
                 JSONObject objectOrder = jsonArrayOrder.getJSONObject(i);
 
                 if(objectOrder.getString("ID").equals(orderID)) {
-                    objectOrder.put("Status", status);
+                    objectOrder.put("StatusID", statusID);
                 }
 
                 jsonArrayUpdate.put(objectOrder);
