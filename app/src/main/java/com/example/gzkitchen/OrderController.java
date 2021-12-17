@@ -19,7 +19,13 @@ public class OrderController {
     public JSONArray getOrders() {
         JSONArray jsonArrayReturn = new JSONArray();
         try {
-            jsonArrayReturn = new JSONArray(sharedPref.getString("Orders", "[]"));
+            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "[]"));
+            for(int i = 0; i < jsonArrayOrder.length(); i++) {
+                JSONObject objectOrder = jsonArrayOrder.getJSONObject(i);
+                if(objectOrder.getInt("StatusID") != 4) {
+                    jsonArrayReturn.put(objectOrder);
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
