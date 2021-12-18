@@ -55,6 +55,7 @@ public class CashierMainHomeFragment extends Fragment {
         comboSort = viewInflate.findViewById(R.id.cashierMainHomeComboSort);
         linearLayoutOngoingOrders = viewInflate.findViewById(R.id.cashierMainHomeLinearLayoutOngoingOrders);
 
+        LoadComboSort();
         LoadDataCashier();
         LoadData();
 
@@ -67,6 +68,15 @@ public class CashierMainHomeFragment extends Fragment {
         });
 
         return viewInflate;
+    }
+
+    private void LoadComboSort() {
+        try {
+            JSONArray jsonArraySort = new JSONArray("{'Date', 'Status'}");
+            comboSort.setAdapter(new ComboBoxAdapter(cashierMainActivity, jsonArraySort));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void LoadData() {
