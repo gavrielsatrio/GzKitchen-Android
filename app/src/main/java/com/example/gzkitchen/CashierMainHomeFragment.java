@@ -3,10 +3,12 @@ package com.example.gzkitchen;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -15,6 +17,10 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 
 public class CashierMainHomeFragment extends Fragment {
     View viewInflate;
@@ -28,6 +34,8 @@ public class CashierMainHomeFragment extends Fragment {
     ImageView btnProfile;
     Spinner comboSort;
     LinearLayout linearLayoutOngoingOrders;
+
+    JSONArray jsonArraySort;
 
     public CashierMainHomeFragment(CashierMainActivity cashierMainActivityParam) {
         this.cashierMainActivity = cashierMainActivityParam;
@@ -67,12 +75,24 @@ public class CashierMainHomeFragment extends Fragment {
             }
         });
 
+        comboSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                LoadData();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         return viewInflate;
     }
 
     private void LoadComboSort() {
         try {
-            JSONArray jsonArraySort = new JSONArray("{'Date', 'Status'}");
+            jsonArraySort = new JSONArray("{'Date', 'Status'}");
             comboSort.setAdapter(new ComboBoxAdapter(cashierMainActivity, jsonArraySort));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -80,12 +100,49 @@ public class CashierMainHomeFragment extends Fragment {
     }
 
     private void LoadData() {
-        JSONArray jsonArrayOrder = orderController.getOrders();
+        try {
+            JSONArray jsonArrayOrder = orderController.getOrders();
+            ArrayList<JSONObject> arrayListOrder = new ArrayList<>();
 
-        for(int i = 0; i < jsonArrayOrder.length(); i++) {
-            View viewOngoingOrder = LayoutInflater.from(cashierMainActivity).inflate(R.layout.ongoing_order_layout, null, false);
+            for(int i = 0; i < jsonArrayOrder.length(); i++) {
+                arrayListOrder.add(jsonArrayOrder.getJSONObject(i));
+            }
 
-            linearLayoutOngoingOrders.addView(viewOngoingOrder);
+            String sortBy = jsonArraySort.getString(comboSort.getSelectedItemPosition());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                arrayListOrder.sort(new Comparator<JSONObject>() {
+                    @Override
+                    public int compare(JSONObject jsonObject, JSONObject jsonObject2) {
+                        int comp = 0;
+                        try {
+                            if(sortBy.equals("Date")) {
+                                if((((Date)jsonObject.get("Date")).after((Date)jsonObject2.get("Date")))) {
+                                    comp = -1;
+                                } else {
+                                    comp = 1;
+                                }
+                            } else {
+                                if(jsonObject.getInt("StatusID") > jsonObject2.getInt("StatusID")) {
+                                    comp = -1;
+                                } else {
+                                    comp = 1;
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return comp;
+                    }
+                });
+            }
+
+            for(int i = 0; i < jsonArrayOrder.length(); i++) {
+                View viewOngoingOrder = LayoutInflater.from(cashierMainActivity).inflate(R.layout.ongoing_order_layout, null, false);
+
+                linearLayoutOngoingOrders.addView(viewOngoingOrder);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

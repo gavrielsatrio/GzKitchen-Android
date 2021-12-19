@@ -44,8 +44,6 @@ public class CashierMainActivity extends AppCompatActivity {
         btnTakeOrderLbl = findViewById(R.id.cashierMainLblTakeOrder);
         linearLayoutBottomNav = findViewById(R.id.cashierMainLinearLayoutBottomNav);
 
-        Log.d("Orders", new OrderController(CashierMainActivity.this).getOrders().toString());
-
         JSONArray jsonArrayLayout = new JSONArray()
                 .put(new CashierMainHomeFragment(CashierMainActivity.this))
                 .put(new CashierMainTakeOrderFragment(CashierMainActivity.this));
