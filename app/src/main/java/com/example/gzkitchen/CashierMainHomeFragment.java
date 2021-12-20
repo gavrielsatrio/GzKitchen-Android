@@ -63,6 +63,7 @@ public class CashierMainHomeFragment extends Fragment {
         comboSort = viewInflate.findViewById(R.id.cashierMainHomeComboSort);
         linearLayoutOngoingOrders = viewInflate.findViewById(R.id.cashierMainHomeLinearLayoutOngoingOrders);
 
+        LoadAnimation();
         LoadComboSort();
         LoadDataCashier();
         LoadData();
@@ -88,6 +89,15 @@ public class CashierMainHomeFragment extends Fragment {
         });
 
         return viewInflate;
+    }
+
+    private void LoadAnimation() {
+        imgTop.animate().setDuration(600).translationY(0).alpha(1);
+        lblHello.animate().setDuration(600).setStartDelay(120).translationX(0).alpha(1);
+        lblName.animate().setDuration(600).setStartDelay(240).translationY(0).alpha(1);
+        lblRole.animate().setDuration(600).setStartDelay(360).translationX(0).alpha(1);
+        btnProfile.animate().setDuration(600).setStartDelay(480).translationY(0).alpha(1);
+        comboSort.animate().setDuration(600).setStartDelay(600).translationY(0).alpha(1);
     }
 
     private void LoadComboSort() {
