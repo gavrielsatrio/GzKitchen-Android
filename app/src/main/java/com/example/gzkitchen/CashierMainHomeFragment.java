@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,7 +103,9 @@ public class CashierMainHomeFragment extends Fragment {
 
     private void LoadComboSort() {
         try {
-            jsonArraySort = new JSONArray("{'Date', 'Status'}");
+            jsonArraySort = new JSONArray()
+                    .put(new JSONObject().put("Name", "Date"))
+                    .put(new JSONObject().put("Name", "Status"));
             comboSort.setAdapter(new ComboBoxAdapter(cashierMainActivity, jsonArraySort));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -110,6 +113,8 @@ public class CashierMainHomeFragment extends Fragment {
     }
 
     private void LoadData() {
+        linearLayoutOngoingOrders.removeAllViews();
+
         try {
             JSONArray jsonArrayOrder = orderController.getOrders();
             ArrayList<JSONObject> arrayListOrder = new ArrayList<>();
@@ -146,7 +151,10 @@ public class CashierMainHomeFragment extends Fragment {
                 });
             }
 
+            Log.d("List", jsonArrayOrder.toString());
+
             for(int i = 0; i < jsonArrayOrder.length(); i++) {
+                JSONObject objectOrder = arrayListOrder.get(i);
                 View viewOngoingOrder = LayoutInflater.from(cashierMainActivity).inflate(R.layout.ongoing_order_layout, null, false);
 
                 linearLayoutOngoingOrders.addView(viewOngoingOrder);

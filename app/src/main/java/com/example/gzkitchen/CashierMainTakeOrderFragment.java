@@ -19,9 +19,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 public class CashierMainTakeOrderFragment extends Fragment {
@@ -61,6 +67,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
         btnProceedOrder = viewInflate.findViewById(R.id.cashierMainTakeOrderBtnProceedOrder);
 
         LoadData();
+        LoadAnimation();
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +128,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
                                     objectOrder.put("ID", orderController.getLastOrderID() + 1);
                                     objectOrder.put("Date", Calendar.getInstance().getTime());
                                     objectOrder.put("TableNo", txtTableNo.getText().toString().trim());
-                                    objectOrder.put("StatusID", 1);
+                                    objectOrder.put("StatusID", 2);
                                     objectOrder.put("OrderedMenus", jsonArrayOrderedMenu);
 
                                     orderController.addOrder(objectOrder);
@@ -150,6 +157,15 @@ public class CashierMainTakeOrderFragment extends Fragment {
         return viewInflate;
     }
 
+    private void LoadAnimation() {
+        lblHeader.animate().setDuration(600).alpha(1).translationY(0);
+        txtSearch.animate().setDuration(600).setStartDelay(120).alpha(1).translationX(0);
+        btnSearch.animate().setDuration(600).setStartDelay(240).alpha(1).translationX(0);
+        cardViewBottom.animate().setDuration(800).setStartDelay(360).alpha(1).translationY(0);
+        lblTotalPrice.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);
+        btnProceedOrder.animate().setDuration(600).setStartDelay(480).alpha(1).translationX(0);
+    }
+
     private void LoadData() {
         linearLayoutOrderMenuList.removeAllViews();
 
@@ -160,133 +176,144 @@ public class CashierMainTakeOrderFragment extends Fragment {
             jsonArrayMenuList = menuController.getMenusWhere("Name", txtSearch.getText().toString().trim());
         }
 
-        for(int i = 0; i < jsonArrayMenuList.length(); i++) {
-            try {
-                JSONObject objectMenu = jsonArrayMenuList.getJSONObject(i);
-                View viewMenuList = LayoutInflater.from(cashierMainActivity).inflate(R.layout.take_order_menu_layout, null, false);
-
-                int menuID = objectMenu.getInt("ID");
-                int price = objectMenu.getInt("Price");
-
-                ((ImageView)viewMenuList.findViewById(R.id.takeOrderLayoutImg)).setImageBitmap(new BitmapHelper().convertToBitmap(objectMenu.getString("Image")));
-                ((TextView)viewMenuList.findViewById(R.id.takeOrderLayoutLblName)).setText(objectMenu.getString("Name"));
-                ((TextView)viewMenuList.findViewById(R.id.takeOrderLayoutLblPrice)).setText(priceHelper.convertToRupiah(price));
-
-                Button btnAdd = viewMenuList.findViewById(R.id.takeOrderLayoutBtnAdd);
-                Button btnMinus = viewMenuList.findViewById(R.id.takeOrderLayoutBtnMinus);
-                Button btnPlus = viewMenuList.findViewById(R.id.takeOrderLayoutBtnPlus);
-                EditText txtQty = viewMenuList.findViewById(R.id.takeOrderLayoutTxtQty);
-
-                txtQty.addTextChangedListener(new TextWatcher() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                cashierMainActivity.runOnUiThread(new Runnable() {
                     @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                        int qty = 0;
-                        if(!txtQty.getText().toString().trim().equals("")) {
-                            qty = Integer.parseInt(txtQty.getText().toString());
-                        }
-
-                        try {
-                            jsonArrayOrderedMenu = orderedMenuController.editMenuInOrder(jsonArrayOrderedMenu, new JSONObject()
-                                    .put("MenuID", menuID)
-                                    .put("Qty", qty)
-                                    .put("Price", price));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        LoadTotalPrice();
-                    }
-                });
-
-                btnAdd.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        btnAdd.setVisibility(View.GONE);
-                        btnMinus.setVisibility(View.VISIBLE);
-                        btnPlus.setVisibility(View.VISIBLE);
-                        txtQty.setVisibility(View.VISIBLE);
-
-                        btnPlus.performClick();
-                    }
-                });
-
-                btnMinus.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(txtQty.getText().toString().trim().equals("")) {
-                            btnAdd.setVisibility(View.VISIBLE);
-                            btnMinus.setVisibility(View.GONE);
-                            btnPlus.setVisibility(View.GONE);
-                            txtQty.setVisibility(View.GONE);
-                        } else {
-                            int qty = Integer.parseInt(txtQty.getText().toString());
-
-                            if(qty - 1 <= 0) {
-                                btnAdd.setVisibility(View.VISIBLE);
-                                btnMinus.setVisibility(View.GONE);
-                                btnPlus.setVisibility(View.GONE);
-                                txtQty.setVisibility(View.GONE);
-
-                                qty = 1;
-                            }
-
-                            qty--;
-
+                    public void run() {
+                        for(int i = 0; i < jsonArrayMenuList.length(); i++) {
                             try {
-                                jsonArrayOrderedMenu = orderedMenuController.editMenuInOrder(jsonArrayOrderedMenu, new JSONObject()
-                                        .put("MenuID", menuID)
-                                        .put("Qty", qty)
-                                        .put("Price", price));
+                                JSONObject objectMenu = jsonArrayMenuList.getJSONObject(i);
+                                View viewMenuList = LayoutInflater.from(cashierMainActivity).inflate(R.layout.take_order_menu_layout, null, false);
+
+                                int menuID = objectMenu.getInt("ID");
+                                int price = objectMenu.getInt("Price");
+
+                                ((ImageView)viewMenuList.findViewById(R.id.takeOrderLayoutImg)).setImageBitmap(new BitmapHelper().convertToBitmap(objectMenu.getString("Image")));
+                                ((TextView)viewMenuList.findViewById(R.id.takeOrderLayoutLblName)).setText(objectMenu.getString("Name"));
+                                ((TextView)viewMenuList.findViewById(R.id.takeOrderLayoutLblPrice)).setText(priceHelper.convertToRupiah(price));
+                                ((ConstraintLayout)viewMenuList.findViewById(R.id.takeOrderLayoutConstraintLayout)).animate().setStartDelay(120 * i).setDuration(600).alpha(1).translationX(0);
+
+                                Button btnAdd = viewMenuList.findViewById(R.id.takeOrderLayoutBtnAdd);
+                                Button btnMinus = viewMenuList.findViewById(R.id.takeOrderLayoutBtnMinus);
+                                Button btnPlus = viewMenuList.findViewById(R.id.takeOrderLayoutBtnPlus);
+                                EditText txtQty = viewMenuList.findViewById(R.id.takeOrderLayoutTxtQty);
+
+                                txtQty.addTextChangedListener(new TextWatcher() {
+                                    @Override
+                                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                    }
+
+                                    @Override
+                                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                    }
+
+                                    @Override
+                                    public void afterTextChanged(Editable editable) {
+                                        int qty = 0;
+                                        if(!txtQty.getText().toString().trim().equals("")) {
+                                            qty = Integer.parseInt(txtQty.getText().toString());
+                                        }
+
+                                        try {
+                                            jsonArrayOrderedMenu = orderedMenuController.editMenuInOrder(jsonArrayOrderedMenu, new JSONObject()
+                                                    .put("MenuID", menuID)
+                                                    .put("Qty", qty)
+                                                    .put("Price", price));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        LoadTotalPrice();
+                                    }
+                                });
+
+                                btnAdd.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        btnAdd.setVisibility(View.GONE);
+                                        btnMinus.setVisibility(View.VISIBLE);
+                                        btnPlus.setVisibility(View.VISIBLE);
+                                        txtQty.setVisibility(View.VISIBLE);
+
+                                        btnPlus.performClick();
+                                    }
+                                });
+
+                                btnMinus.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        if(txtQty.getText().toString().trim().equals("")) {
+                                            btnAdd.setVisibility(View.VISIBLE);
+                                            btnMinus.setVisibility(View.GONE);
+                                            btnPlus.setVisibility(View.GONE);
+                                            txtQty.setVisibility(View.GONE);
+                                        } else {
+                                            int qty = Integer.parseInt(txtQty.getText().toString());
+
+                                            if(qty - 1 <= 0) {
+                                                btnAdd.setVisibility(View.VISIBLE);
+                                                btnMinus.setVisibility(View.GONE);
+                                                btnPlus.setVisibility(View.GONE);
+                                                txtQty.setVisibility(View.GONE);
+
+                                                qty = 1;
+                                            }
+
+                                            qty--;
+
+                                            try {
+                                                jsonArrayOrderedMenu = orderedMenuController.editMenuInOrder(jsonArrayOrderedMenu, new JSONObject()
+                                                        .put("MenuID", menuID)
+                                                        .put("Qty", qty)
+                                                        .put("Price", price));
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            txtQty.setText(String.valueOf(qty));
+                                            LoadTotalPrice();
+                                        }
+                                    }
+                                });
+
+                                btnPlus.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        int qty = 0;
+
+                                        if(!txtQty.getText().toString().trim().equals("")) {
+                                            qty = Integer.parseInt(txtQty.getText().toString());
+                                        }
+
+                                        qty++;
+
+                                        try {
+                                            jsonArrayOrderedMenu = orderedMenuController.editMenuInOrder(jsonArrayOrderedMenu, new JSONObject()
+                                                    .put("MenuID", menuID)
+                                                    .put("Qty", qty)
+                                                    .put("Price", price));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        txtQty.setText(String.valueOf(qty));
+                                        LoadTotalPrice();
+                                    }
+                                });
+
+                                linearLayoutOrderMenuList.addView(viewMenuList);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
-                            txtQty.setText(String.valueOf(qty));
-                            LoadTotalPrice();
                         }
                     }
                 });
-
-                btnPlus.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        int qty = 0;
-
-                        if(!txtQty.getText().toString().trim().equals("")) {
-                            qty = Integer.parseInt(txtQty.getText().toString());
-                        }
-
-                        qty++;
-
-                        try {
-                            jsonArrayOrderedMenu = orderedMenuController.editMenuInOrder(jsonArrayOrderedMenu, new JSONObject()
-                                    .put("MenuID", menuID)
-                                    .put("Qty", qty)
-                                    .put("Price", price));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        txtQty.setText(String.valueOf(qty));
-                        LoadTotalPrice();
-                    }
-                });
-
-                linearLayoutOrderMenuList.addView(viewMenuList);
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-        }
+        }, 1150);
     }
 
     private void LoadTotalPrice() {

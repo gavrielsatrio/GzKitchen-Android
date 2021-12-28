@@ -2,9 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/takeOrderLayoutConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="8dp">
+    android:alpha="0"
+    android:paddingBottom="8dp"
+    android:translationX="-40dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/takeOrderLayoutBackground"
@@ -56,6 +59,23 @@
         app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutTxtQty"
         app:layout_constraintTop_toTopOf="@+id/takeOrderLayoutBtnMinus" />
 
+    <Button
+        android:id="@+id/takeOrderLayoutBtnAdd"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorSecondaryRed"
+        android:elevation="4dp"
+        android:text="Add"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/takeOrderLayoutBackground"
+        app:layout_constraintEnd_toEndOf="@+id/takeOrderLayoutBackground"
+        app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutImg" />
+
     <EditText
         android:id="@+id/takeOrderLayoutTxtQty"
         android:layout_width="50dp"
@@ -75,23 +95,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/takeOrderLayoutBtnMinus"
         app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutBtnMinus"
         app:layout_constraintTop_toTopOf="@+id/takeOrderLayoutBtnMinus" />
-
-    <Button
-        android:id="@+id/takeOrderLayoutBtnAdd"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/colorSecondaryRed"
-        android:elevation="4dp"
-        android:text="Add"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/colorWhite"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/takeOrderLayoutBackground"
-        app:layout_constraintEnd_toEndOf="@+id/takeOrderLayoutBackground"
-        app:layout_constraintStart_toEndOf="@+id/takeOrderLayoutImg" />
 
     <ImageView
         android:id="@+id/takeOrderLayoutImg"
