@@ -44,9 +44,11 @@ public class CashierMainActivity extends AppCompatActivity {
         btnTakeOrderLbl = findViewById(R.id.cashierMainLblTakeOrder);
         linearLayoutBottomNav = findViewById(R.id.cashierMainLinearLayoutBottomNav);
 
+        CashierMainHomeFragment cashierHomeFragment = new CashierMainHomeFragment(CashierMainActivity.this);
+
         JSONArray jsonArrayLayout = new JSONArray()
-                .put(new CashierMainHomeFragment(CashierMainActivity.this))
-                .put(new CashierMainTakeOrderFragment(CashierMainActivity.this));
+                .put(cashierHomeFragment)
+                .put(new CashierMainTakeOrderFragment(CashierMainActivity.this, cashierHomeFragment));
 
         cashierMainPagerAdapter = new CashierMainPagerAdapter(CashierMainActivity.this, jsonArrayLayout);
         viewPager.setAdapter(cashierMainPagerAdapter);
@@ -74,7 +76,7 @@ public class CashierMainActivity extends AppCompatActivity {
         LoadSelectedTab(0);
     }
 
-    private void LoadSelectedTab(int selectedPosition) {
+    public void LoadSelectedTab(int selectedPosition) {
         btnHomeImg.setColorFilter(null);
         btnTakeOrderImg.setColorFilter(null);
 

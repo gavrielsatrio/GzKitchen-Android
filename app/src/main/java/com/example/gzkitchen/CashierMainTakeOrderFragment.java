@@ -32,6 +32,7 @@ import androidx.fragment.app.Fragment;
 
 public class CashierMainTakeOrderFragment extends Fragment {
     CashierMainActivity cashierMainActivity;
+    CashierMainHomeFragment cashierHomeFragment;
     View viewInflate;
     OrderController orderController;
     MenuController menuController;
@@ -48,8 +49,9 @@ public class CashierMainTakeOrderFragment extends Fragment {
 
     JSONArray jsonArrayOrderedMenu = new JSONArray();
 
-    public CashierMainTakeOrderFragment(CashierMainActivity cashierMainActivityParam) {
+    public CashierMainTakeOrderFragment(CashierMainActivity cashierMainActivityParam, CashierMainHomeFragment cashierHomeFragmentParam) {
         this.cashierMainActivity = cashierMainActivityParam;
+        this.cashierHomeFragment = cashierHomeFragmentParam;
         orderController = new OrderController(cashierMainActivity);
         menuController = new MenuController(cashierMainActivity);
     }
@@ -139,6 +141,9 @@ public class CashierMainTakeOrderFragment extends Fragment {
                                 jsonArrayOrderedMenu = new JSONArray();
                                 LoadData();
                                 LoadTotalPrice();
+
+                                cashierMainActivity.LoadSelectedTab(0);
+                                cashierHomeFragment.LoadData();
 
                                 dialog.dismiss();
                             } else {

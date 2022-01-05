@@ -112,7 +112,7 @@ public class CashierMainHomeFragment extends Fragment {
         }
     }
 
-    private void LoadData() {
+    public void LoadData() {
         linearLayoutOngoingOrders.removeAllViews();
 
         try {
