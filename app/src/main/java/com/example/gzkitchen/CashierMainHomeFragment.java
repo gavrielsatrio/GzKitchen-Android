@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -123,7 +124,7 @@ public class CashierMainHomeFragment extends Fragment {
                 arrayListOrder.add(jsonArrayOrder.getJSONObject(i));
             }
 
-            String sortBy = jsonArraySort.getString(comboSort.getSelectedItemPosition());
+            String sortBy = jsonArraySort.getJSONObject(comboSort.getSelectedItemPosition()).getString("Name");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 arrayListOrder.sort(new Comparator<JSONObject>() {
                     @Override
@@ -131,16 +132,20 @@ public class CashierMainHomeFragment extends Fragment {
                         int comp = 0;
                         try {
                             if(sortBy.equals("Date")) {
-                                if((((Date)jsonObject.get("Date")).after((Date)jsonObject2.get("Date")))) {
+                                DateAndTimeHelper dateAndTimeHelper = new DateAndTimeHelper();
+
+                                Date date1 = dateAndTimeHelper.ConvertToDate(jsonObject.getString("Date"));
+                                Date date2 = dateAndTimeHelper.ConvertToDate(jsonObject2.getString("Date"));
+                                if(date1.after(date2)) {
                                     comp = -1;
                                 } else {
                                     comp = 1;
                                 }
                             } else {
                                 if(jsonObject.getInt("StatusID") > jsonObject2.getInt("StatusID")) {
-                                    comp = -1;
-                                } else {
                                     comp = 1;
+                                } else {
+                                    comp = -1;
                                 }
                             }
                         } catch (JSONException e) {
@@ -156,6 +161,19 @@ public class CashierMainHomeFragment extends Fragment {
             for(int i = 0; i < jsonArrayOrder.length(); i++) {
                 JSONObject objectOrder = arrayListOrder.get(i);
                 View viewOngoingOrder = LayoutInflater.from(cashierMainActivity).inflate(R.layout.ongoing_order_layout, null, false);
+
+                StatusController statusController = new StatusController();
+
+                StringBuilder orderID = new StringBuilder(objectOrder.getString("ID"));
+                orderID.reverse();
+                for(int j = orderID.length(); j < 8; j++) {
+                    orderID.append("0");
+                }
+                orderID.append("-KG");
+                orderID.reverse();
+
+                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblOrderID)).setText(orderID.toString());
+                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblStatus)).setText(statusController.getStatusByID(objectOrder.getInt("StatusID")));
 
                 linearLayoutOngoingOrders.addView(viewOngoingOrder);
             }

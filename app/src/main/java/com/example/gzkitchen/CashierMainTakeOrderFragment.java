@@ -128,9 +128,9 @@ public class CashierMainTakeOrderFragment extends Fragment {
                                 try {
                                     JSONObject objectOrder = new JSONObject();
                                     objectOrder.put("ID", orderController.getLastOrderID() + 1);
-                                    objectOrder.put("Date", Calendar.getInstance().getTime());
+                                    objectOrder.put("Date", new DateAndTimeHelper().ConvertToString(Calendar.getInstance().getTime()));
                                     objectOrder.put("TableNo", txtTableNo.getText().toString().trim());
-                                    objectOrder.put("StatusID", 2);
+                                    objectOrder.put("StatusID", 1);
                                     objectOrder.put("OrderedMenus", jsonArrayOrderedMenu);
 
                                     orderController.addOrder(objectOrder);
@@ -318,7 +318,7 @@ public class CashierMainTakeOrderFragment extends Fragment {
                     }
                 });
             }
-        }, 1150);
+        }, 1000);
     }
 
     private void LoadTotalPrice() {
