@@ -2,12 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gzkitchen">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,10 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GzKitchen">
-        <activity android:name=".ChefMainActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".CashierMainActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".OrderDetailActivity"></activity>
+        <activity
+            android:name=".ChefMainActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".CashierMainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".AddEditMenuActivity"
             android:screenOrientation="portrait" />
@@ -56,5 +53,10 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

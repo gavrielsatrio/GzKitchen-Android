@@ -22,17 +22,16 @@ public class OrderController {
             JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "[]"));
             for(int i = 0; i < jsonArrayOrder.length(); i++) {
                 JSONObject objectOrder = jsonArrayOrder.getJSONObject(i);
-                if(objectOrder.getInt("StatusID") != 4) {
-                    jsonArrayReturn.put(objectOrder);
-                }
+                jsonArrayReturn.put(objectOrder);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         return jsonArrayReturn;
     }
 
-    public JSONArray getOrderWhere(String column, String value, String whereType) {
+    public JSONArray getOrderWhere(String column, String whereType, String value) {
         JSONArray jsonArrayReturn = new JSONArray();
         try {
             JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "[]"));
@@ -42,8 +41,12 @@ public class OrderController {
                     if(objectOrder.getString(column).contains(value)) {
                         jsonArrayReturn.put(objectOrder);
                     }
-                } else {
+                } else if(whereType.equals("equals")) {
                     if(objectOrder.getString(column).equals(value)) {
+                        jsonArrayReturn.put(objectOrder);
+                    }
+                } else if(whereType.equals("not")) {
+                    if(!objectOrder.getString(column).equals(value)) {
                         jsonArrayReturn.put(objectOrder);
                     }
                 }

@@ -1,5 +1,6 @@
 package com.example.gzkitchen;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -121,7 +122,7 @@ public class CashierMainHomeFragment extends Fragment {
         linearLayoutOngoingOrders.removeAllViews();
 
         try {
-            JSONArray jsonArrayOrder = orderController.getOrders();
+            JSONArray jsonArrayOrder = orderController.getOrderWhere("StatusID", "not", "4");
             ArrayList<JSONObject> arrayListOrder = new ArrayList<>();
 
             for(int i = 0; i < jsonArrayOrder.length(); i++) {
@@ -176,9 +177,22 @@ public class CashierMainHomeFragment extends Fragment {
                 orderID.append("-KG");
                 orderID.reverse();
 
+                String tableNo = objectOrder.getString("TableNo");
+
                 ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblOrderID)).setText(orderID.toString());
                 ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblStatus)).setText(statusController.getStatusByID(objectOrder.getInt("StatusID")));
-                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblTableNoValue)).setText(objectOrder.getString("TableNo"));
+                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblTableNoValue)).setText(tableNo);
+                ((CardView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutCardViewBackground)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // View order details
+                        Intent intent = new Intent(cashierMainActivity, OrderDetailActivity.class);
+                        intent.putExtra("OrderID", orderID.toString());
+                        intent.putExtra("TableNo", tableNo);
+
+                        startActivity(intent);
+                    }
+                });
 
                 linearLayoutOngoingOrders.addView(viewOngoingOrder);
             }
