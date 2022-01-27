@@ -1,4 +1,4 @@
-package com.example.gzkitchen;
+package com.example.gzkitchen.Controllers;
 
 public class StatusController {
     public String getStatusByID(int statusID) {

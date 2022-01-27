@@ -1,4 +1,4 @@
-package com.example.gzkitchen;
+package com.example.gzkitchen.Controllers;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,7 +1,6 @@
 package com.example.gzkitchen;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.gzkitchen.Controllers.MenuController;
+import com.example.gzkitchen.Helper.BitmapHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -22,7 +21,6 @@ import org.json.JSONObject;
 import java.text.NumberFormat;
 
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 public class AdminMainMenuFragment extends Fragment {

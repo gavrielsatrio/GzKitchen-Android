@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +14,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gzkitchen.Controllers.MenuController;
+import com.example.gzkitchen.Controllers.OrderController;
+import com.example.gzkitchen.Controllers.OrderedMenuController;
+import com.example.gzkitchen.Helper.BitmapHelper;
+import com.example.gzkitchen.Helper.DateAndTimeHelper;
+import com.example.gzkitchen.Helper.PriceHelper;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 

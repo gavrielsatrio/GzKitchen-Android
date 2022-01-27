@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.gzkitchen.Controllers.UserController;
+import com.example.gzkitchen.Helper.BitmapHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;

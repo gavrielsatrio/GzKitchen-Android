@@ -2,7 +2,6 @@ package com.example.gzkitchen;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.gzkitchen.Controllers.UserController;
+import com.example.gzkitchen.Helper.BitmapHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;

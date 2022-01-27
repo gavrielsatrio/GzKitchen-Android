@@ -1,4 +1,4 @@
-package com.example.gzkitchen;
+package com.example.gzkitchen.Helper;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

@@ -11,6 +11,9 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gzkitchen.Controllers.MenuController;
+import com.example.gzkitchen.Controllers.UserController;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
