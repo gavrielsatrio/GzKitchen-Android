@@ -141,12 +141,12 @@ public class CashierMainHomeFragment extends Fragment {
                                 Date date1 = dateAndTimeHelper.ConvertToDate(jsonObject.getString("Date"));
                                 Date date2 = dateAndTimeHelper.ConvertToDate(jsonObject2.getString("Date"));
                                 if(date1.after(date2)) {
-                                    comp = -1;
-                                } else {
                                     comp = 1;
+                                } else {
+                                    comp = -1;
                                 }
                             } else {
-                                if(jsonObject.getInt("StatusID") > jsonObject2.getInt("StatusID")) {
+                                if(jsonObject.getInt("StatusID") >= jsonObject2.getInt("StatusID")) {
                                     comp = 1;
                                 } else {
                                     comp = -1;
@@ -178,6 +178,7 @@ public class CashierMainHomeFragment extends Fragment {
 
                 ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblOrderID)).setText(orderID.toString());
                 ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblStatus)).setText(statusController.getStatusByID(objectOrder.getInt("StatusID")));
+                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblTableNoValue)).setText(objectOrder.getString("TableNo"));
 
                 linearLayoutOngoingOrders.addView(viewOngoingOrder);
             }
