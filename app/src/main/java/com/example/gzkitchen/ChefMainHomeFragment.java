@@ -138,7 +138,7 @@ public class ChefMainHomeFragment extends Fragment {
                             if(checked) {
                                 checkBoxMenu.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                             } else {
-                                checkBoxMenu.setPaintFlags(Paint.LINEAR_TEXT_FLAG);
+                                checkBoxMenu.setPaintFlags(Paint.ANTI_ALIAS_FLAG);
                             }
 
                             LoadBtnFinishCookState(btnFinishCook, orderID);
