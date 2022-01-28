@@ -5,12 +5,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.gzkitchen.Controllers.MenuController;
+import com.example.gzkitchen.Controllers.OrderController;
+import com.example.gzkitchen.Controllers.OrderedMenuController;
 import com.example.gzkitchen.Controllers.UserController;
+import com.example.gzkitchen.Helper.OrderIDHelper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,6 +29,8 @@ public class ChefMainHomeFragment extends Fragment {
     View viewInflate;
     ChefMainActivity chefMainActivity;
     UserController userController;
+    OrderController orderController;
+    MenuController menuController;
 
     TextView lblName;
     TextView lblRole;
@@ -30,6 +40,8 @@ public class ChefMainHomeFragment extends Fragment {
     public ChefMainHomeFragment(ChefMainActivity chefMainActivityParam) {
         this.chefMainActivity = chefMainActivityParam;
         this.userController = new UserController(chefMainActivity);
+        this.orderController = new OrderController(chefMainActivity);
+        this.menuController = new MenuController(chefMainActivity);
     }
 
     @Override
@@ -49,6 +61,7 @@ public class ChefMainHomeFragment extends Fragment {
         linearLayoutCurrentlyCooking = viewInflate.findViewById(R.id.chefMainHomeLinearLayoutCurrentlyCooking);
 
         LoadDataChef();
+        LoadDataCooking();
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +72,54 @@ public class ChefMainHomeFragment extends Fragment {
         });
 
         return viewInflate;
+    }
+
+    private void LoadDataCooking() {
+        JSONArray jsonArrayOnCookingOrder = orderController.getOrderWhere("StatusID", "equals", "1");
+
+        for(int i = 0; i < jsonArrayOnCookingOrder.length(); i++) {
+            try {
+                JSONObject objectOrder = jsonArrayOnCookingOrder.getJSONObject(i);
+                View viewOnCookingOrder = LayoutInflater.from(chefMainActivity).inflate(R.layout.on_cooking_order_layout, null, false);
+
+                String orderID = new OrderIDHelper().getDisplayOrderID(objectOrder.getString("ID"));
+
+                ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblOrderID)).setText(orderID);
+                ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblTableNoValue)).setText(objectOrder.getString("TableNo"));
+
+                LinearLayout onCookingOrderLinearLayoutMenu = viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLinearLayoutMenu);
+                JSONArray jsonArrayOnCookingMenu = objectOrder.getJSONArray("OrderedMenus");
+                for(int j = 0; j < jsonArrayOnCookingMenu.length(); j++) {
+                    JSONObject objectMenu = jsonArrayOnCookingMenu.getJSONObject(j);
+                    View viewOnCookingMenu = LayoutInflater.from(chefMainActivity).inflate(R.layout.on_cooking_menu_layout, null, false);
+
+                    String menuName = menuController.getMenusWhere("ID", objectMenu.getString("MenuID")).getJSONObject(0).getString("Name");
+
+                    CheckBox checkBoxMenu = (CheckBox)viewOnCookingMenu.findViewById(R.id.onCookingMenuLayoutCheckBox);
+                    checkBoxMenu.setText(objectMenu.getString("Qty") + " pcs of " + menuName);
+                    checkBoxMenu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                            
+                        }
+                    });
+
+                    onCookingOrderLinearLayoutMenu.addView(viewOnCookingMenu);
+                }
+
+                Button btnFinishCook = (Button)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutBtnFinish);
+                btnFinishCook.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+                linearLayoutCurrentlyCooking.addView(viewOnCookingOrder);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void LoadDataChef() {

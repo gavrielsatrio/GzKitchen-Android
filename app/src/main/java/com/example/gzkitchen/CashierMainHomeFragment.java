@@ -20,6 +20,7 @@ import com.example.gzkitchen.Controllers.OrderController;
 import com.example.gzkitchen.Controllers.StatusController;
 import com.example.gzkitchen.Controllers.UserController;
 import com.example.gzkitchen.Helper.DateAndTimeHelper;
+import com.example.gzkitchen.Helper.OrderIDHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -169,17 +170,10 @@ public class CashierMainHomeFragment extends Fragment {
 
                 StatusController statusController = new StatusController();
 
-                StringBuilder orderID = new StringBuilder(objectOrder.getString("ID"));
-                orderID.reverse();
-                for(int j = orderID.length(); j < 8; j++) {
-                    orderID.append("0");
-                }
-                orderID.append("-KG");
-                orderID.reverse();
-
+                String orderID = new OrderIDHelper().getDisplayOrderID(objectOrder.getString("ID"));
                 String tableNo = objectOrder.getString("TableNo");
 
-                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblOrderID)).setText(orderID.toString());
+                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblOrderID)).setText(orderID);
                 ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblStatus)).setText(statusController.getStatusByID(objectOrder.getInt("StatusID")));
                 ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblTableNoValue)).setText(tableNo);
                 ((CardView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutCardViewBackground)).setOnClickListener(new View.OnClickListener() {
@@ -187,7 +181,7 @@ public class CashierMainHomeFragment extends Fragment {
                     public void onClick(View view) {
                         // View order details
                         Intent intent = new Intent(cashierMainActivity, OrderDetailActivity.class);
-                        intent.putExtra("OrderID", orderID.toString());
+                        intent.putExtra("OrderID", orderID);
                         intent.putExtra("TableNo", tableNo);
 
                         startActivity(intent);
