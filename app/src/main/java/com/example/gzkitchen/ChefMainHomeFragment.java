@@ -1,6 +1,7 @@
 package com.example.gzkitchen;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,6 +90,14 @@ public class ChefMainHomeFragment extends Fragment {
                 ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblOrderID)).setText(orderIDDisplay);
                 ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblTableNoValue)).setText(objectOrder.getString("TableNo"));
 
+                Button btnFinishCook = (Button)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutBtnFinish);
+                btnFinishCook.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
                 LinearLayout onCookingOrderLinearLayoutMenu = viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLinearLayoutMenu);
                 JSONArray jsonArrayOnCookingMenu = objectOrder.getJSONArray("OrderedMenus");
                 for(int j = 0; j < jsonArrayOnCookingMenu.length(); j++) {
@@ -104,24 +113,43 @@ public class ChefMainHomeFragment extends Fragment {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
                             orderController.updateOrderMenuCookingStatus(orderID, menuID, checked);
+                            LoadBtnFinishCookState(btnFinishCook, orderID);
                         }
                     });
 
                     onCookingOrderLinearLayoutMenu.addView(viewOnCookingMenu);
                 }
 
-                Button btnFinishCook = (Button)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutBtnFinish);
-                btnFinishCook.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
-
+                LoadBtnFinishCookState(btnFinishCook, orderID);
                 linearLayoutCurrentlyCooking.addView(viewOnCookingOrder);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void LoadBtnFinishCookState(Button btnFinishCook, String orderID) {
+        try {
+            JSONObject objectOrder = orderController.getOrderWhere("ID", "equals", orderID).getJSONObject(0);
+            JSONArray jsonArrayMenu = objectOrder.getJSONArray("OrderedMenus");
+
+            boolean isAllCooked = true;
+            for(int i = 0; i < jsonArrayMenu.length(); i++) {
+                if(!jsonArrayMenu.getJSONObject(i).getBoolean("IsCookDone")) {
+                    isAllCooked = false;
+                    break;
+                }
+            }
+
+            if(isAllCooked) {
+                btnFinishCook.setEnabled(true);
+                btnFinishCook.getBackground().setColorFilter(null);
+            } else {
+                btnFinishCook.setEnabled(false);
+                btnFinishCook.getBackground().setColorFilter(getResources().getColor(R.color.colorGrey), PorterDuff.Mode.SCREEN);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
