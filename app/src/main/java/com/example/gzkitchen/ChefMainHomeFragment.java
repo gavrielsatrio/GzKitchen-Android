@@ -1,5 +1,6 @@
 package com.example.gzkitchen;
 
+import android.animation.TimeInterpolator;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -24,7 +26,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 public class ChefMainHomeFragment extends Fragment {
@@ -77,7 +83,8 @@ public class ChefMainHomeFragment extends Fragment {
     }
 
     private void LoadDataCooking() {
-        JSONArray jsonArrayOnCookingOrder = orderController.getOrderWhere("StatusID", "equals", "1");
+        JSONArray jsonArrayOnCookingOrder = orderController.getOrderWhere("StatusID", "equals", "2");
+        linearLayoutCurrentlyCooking.removeAllViews();
 
         for(int i = 0; i < jsonArrayOnCookingOrder.length(); i++) {
             try {
@@ -87,6 +94,7 @@ public class ChefMainHomeFragment extends Fragment {
                 String orderID = objectOrder.getString("ID");
                 String orderIDDisplay = new OrderIDHelper().getDisplayOrderID(orderID);
 
+                CardView cardViewBackground = (CardView) viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutCardViewBackground);
                 ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblOrderID)).setText(orderIDDisplay);
                 ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblTableNoValue)).setText(objectOrder.getString("TableNo"));
 
@@ -94,7 +102,20 @@ public class ChefMainHomeFragment extends Fragment {
                 btnFinishCook.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        orderController.updateOrderStatus(orderID, 3);
+                        cardViewBackground.animate().translationX(200).alpha(0).setDuration(800).setInterpolator(new AccelerateDecelerateInterpolator());
 
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                chefMainActivity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        LoadDataCooking();
+                                    }
+                                });
+                            }
+                        }, 800);
                     }
                 });
 

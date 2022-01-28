@@ -78,8 +78,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                                         Intent intent = new Intent(SignUpActivity.this, MemberMainActivity.class);
                                         intent.putExtra("Email", txtEmail.getText().toString().trim());
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
 
                                         finish();
