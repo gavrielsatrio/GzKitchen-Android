@@ -2,6 +2,7 @@ package com.example.gzkitchen;
 
 import android.animation.TimeInterpolator;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,9 +83,9 @@ public class ChefMainHomeFragment extends Fragment {
         return viewInflate;
     }
 
-    private void LoadDataCooking() {
-        JSONArray jsonArrayOnCookingOrder = orderController.getOrderWhere("StatusID", "equals", "2");
+    public void LoadDataCooking() {
         linearLayoutCurrentlyCooking.removeAllViews();
+        JSONArray jsonArrayOnCookingOrder = orderController.getOrderWhere("StatusID", "equals", "2");
 
         for(int i = 0; i < jsonArrayOnCookingOrder.length(); i++) {
             try {
@@ -134,6 +135,12 @@ public class ChefMainHomeFragment extends Fragment {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
                             orderController.updateOrderMenuCookingStatus(orderID, menuID, checked);
+                            if(checked) {
+                                checkBoxMenu.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                            } else {
+                                checkBoxMenu.setPaintFlags(Paint.LINEAR_TEXT_FLAG);
+                            }
+
                             LoadBtnFinishCookState(btnFinishCook, orderID);
                         }
                     });

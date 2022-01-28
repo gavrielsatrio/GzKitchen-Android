@@ -35,9 +35,11 @@ public class ChefMainActivity extends AppCompatActivity {
         btnViewOrdersLbl = findViewById(R.id.chefMainLblViewOrders);
         viewPager = findViewById(R.id.chefMainViewPager);
 
+        ChefMainHomeFragment chefMainHomeFragment = new ChefMainHomeFragment(ChefMainActivity.this);
+
         JSONArray jsonArrayLayout = new JSONArray()
-                .put(new ChefMainHomeFragment(ChefMainActivity.this))
-                .put(new ChefMainViewOrdersFragment(ChefMainActivity.this));
+                .put(chefMainHomeFragment)
+                .put(new ChefMainViewOrdersFragment(ChefMainActivity.this, chefMainHomeFragment));
 
         viewPager.setAdapter(new ChefMainPagerAdapter(ChefMainActivity.this, jsonArrayLayout));
 
@@ -63,7 +65,7 @@ public class ChefMainActivity extends AppCompatActivity {
         });
     }
 
-    private void LoadSelectedTab(int position) {
+    public void LoadSelectedTab(int position) {
         btnHomeImg.setColorFilter(null);
         btnViewOrdersImg.setColorFilter(null);
 
