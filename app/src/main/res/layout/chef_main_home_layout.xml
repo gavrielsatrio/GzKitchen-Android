@@ -20,7 +20,7 @@
             android:paddingBottom="24dp">
 
             <ImageView
-                android:id="@+id/chefMainImgTop"
+                android:id="@+id/chefMainHomeImgTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -29,10 +29,10 @@
                 app:srcCompat="@drawable/ic_topcorner" />
 
             <ImageView
-                android:id="@+id/chefMainBtnProfile"
+                android:id="@+id/chefMainHomeBtnProfile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_alignBottom="@+id/chefMainImgTop"
+                android:layout_alignBottom="@+id/chefMainHomeImgTop"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
@@ -43,10 +43,10 @@
                 app:srcCompat="@drawable/ic_usercircle" />
 
             <LinearLayout
-                android:id="@+id/chefMainLineaerLayoutCurrentlyCooking"
+                android:id="@+id/chefMainHomeLinearLayoutCurrentlyCooking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/chefMainLblCurrentlyCookingFor"
+                android:layout_below="@+id/chefMainHomeLblCurrentlyCookingFor"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="24dp"
@@ -56,10 +56,10 @@
                 android:orientation="vertical"></LinearLayout>
 
             <TextView
-                android:id="@+id/chefMainLblCurrentlyCookingFor"
+                android:id="@+id/chefMainHomeLblCurrentlyCookingFor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/chefMainImgTop"
+                android:layout_below="@+id/chefMainHomeImgTop"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
@@ -70,7 +70,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/chefMainLblHello"
+                android:id="@+id/chefMainHomeLblHello"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -84,10 +84,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/chefMainLblName"
+                android:id="@+id/chefMainHomeLblName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/chefMainLblHello"
+                android:layout_below="@+id/chefMainHomeLblHello"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
@@ -97,10 +97,10 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/chefMainLblRole"
+                android:id="@+id/chefMainHomeLblRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/chefMainLblName"
+                android:layout_below="@+id/chefMainHomeLblName"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
