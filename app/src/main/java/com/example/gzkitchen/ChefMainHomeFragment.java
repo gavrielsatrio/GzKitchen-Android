@@ -100,7 +100,7 @@ public class ChefMainHomeFragment extends Fragment {
                     checkBoxMenu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                            
+
                         }
                     });
 

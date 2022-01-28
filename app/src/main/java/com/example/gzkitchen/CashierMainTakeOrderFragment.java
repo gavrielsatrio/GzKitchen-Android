@@ -134,6 +134,8 @@ public class CashierMainTakeOrderFragment extends Fragment {
                                     objectOrder.put("Date", new DateAndTimeHelper().ConvertToString(Calendar.getInstance().getTime()));
                                     objectOrder.put("TableNo", txtTableNo.getText().toString().trim());
                                     objectOrder.put("StatusID", 1);
+
+                                    jsonArrayOrderedMenu = orderedMenuController.addCookingStatusToOrderedMenuJSONArray(jsonArrayOrderedMenu);
                                     objectOrder.put("OrderedMenus", jsonArrayOrderedMenu);
 
                                     orderController.addOrder(objectOrder);

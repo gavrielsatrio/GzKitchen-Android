@@ -46,4 +46,16 @@ public class OrderedMenuController {
 
         return jsonArrayOrderedMenu;
     }
+
+    public JSONArray addCookingStatusToOrderedMenuJSONArray(JSONArray jsonArrayOrderedMenu) {
+        for(int i = 0; i < jsonArrayOrderedMenu.length(); i++) {
+            try {
+                jsonArrayOrderedMenu.getJSONObject(i).put("IsCookDone", false);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return jsonArrayOrderedMenu;
+    }
 }
