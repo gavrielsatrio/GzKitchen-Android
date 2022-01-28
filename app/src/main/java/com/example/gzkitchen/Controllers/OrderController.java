@@ -77,6 +77,32 @@ public class OrderController {
         }
     }
 
+    public void updateOrderMenuCookingStatus(String orderID, String menuID, boolean statusCooking) {
+        JSONArray jsonArrayUpdate = new JSONArray();
+        try {
+            JSONArray jsonArrayOrder = new JSONArray(sharedPref.getString("Orders", "[]"));
+            for(int i = 0; i < jsonArrayOrder.length(); i++) {
+                JSONObject objectOrder = jsonArrayOrder.getJSONObject(i);
+
+                JSONArray jsonArrayOrderedMenu = objectOrder.getJSONArray("OrderedMenus");
+                if(objectOrder.getString("ID").equals(orderID)) {
+                    for(int j = 0; j < jsonArrayOrderedMenu.length(); j++) {
+                        JSONObject objectMenu = jsonArrayOrderedMenu.getJSONObject(j);
+                        if(objectMenu.getString("MenuID").equals(menuID)) {
+                            objectMenu.put("IsCookDone", statusCooking);
+                        }
+                    }
+                }
+
+                jsonArrayUpdate.put(objectOrder);
+            }
+
+            sharedPref.edit().putString("Orders", jsonArrayUpdate.toString()).apply();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int getLastOrderID() {
         int lastOrderID = 0;
 

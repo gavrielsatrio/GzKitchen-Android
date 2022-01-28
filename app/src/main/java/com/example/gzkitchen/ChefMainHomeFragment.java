@@ -2,6 +2,7 @@ package com.example.gzkitchen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,9 +83,10 @@ public class ChefMainHomeFragment extends Fragment {
                 JSONObject objectOrder = jsonArrayOnCookingOrder.getJSONObject(i);
                 View viewOnCookingOrder = LayoutInflater.from(chefMainActivity).inflate(R.layout.on_cooking_order_layout, null, false);
 
-                String orderID = new OrderIDHelper().getDisplayOrderID(objectOrder.getString("ID"));
+                String orderID = objectOrder.getString("ID");
+                String orderIDDisplay = new OrderIDHelper().getDisplayOrderID(orderID);
 
-                ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblOrderID)).setText(orderID);
+                ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblOrderID)).setText(orderIDDisplay);
                 ((TextView)viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLblTableNoValue)).setText(objectOrder.getString("TableNo"));
 
                 LinearLayout onCookingOrderLinearLayoutMenu = viewOnCookingOrder.findViewById(R.id.onCookingOrderLayoutLinearLayoutMenu);
@@ -93,14 +95,15 @@ public class ChefMainHomeFragment extends Fragment {
                     JSONObject objectMenu = jsonArrayOnCookingMenu.getJSONObject(j);
                     View viewOnCookingMenu = LayoutInflater.from(chefMainActivity).inflate(R.layout.on_cooking_menu_layout, null, false);
 
-                    String menuName = menuController.getMenusWhere("ID", objectMenu.getString("MenuID")).getJSONObject(0).getString("Name");
+                    String menuID = objectMenu.getString("MenuID");
+                    String menuName = menuController.getMenusWhere("ID", menuID).getJSONObject(0).getString("Name");
 
                     CheckBox checkBoxMenu = (CheckBox)viewOnCookingMenu.findViewById(R.id.onCookingMenuLayoutCheckBox);
                     checkBoxMenu.setText(objectMenu.getString("Qty") + " pcs of " + menuName);
                     checkBoxMenu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-
+                            orderController.updateOrderMenuCookingStatus(orderID, menuID, checked);
                         }
                     });
 

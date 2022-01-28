@@ -74,7 +74,6 @@ public class CashierMainHomeFragment extends Fragment {
         LoadAnimation();
         LoadComboSort();
         LoadDataCashier();
-        LoadData();
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
