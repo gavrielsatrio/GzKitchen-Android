@@ -74,7 +74,7 @@
                 android:alpha="0"
                 android:background="@android:color/transparent"
                 android:cropToPadding="true"
-                android:scaleType="fitCenter"
+                android:scaleType="centerInside"
                 android:translationY="-50dp"
                 app:srcCompat="@drawable/dot_unselected" />
 
