@@ -171,9 +171,10 @@ public class CashierMainHomeFragment extends Fragment {
 
                 String orderID = new OrderIDHelper().getDisplayOrderID(objectOrder.getString("ID"));
                 String tableNo = objectOrder.getString("TableNo");
+                int statusID = objectOrder.getInt("StatusID");
 
                 ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblOrderID)).setText(orderID);
-                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblStatus)).setText(statusController.getStatusByID(objectOrder.getInt("StatusID")));
+                ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblStatus)).setText(statusController.getStatusByID(statusID));
                 ((TextView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutLblTableNoValue)).setText(tableNo);
                 ((CardView)viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutCardViewBackground)).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -186,6 +187,15 @@ public class CashierMainHomeFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                CardView cardViewStatus = viewOngoingOrder.findViewById(R.id.ongoingOrderLayoutCardViewStatus);
+                if(statusID == 2) {
+                    cardViewStatus.setCardBackgroundColor(getResources().getColor(R.color.colorYellow));
+                } else if(statusID == 3) {
+                    cardViewStatus.setCardBackgroundColor(getResources().getColor(R.color.colorRed));
+                } else if(statusID == 4) {
+                    cardViewStatus.setCardBackgroundColor(getResources().getColor(R.color.colorMidGrey));
+                }
 
                 linearLayoutOngoingOrders.addView(viewOngoingOrder);
             }
