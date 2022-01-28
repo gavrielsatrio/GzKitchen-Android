@@ -33,6 +33,6 @@ public class ChefMainPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return jsonArray.length();
     }
 }
